@@ -9,16 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   </head>
   <body>  
-  # testing h1
   # MESSAGING API  
-  ### Resumen  
+  <h3> Resumen</h3>  
   La comunicación entre las diferentes partes de una extensión se realiza mediante el proceso de fondo o la API de mensajería.  
   El script de fondo y injected script están aislados unos de otros y por lo tanto, deben utilizar la API de mensajería para comunicarse.
   El proceso en segundo plano, como su nombre indica, es un proceso constantemente funcionando en segundo plano durante toda la vida de una extensión. Es responsable de los elementos de interfaz de usuario del navegador (por ejemplo la barra de herramientas botón y popup windows) y las acciones del navegador (apertura y cierre de una tab, etc..).  
-  ### opera.extension.bgProcess  
-  ### Descripción  
+  <h3> opera.extension.bgProcess </h3> 
+  <h3> Descripción </h3> 
   Una referencia al objeto window del proceso en segundo plano. El objeto bgProcess puede utilizarse para establecer y obtener las variables y funciones entre el guión de fondo y una página de preferencias o ventana emergente. Tenga en cuenta que no puede utilizarse en inyección de secuencias de comandos por razones de seguridad.
-  ### Ejemplo (variable)  
+  <h3> Ejemplo (variable)</h3>  
   El valor de una variable en el proceso de fondo aparece cuando se abre la página de preferencias.
   <pre>
   <code class="language-javascript">
@@ -38,7 +37,7 @@
   }, false);
   </code>
   </pre>  
-  ### Ejemplo (función):  
+  <h3> Ejemplo (función): </h3> 
   Ejecutar una función en el proceso de fondo de la página de preferencias.
   <pre>
   <code class="language-javascript">
@@ -62,7 +61,7 @@
   }, false);
   </code>
   </pre>  
-  ### opera.extension.onconnect  
+  <h3> opera.extension.onconnect </h3> 
   Este detector de eventos se invoca cuando un script inyectado, popup o el medio ambiente de preferencias es creado y permite la comunicacion.
   <pre>
   <code class="language-javascript">
@@ -73,11 +72,11 @@
   };
   </code>
   </pre>  
-  ### opera.extension.ondisconnect  
-  ### opera.extension.onmessage  
-  ### Descripción  
+  <h3> opera.extension.ondisconnect</h3>  
+  <h3> opera.extension.onmessage</h3>  
+  <h3> Descripción  
   Este detector de eventos se invoca cuando se recibe un mensaje de un injected script, popup o pagina de preferencias. event's source es un messagePort para el entorno de conexión.
-  ### Ejemplo  
+  <h3> Ejemplo  </h3>
   <pre>
   <code class="language-javascript">
   // The background process ('/background.js'). 
@@ -88,16 +87,16 @@
   };
   </code>
   </pre>  
-  ### opera.extension.addEventListener()   
-  ### Descripción  
+  <h3> opera.extension.addEventListener()  </h3> 
+  <h3> Descripción </h3> 
   Este método se utiliza para detectar eventos que se envían. Para opera.extension, incluye 'connect', 'message', y 'disconnect'.
-  ### Parámetros  
+  <h3> Parámetros </h3> 
   -tipo: tipo de evento; permite los valores : "message", "disconnect", y "connect".
   -eventListener: la función que se ejecutará cuando se produzca el evento. 
   -useCapture: Boolean, false por ahora; Nota: este valor no tiene actualmente ningún propósito.
-  ### Sintaxis  
+  <h3> Sintaxis  </h3>
   void addEventListener (&lt;DOMString> type, eventListerner, &lt;boolean> useCapture)
-  ### Ejemplo  
+  <h3> Ejemplo </h3> 
   <pre>
   <code class="language-javascript">
   //
@@ -120,11 +119,11 @@
   }, false);
   </code>
   </pre>  
-  ### opera.extension.removeEventListener()
+  <h3> opera.extension.removeEventListener()</h3>
 
-  ### opera.extension.broadcastMessage()
+  <h3> opera.extension.broadcastMessage()</h3>
 
-  ### Ejemplos.
+  <h3> Ejemplos.</h3>
   Los fragmentos de dos código a continuación envían un mensaje, en este caso un URL, entre un script inyectado y el proceso de fondo.
   <pre>
   <code class="language-javascript">
@@ -155,16 +154,16 @@
 
   #  INJECTED SCRIPTS
 
-  ### opera.addEventListener()
-  ### Descripción
+  <h3> opera.addEventListener()</h3>
+  <h3> Descripción</h3>
   Registra una escucha para un evento específico para el lado del script inyectado. El oyente necesita utilizar la interfaz EventListener estándar - una función con un objeto de evento como su primer argment, por ejemplo var myListener = function(event) {alert(event.type)};
-  ### Parámetros
+  <h3> Parámetros</h3>
   *tipo: el tipo de evento para escuchar; ver la lista de tipos de eventos a continuación. 
   *listener: la función que se llamará. 
   *useCapture: Boolean. Si es true, el detector de eventos sólo se agrega para la fase de captura y destino.
-  ### Sintaxis
+  <h3> Sintaxis</h3>
   void addEventListener (<DOMString> type, <EventListener> listener, useCapture)
-  ### Ejemplo
+  <h3> Ejemplo</h3>
   <pre>
   <code class="language-javascript">
   opera.addEventListener('BeforeScript', function(userJSEvent) {
@@ -172,53 +171,53 @@
   }, false);
   </code>
   </pre>
-  ### Tipos de evento:
-  ### BeforeExternalScript
+  <h3> Tipos de evento:</h3>
+  <h3> BeforeExternalScript</h3>
   Se activa cuando se encuentra un elemento script con el atributo src. El elemento de script está disponible en el atributo de elemento de la UserJSEvent. En caso de anulación, la fuente externa no sera cargada y el elemento de la secuencia de comandos no se ejecuta. Además, si se cancela, no se disparará el evento BeforeScript.
-  ### BeforeScript
+  <h3> BeforeScript</h3>
 
-  ### AfterScript
+  <h3> AfterScript</h3>
 
-  ### BeforeEvent
+  <h3> BeforeEvent</h3>
 
-  ### BeforeEvent.{type}
+  <h3> BeforeEvent.{type}</h3>
 
-  ### AfterEvent
+  <h3> AfterEvent</h3>
 
-  ### AfterEvent.{type}
+  <h3> AfterEvent.{type}</h3>
 
-  ### BeforeEventListener
+  <h3> BeforeEventListener</h3>
 
-  ### BeforeEventListener.{type}
+  <h3> BeforeEventListener.{type}</h3>
 
-  ### AfterEventListener
+  <h3> AfterEventListener</h3>
 
-  ### AfterEventListener.{type}
+  <h3> AfterEventListener.{type}</h3>
 
-  ### BeforeJavascriptURL
+  <h3> BeforeJavascriptURL</h3>
 
-  ### AfterJavascriptURL
+  <h3> AfterJavascriptURL</h3>
 
-  ### BeforeCSS
+  <h3> BeforeCSS</h3>
 
-  ### AfterCSS
+  <h3> AfterCSS</h3>
 
-  ### pluginInitialized
+  <h3> pluginInitialized</h3>
 
-  ### opera.removeEventListener()
+  <h3> opera.removeEventListener()</h3>
   » Removes an existing listener from an event.
-  ### opera.defineMagicFunction()
+  <h3> opera.defineMagicFunction()</h3>
   » This method can be used to override global functions defined by regular scripts in a page.
-  ### opera.defineMagicVariable()
+  <h3> opera.defineMagicVariable()</h3>
   » This method can be used by to override global variables defined by regular scripts in a page.
-  ### opera.postError()
+  <h3> opera.postError()</h3>
 
-  ### Resumen
+  <h3> Resumen</h3>
   Puede agregar JavaScript a un sitio Web utilizando la "inyección de secuencias de comandos". Estos son archivos de JavaScript normales dentro de la carpeta "includes" en la extensión. Opera ejecute los scripts dado a todas las páginas, o determinados sitios o dominios que han sido el objetivo.
 
   Puede, por ejemplo, crear secuencias de comandos inyectadas que Ocultan comentarios en YouTube que se escriben en mayúsculas, o mostrar todos los enlaces de texto en todas las páginas en color de rosa.
 
-  ### Ejemplos
+  <h3> Ejemplos</h3>
   El ejemplo siguiente es un script inyectado (/ includes/injectedScript.js) que agrega un tooltip (mediante el atributo de título) para todos los enlaces en BBC News (pero no en BBC Sport).
   <pre>
   <code class="language-javascript">
@@ -275,38 +274,38 @@
   </pre>
   ## BUTTON & BADGE API
 
-  ### opera.contexts.toolbar.createItem()
+  <h3> opera.contexts.toolbar.createItem()</h3>
   » Creates a button that can be added to the browser toolbar.
-  ### opera.contexts.toolbar.addItem()
+  <h3> opera.contexts.toolbar.addItem()</h3>
   » Adds a button to the toolbar in the browser. To create a button see the createItem() method.
-  ### opera.contexts.toolbar.removeItem()
+  <h3> opera.contexts.toolbar.removeItem()</h3>
   » Removes a given button from the toolbar in the browser.
-  ### opera.contexts.toolbar.length
+  <h3> opera.contexts.toolbar.length</h3>
   » The number of buttons that exist in the toolbar for this extension (0 or 1).
-  ### Button.badge
+  <h3> Button.badge</h3>
   » A read-only property representing the badge for a button.
-  ### Button.disabled
+  <h3> Button.disabled</h3>
   » A read-only property indicating whether a button is disabled. Set to false by default (meaning the item is enabled).
-  ### Button.icon
+  <h3> Button.icon</h3>
   » A read-only representation of the icon for a button.
-  ### Button.onclick
+  <h3> Button.onclick</h3>
   » Represents the function executed when the button is clicked.
-  ### Button.popup
+  <h3> Button.popup</h3>
   » A read-only property representing the popup file path for a button.
-  ### Button.title
+  <h3> Button.title</h3>
   » The title of a button which is exposed to the user (e.g., as a tooltip when hovering over the item with a mouse).
 
-  ### Button.addEventListener()
-  ### Descripción
+  <h3> Button.addEventListener()</h3>
+  <h3> Descripción</h3>
   Este método se utiliza para detectar eventos que se envían.
 
-  ### Parámetros
+  <h3> Parámetros</h3>
   *type: tipo de evento; permite los valores : click y remove. *eventListener: la función que se ejecuta cuando se produce el evento. 
   *useCapture: Boolean y debe mantenerse falsa por ahora. Nota: este valor no tiene actualmente ningún propósito.
-  ### Sintaxis
+  <h3> Sintaxis</h3>
   void addEventListener(<DOMString> type, eventListener, <boolean> useCapture)
 
-  ### Ejemplo
+  <h3> Ejemplo</h3>
   <pre>
   <code class="language-javascript">
   //
@@ -336,22 +335,22 @@
   </code>
   </pre>
 
-  ### Button.removeEventListener()
+  <h3> Button.removeEventListener()</h3>
   » Removes a listener from receiving an event.
-  ### Badge.backgroundColor
+  <h3> Badge.backgroundColor</h3>
   » The background color for a badge.
-  ### Badge.color
+  <h3> Badge.color</h3>
   » The text color of a badge.
-  ### Badge.display
+  <h3> Badge.display</h3>
   » Determines whether a badge should be displayed.
-  ### Badge.textContent
+  <h3> Badge.textContent</h3>
   » The text that will be shown in a badge.
   ___
   # Opera extensions: mensajería
   Con extensiones, tiene la capacidad de crear y agregar emocionante nueva funcionalidad en el navegador de escritorio de Opera. Como se ha mencionado en otros artículos, las extensiones de Opera contienen un proceso en segundo plano, inyección de scripts y a veces scripts emergente tambien. En este artículo, veremeos cómo comunicarse entre los tres.
 
-  ### Contenido
-  ### Comunicación Entre Procesos De Fondo Y Script Inyectado
+  <h3> Contenido</h3>
+  <h3> Comunicación Entre Procesos De Fondo Y Script Inyectado</h3>
   Ópera utiliza postMessage() para publicar un mensaje, y lo utilizaremos la mayoría del tiempo.
   Sin embargo, si desea enviar un mensaje desde el proceso de fondo a todos los recursos de esa extensión particular (como scripts inyectados, ventana emergente, página de preferencia etc.), escriba lo siguiente en el proceso de fondo:
    
@@ -488,7 +487,7 @@
   *El proceso de fondo escribe algo en una cadena en la consola de errores, que incluye el mensaje enviado por la secuencia de comandos de menú emergente.  
   Por lo que el comportamiento es bastante similar al del ejemplo anterior, sólo que con este ejemplo, no teníamos un archivo de script inyectado en absoluto en la carpeta /includes. Por el contrario, utilizamos un popup y un script del documento emergente que se comunicó con el proceso de fondo.  
   ___
-  ### Communicating between popup and injected script
+  <h3> Communicating between popup and injected script</h3>
 
   Vamos a ver ahora cómo comunicarse entre un <em>popup</em> y un <em>script inyectado</em>. El proceso en segundo plano (<em>background process</em>) se utilizará inicialmente para hacer la conexión y, a continuación, el <em>popup</em> y el </em>script inyectado</em> hablaran sin el proceso de fondo.
   Logramos esto mediante la creación de un canal de mensaje. 
