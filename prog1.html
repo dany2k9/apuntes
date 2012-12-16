@@ -121,6 +121,77 @@ No-Sí y No-No. Para construir la zona 2 o de cumplimiento de condiciones seguir
     <img src="prog17.jpg" alt=""><br>
    <p>Si una acción remitiera a la tabla 1 se trataría de un anidamiento. Esto es admisible sólo si antes de que se remita a la tabla se ha producido un cambio en las condiciones que dé lugar a un caso sin anidamiento, de lo contrario se trataría de un proceso circular infinito y una tabla mal construida. </p> 
    <br>
-   CU00114A Ejemplo problema pseudocodigo tabla decision 2 tecnica programacion
+<b>Ejemplo</b> 
+Construir la tabla de decisión para el siguiente problema. <br>
+<p>Una asignatura universitaria se estructura en cuatro módulos: teoría, problemas, prácticas de laboratorio y prácticas de campo. Si se aprueban los cuatro 
+módulos se obtiene la calificación como nota media. En otro caso se siguen estas premisas: </p>
+<p>Los exámenes se hacen en el siguiente orden: teoría → problemas → prácticas de laboratorio → prácticas de campo. </p>
+• El alumno que no haya aprobado la teoría no se puede presentar a problemas ni a prácticas de laboratorio.<br> 
+• Si un alumno aprueba teoría se le guardará la nota durante ese curso y el siguiente.<br> 
+• Si un alumno suspende un solo módulo se le citará en despacho antes de evaluarlo. <br>
+ <img src="prog18.jpg" alt=""><br>
+ <p>La tabla simplificada sería (unificamos las columnas 12 – 16 y 7 – 13):</p>
+ <img src="prog19.jpg" alt=""><br>
+ <img src="prog20.jpg" alt=""><br>
+ <h1>Problemas con resolución intuida pero que no sabemos programar directamente.</h1>
+ <p>Vamos a relacionar múltiples problemas indicando cómo los clasificaríamos: </p>
+a) Cerrar una puerta → resolución directa. <br>
+b) Clavar un clavo → resolución con iteraciones. <br>
+c) Calcular volumen de un cilindro → resolución directa. <br>
+d) Hablar → resolución intuida. <br>
+e) Preparar una bechamel → resolución documentada. <br>
+f) Pintar una casa → resolución directa. <br>
+g) Ordenar una serie de números → resolución intuida. <br>
+h) Facturar a un cliente en una agencia de viajes, existiendo múltiples condicionantes para determinar el precio → resolución con tabla de decisión.<br> 
+i) Realizar la declaración de la renta → resolución documentada.<br> 
+j) Elegir el color para pintar una casa → subjetivo, no programable. <br>
+k) Conducir un coche → resolución intuida. <br>
+l) Recoger a una persona que ha entrado a un cajero si llevamos un coche y nos vemos obligados a dar vueltas a la manzana → resolución con iteración.<br> 
+m) Calcular pérdidas de carga en tuberías → resolución documentada. <br>
+n) Calcular nóminas de los empleados de una empresa, existiendo múltiples condicionantes (pluses, sanciones, niveles, etc.) → resolución con tabla de decisión. <br>
+o) Determinar los números primos entre uno y mil → resolución intuida.<br> 
+p) ¿Qué hacer si nos encontramos a 100 Km del lugar donde tenemos una reunión dentro de 30 
+minutos? → subjetivo, no programable. <br>
+<p>En cuanto a los problemas de resolución intuida, observamos que tienen en común lo siguiente: </p>
+a) Sabemos resolverlos o sabemos que existe una vía matemática, lógica o de encadenamiento de acciones que dan lugar a la solución.<br> 
+b) No sabemos, o hay necesidad de reflexionar para determinarlos, cuáles son los pasos intermedios para llegar a la solución. <br>
+<p>Podríamos pensar en hablar como: </p>
+<img src="prog21.jpg" alt=""><br>
+<p>Las letras (o fonemas) serían las unidades que se conjuntan para crear vocablos con significación. Las convenciones, el acuerdo entre todos los hablantes de un lenguaje para que ciertas letras unidas signifiquen algo. </p>
+<p>Las normas de construcción del lenguaje rigen las formas verbales, la sintaxis. </p>
+<p>Por último, las excepciones a las normas constituirían circunstancias a conocer específicamente, tal es el caso de los verbos irregulares y las frases hechas, etc.</p>
+<p>Supongamos lo siguiente: tenemos una serie de números y queremos ordenarla (de menor a mayor). </p>
+<img src="prog22.jpg" alt=""><br>
+<p> Empezaremos tratando de responder a las preguntas de “Conocer el problema” como si de un caso normal se tratara. </p>
+<p>1. ¿Cuál es mi objetivo? Conocemos el objetivo genérico: ordenar una serie de números. Debemos acotarlo todo lo posible. Por ello plantearemos como objetivo ”Ordenar una serie de números de mayor a menor” </p>
+<p>2. ¿Cuáles son los condicionantes que afectan al problema? Quizás no los conozcamos todos ahora y haya que volver a este punto más adelante, pero vamos a tratar de determinarlos. Nos plantearemos: <br>
+• La cantidad de números a ordenar: el problema sería inmediato si se tratara de dos o tres números. Pero nos plantearemos el problema para un número indeterminado, esto es, n 
+números.<br> 
+• La existencia de ceros: dado que pensamos basarnos en comparaciones de números, el cero no tiene por qué darnos ningún problema. <br>
+• La existencia de números negativos: ídem al caso del cero.<br> 
+• La necesidad o no de conservar la lista inicial de números: habrá de considerarse en función de para qué queremos el programa. Suponemos que queremos conservarla. </p>
+<p>3. ¿Cuáles son los datos de partida? Una serie de n números. Trataremos de trabajar con letras. Así la serie estará compuesta por valor 1, valor 2, valor 3, valor 4, ..., valor n o abreviadamente v(1), v(2), v(3), v(4),..., v(n). </p>
+<p>4. ¿Qué método o estrategia de resolución voy a aplicar? De ello nos ocuparemos a continuación. </p>
+<p>5. ¿Qué resultados quiero obtener? Dado que queremos conservar la lista inicial, vamos a tratar de obtener una lista ordenada del tipo: orden 1 = ... , orden 2 = ... , orden 3 = ... , orden 4 = ... , ..., orden n = ... , o abreviadamente o(1), o(2), o(3), o(4), ..., o(n). </p>
+<h2>Parte I: Estrategias para resolver un problema de programación. </h2>
+<p>ESTRATEGIAS DE RESOLUCIÓN </p>
+La estrategia de aproximación al método es algo libre.<br>
+<p>1º) Planteamos varios casos. ¿Qué número n de valores cogemos? No hay respuesta fija: debemos huir de los valores que puedan suponerse especiales o no genéricos así como de valores que den lugar a procesos demasiado largos. En nuestro caso: </p>
+<img src="prog23.jpg" alt=""><br>
+<p> En esta ocasión, elegiremos estos cuatro casos: </p>
+<img src="prog24.jpg" alt=""><br>
+La elección de casos se hace buscando: <br>
+• Representatividad de situaciones.<br> 
+• Circunstancias especiales conocidas.<br> 
+• Sencillez.<br>
+De las series elegidas podríamos decir lo siguiente:<br> 
+<img src="prog25.jpg" alt=""><br>
+<p>2º) Tanteamos un método. A cada uno de los casos trataremos de aplicarle un mismo método a partir de una idea. En este caso la idea va a ser: “Considero al primer número como orden 1. A partir de ahí, cojo el segundo número y lo comparo con orden 1. Si es mayor orden 2 pasa a ser orden 1 y orden 1 pasa a ser el valor. Si es menor orden 2 es el valor. El proceso se repite, de forma que vamos comparando e intercalando donde proceda”. Aplicaremos el método y trataremos de dejar reflejo de los pasos seguidos como esquema gráfico, de cálculo o de encadenamiento de acciones.    </p>
+<img src="prog26.jpg" alt=""><br>
+<img src="prog27.jpg" alt=""><br>
+<img src="prog28.jpg" alt=""><br>
+<img src="prog28b.jpg" alt=""><br>
+<img src="prog29.jpg" alt=""><br>
+CU00117A Estrategias resolver problema de programacion I algoritmo
 </body>
 </html>
