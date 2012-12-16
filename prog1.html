@@ -14,45 +14,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
+<h1>Ejemplo de búsqueda de soluciones a un problema con iteración</h1>
 objetivo  <br>
 condicionantes  <br>
 m&eacute;todo    <br>
-  Problema con resoluci&oacute;n directa    <br>
-  Problema con iteraci&oacute;n para b&uacute;squeda de soluciones   <br>
-"proceso circular" o bucle   <br>
+&nbsp;&nbsp;Problema con resoluci&oacute;n directa    <br>
+&nbsp;&nbsp;Problema con iteraci&oacute;n para b&uacute;squeda de soluciones   <br>
+"proceso circular" o bucle   <br><br>
 
 1. Se detectan datos de entrada inductores de bucle infinito.    <br>
 2. El n&uacute;mero de iteraciones supera el valor que se ha fijado como aceptable.<br> 
 3. El tiempo empleado en iteraciones supera el valor que se ha fijado como aceptable.<br> 
 4. Se detecta que la soluci&oacute;n est&aacute; tendiendo a m&aacute;s o menos infinito.<br> 
 5. Soluci&oacute;n se sale del rango previsto o deseado. 
-   <br>
-Objetivo: Buscar el valor de x que siendo un n&uacute;mero real positivo hace f(x) = 5x2 - 3x - 4 igual a cero de 
-acuerdo con estas reglas.<br>
+   <br><br>
+Objetivo: Buscar el valor de x que siendo un n&uacute;mero real positivo hace f(x) = 5x2 - 3x - 4 igual a cero de acuerdo con estas reglas.<br>
 1. Se admite la desviaci&oacute;n de f(x) respecto al valor pedido de ± 0'01. <br>
 2. Hemos perdido toda nuestra memoria: no se admite el uso de f&oacute;rmulas o estrategias de resoluci&oacute;n 
 gr&aacute;ficas o anal&aacute;ticas: debemos basarnos en un tanteo puro ordenado (no aleatorio) y constante. <br>
-3. Se sabe que la soluci&oacute;n est&aacute; entre 1 y 10, debiendo comenzar la b&uacute;squeda por uno de estos dos 
-extremos. <br>
+3. Se sabe que la soluci&oacute;n est&aacute; entre 1 y 10, debiendo comenzar la b&uacute;squeda por uno de estos dos extremos. <br><br>
 
-Se pide: definir el esquema de b&uacute;squeda limitando el n&uacute;mero m&aacute;ximo de iteraciones.<br> 
+Se pide: definir el esquema de b&uacute;squeda limitando el n&uacute;mero m&aacute;ximo de iteraciones.<br> <br>
 
-Datos in&iacute;ciales ---------Sucesivas evaluaciones de f(x)---------Fin por obtener resultado 
+Datos in&iacute;ciales ------Sucesivas evaluaciones de f(x)-----Fin por obtener resultado 
 o por superar n&uacute;mero m&aacute;ximo de iteraciones  
-  <br>
+  <br><br><br>
 Datos:<br> 
 * f(x) = ax2 + bx + c , funci&oacute;n.<br> 
 * e , error admisible. <br>
 * lim inf , l&iacute;mite inferior del intervalo de b&uacute;squeda. <br>
 * lim sup , l&iacute;mite superior del intervalo de b&uacute;squeda.<br> 
 * int , valor incremental para cada tanteo.<br> 
-* Nmax , n&uacute;mero m&aacute;ximo de iteraciones. <br>
+* Nmax , n&uacute;mero m&aacute;ximo de iteraciones. <br><br>
 
 * Trataremos de barrer todo el intervalo de b&uacute;squeda. <br>
 * Trataremos de no superar las 104 iteraciones. <br>
-* En nuestro caso el intervalo de b&uacute;squeda comprende 10 - 1 = 9 enteros.<br>
+* En nuestro caso el intervalo de b&uacute;squeda comprende 10 - 1 = 9 enteros.<br><br>
 
-* Cerraremos el asunto estableciendo:  int = ± 0,001 ; Nmax = 9000 <br>
+* Cerraremos el asunto estableciendo:  int = ± 0,001 ; Nmax = 9000 <br><br>
 
 Pasemos ahora al procedimiento.<br>
 </body>
