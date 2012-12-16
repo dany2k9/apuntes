@@ -192,6 +192,39 @@ De las series elegidas podríamos decir lo siguiente:<br>
 <img src="prog28.jpg" alt=""><br>
 <img src="prog28b.jpg" alt=""><br>
 <img src="prog29.jpg" alt=""><br>
-CU00117A Estrategias resolver problema de programacion I algoritmo
+<img src="prog30.jpg" alt=""><br>
+<p>3º) Valoración preliminar. Un primer análisis de lo realizado nos permite decir que: <br>
+• En los cuatro casos se ha alcanzado un resultado satisfactorio.<br> 
+• El caso cuatro que presentaba dos valores iguales ha quedado bien resuelto. El que entra primero en la rueda de comparación, en este caso v(1), queda detrás al no cumplirse el ser mayor que 
+v(4). Pero a efectos prácticos nos es indistinto que quede detrás o delante. </p>
+<p>4º) Plantear relaciones y procesos con letras. Observando los distintos casos, trataremos de plantear qué relaciones y procesos se dan en todos ellos. <br>
+Se dan las siguientes circunstancias:<br> 
+• Vamos extrayendo sucesivamente v(1), v(2), v(3), ..., v(n)  <br>
+• Cuando el valor resulta mayor que un orden preexistente se produce un desplazamiento en cadena. 
+• Desplazar o no está condicionado por la comparación v(a) con los órdenes o(1), o(2), o(3), ...,  o(a-1). Si tras sucesivas comparaciones v(a) es menor que o(a-1) establecemos o(a) = v(a).</p>
+• En los desplazamientos observamos:<br>
+<img src="prog31.jpg" alt=""><br>
+<img src="prog32.jpg" alt=""><br>
+<img src="prog33.jpg" alt=""><br>
+<p>5º) Plantear el procedimiento de resolución. En base a las relaciones observadas, trataremos de plantear un procedimiento general de resolución. </p>
+<img src="prog34.jpg" alt=""><br>
+Procedimiento para desplazar: <br>
+<img src="prog35.jpg" alt=""><br>
+<h1>Parte I: Ejercicio empleando una estrategia para resolver un 
+problema. </h1>
+EJERCICIO:<br> 
+Determinar el método de resolución para el problema con los criterios expuestos a continuación: <br>
+1. Objetivo: “Ordenar una serie de números de mayor a menor”.<br> 
+2. Condicionantes: Cantidad de números a ordenar indeterminada. Necesario conservar la serie inicial de números.<br> 
+3. Datos de partida: Una serie de n números. <br>
+4. Método: Se basará en la siguiente idea. Se buscará el número más grande de la lista que pasará a una nueva lista. Con los elementos restantes repetimos el proceso para obtener el segundo número de la lista nueva. El proceso se repite hasta que no quedan números por extraer.<br> 
+5. Resultados a obtener: Lista ordenada del tipo orden(1) = ..., orden(2) = ..., orden(3) = ..., ...,   orden(n) = ...   <br>
+SOLUCIÓN: <br>
+1º) Planteamos varios casos: Problema muy similar al anterior. Repetimos pues las consideraciones antes expuestas y los cuatro casos que teníamos. <br>
+<img src="prog36.jpg" alt=""><br>
+2º) Tanteamos el método: Partimos de la idea expuesta y la aplicamos a los distintos casos.<br>
+<img src="prog37.jpg" alt=""><br>
+<img src="prog38.jpg" alt=""><br>
+CU00119A Ejercicio ejemplo estrategia resolucion problema programacion I
 </body>
 </html>
