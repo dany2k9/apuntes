@@ -1,49 +1,50 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-<head>
-	<meta charset="UTF-8">
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title></title>
 </head>
 <body>
 objetivo  <br>
 condicionantes  <br>
-método    <br>
-  Problema con resolución directa    <br>
-  Problema con iteración para búsqueda de soluciones   <br>
+mï¿½todo    <br>
+  Problema con resoluciï¿½n directa    <br>
+  Problema con iteraciï¿½n para bï¿½squeda de soluciones   <br>
 "proceso circular" o bucle   <br>
 
 1. Se detectan datos de entrada inductores de bucle infinito.    <br>
-2. El número de iteraciones supera el valor que se ha fijado como aceptable.<br> 
+2. El nï¿½mero de iteraciones supera el valor que se ha fijado como aceptable.<br> 
 3. El tiempo empleado en iteraciones supera el valor que se ha fijado como aceptable.<br> 
-4. Se detecta que la solución está tendiendo a más o menos infinito.<br> 
-5. Solución se sale del rango previsto o deseado. 
+4. Se detecta que la soluciï¿½n estï¿½ tendiendo a mï¿½s o menos infinito.<br> 
+5. Soluciï¿½n se sale del rango previsto o deseado. 
    <br>
-Objetivo: Buscar el valor de x que siendo un número real positivo hace f(x) = 5x2 - 3x - 4 igual a cero de 
+Objetivo: Buscar el valor de x que siendo un nï¿½mero real positivo hace f(x) = 5x2 - 3x - 4 igual a cero de 
 acuerdo con estas reglas.<br>
-1. Se admite la desviación de f(x) respecto al valor pedido de ± 0'01. <br>
-2. Hemos perdido toda nuestra memoria: no se admite el uso de fórmulas o estrategias de resolución 
-gráficas o analíticas: debemos basarnos en un tanteo puro ordenado (no aleatorio) y constante. <br>
-3. Se sabe que la solución está entre 1 y 10, debiendo comenzar la búsqueda por uno de estos dos 
+1. Se admite la desviaciï¿½n de f(x) respecto al valor pedido de ï¿½ 0'01. <br>
+2. Hemos perdido toda nuestra memoria: no se admite el uso de fï¿½rmulas o estrategias de resoluciï¿½n 
+grï¿½ficas o analï¿½ticas: debemos basarnos en un tanteo puro ordenado (no aleatorio) y constante. <br>
+3. Se sabe que la soluciï¿½n estï¿½ entre 1 y 10, debiendo comenzar la bï¿½squeda por uno de estos dos 
 extremos. <br>
 
-Se pide: definir el esquema de búsqueda limitando el número máximo de iteraciones.<br> 
+Se pide: definir el esquema de bï¿½squeda limitando el nï¿½mero mï¿½ximo de iteraciones.<br> 
 
-Datos iníciales ---------Sucesivas evaluaciones de f(x)---------Fin por obtener resultado 
-o por superar número máximo de iteraciones  
+Datos inï¿½ciales ---------Sucesivas evaluaciones de f(x)---------Fin por obtener resultado 
+o por superar nï¿½mero mï¿½ximo de iteraciones  
   <br>
 Datos:<br> 
-• f(x) = ax2 + bx + c , función.<br> 
-• e , error admisible. <br>
-• lim inf , límite inferior del intervalo de búsqueda. <br>
-• lim sup , límite superior del intervalo de búsqueda.<br> 
-• int , valor incremental para cada tanteo.<br> 
-• Nmax , número máximo de iteraciones. <br>
+ï¿½ f(x) = ax2 + bx + c , funciï¿½n.<br> 
+ï¿½ e , error admisible. <br>
+ï¿½ lim inf , lï¿½mite inferior del intervalo de bï¿½squeda. <br>
+ï¿½ lim sup , lï¿½mite superior del intervalo de bï¿½squeda.<br> 
+ï¿½ int , valor incremental para cada tanteo.<br> 
+ï¿½ Nmax , nï¿½mero mï¿½ximo de iteraciones. <br>
 
-• Trataremos de barrer todo el intervalo de búsqueda. <br>
-• Trataremos de no superar las 104 iteraciones. <br>
-• En nuestro caso el intervalo de búsqueda comprende 10 – 1 = 9 enteros.<br>
+ï¿½ Trataremos de barrer todo el intervalo de bï¿½squeda. <br>
+ï¿½ Trataremos de no superar las 104 iteraciones. <br>
+ï¿½ En nuestro caso el intervalo de bï¿½squeda comprende 10 ï¿½ 1 = 9 enteros.<br>
 
-• Cerraremos el asunto estableciendo:  int = ± 0,001 ; Nmax = 9000 <br>
+ï¿½ Cerraremos el asunto estableciendo:  int = ï¿½ 0,001 ; Nmax = 9000 <br>
 
 Pasemos ahora al procedimiento.<br>
 </body>
