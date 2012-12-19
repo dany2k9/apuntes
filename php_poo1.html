@@ -14,217 +14,1667 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
-<h1>Ejemplo de búsqueda de soluciones a un problema con iteración</h1>
-objetivo  <br>
-condicionantes  <br>
-m&eacute;todo    <br>
-&nbsp;&nbsp;Problema con resoluci&oacute;n directa    <br>
-&nbsp;&nbsp;Problema con iteraci&oacute;n para b&uacute;squeda de soluciones   <br>
-"proceso circular" o bucle   <br><br>
+  Principio 1: RTFM - "Lee el Maldito Manual"  
+Principio 2: DRY - "No Te Repitas" 
+Principio 3: KISS - "Mantenlo Simple, Estúpido!" 
+Principio 4: Estándar de Codificación PHP / Zend
 
-1. Se detectan datos de entrada inductores de bucle infinito.    <br>
-2. El n&uacute;mero de iteraciones supera el valor que se ha fijado como aceptable.<br> 
-3. El tiempo empleado en iteraciones supera el valor que se ha fijado como aceptable.<br> 
-4. Se detecta que la soluci&oacute;n est&aacute; tendiendo a m&aacute;s o menos infinito.<br> 
-5. Soluci&oacute;n se sale del rango previsto o deseado. 
-   <br><br>
-Objetivo: Buscar el valor de x que siendo un n&uacute;mero real positivo hace <b>f(x) = 5x2 - 3x - 4 igual a cero</b> de acuerdo con estas reglas.<br>
-1. Se admite la desviaci&oacute;n de f(x) respecto al valor pedido de ± 0'01. <br>
-2. Hemos perdido toda nuestra memoria: no se admite el uso de f&oacute;rmulas o estrategias de resoluci&oacute;n 
-gr&aacute;ficas o anal&aacute;ticas: debemos basarnos en un tanteo puro ordenado (no aleatorio) y constante. <br>
-3. Se sabe que la soluci&oacute;n est&aacute; entre 1 y 10, debiendo comenzar la b&uacute;squeda por uno de estos dos extremos. <br><br>
+HTTP://FRAMEWORK.ZEND.COM/WIKI/DISPLAY/ZFDEV/PHP+CODING+STANDARD+(DRAFT) 
 
-Se pide: definir el esquema de b&uacute;squeda limitando el n&uacute;mero m&aacute;ximo de iteraciones.<br> <br>
+¿Qué es lo que intenta hacer entonces la Programación Orientada a los Objetos (POO)?
+“simplificar las abstracciones”
 
-Datos in&iacute;ciales ------Sucesivas evaluaciones de f(x)-----Fin por obtener resultado 
-o por superar n&uacute;mero m&aacute;ximo de iteraciones  
-  <br><br><br>
-Datos:<br> 
-* f(x) = ax2 + bx + c , funci&oacute;n.<br> 
-* e , error admisible. <br>
-* lim inf , l&iacute;mite inferior del intervalo de b&uacute;squeda. <br>
-* lim sup , l&iacute;mite superior del intervalo de b&uacute;squeda.<br> 
-* int , valor incremental para cada tanteo.<br> 
-* Nmax , n&uacute;mero m&aacute;ximo de iteraciones. <br><br>
+Lo más importante, es detectar los objetos dentro de un contexto determinado. 
 
-* Trataremos de barrer todo el intervalo de b&uacute;squeda. <br>
-* Trataremos de no superar las 104 iteraciones. <br>
-* En nuestro caso el intervalo de b&uacute;squeda comprende 10 - 1 = 9 enteros.<br><br>
+“todo sistema tiene un contexto, un sistema no puede aplicarse en absolutamente todos los contextos”
 
-* Cerraremos el asunto estableciendo:  int = ± 0,001 ; Nmax = 9000 <br><br>
+El contexto, los objetos, sus atributos, sus acciones, cuáles pueden ser conocidos por otros objetos y cuales son (o deben ser) naturalmente internos del propio objeto, para finalmente hacerlos 
+interactuar como en una obra de teatro o en un cuento, con varios posibles principios y finales según la historia que necesitemos contar. 
 
-Pasemos ahora al procedimiento.<br>
-<p>Evaluaremos la imagen del punto inicial y si resulta inferior o igual al valor 
-admisible e, daremos por resuelto el problema. En caso contrario, evaluaremos si hemos llegado al 
-número máximo de iteraciones, y si no es así, volveremos a repetir el proceso para un valor a evaluar 
-igual al anterior más el intervalo de búsqueda. Por último haremos este esquema reflejo de todo lo 
-anterior. </p>
-<img src="prog1.jpg" alt="">
-<h1>Problemas que se resuelven recurriendo a una tabla de decisión</h1>
- <p>Importe = Precio unitario x Cantidad x Descuento </p>
- <p>Supongamos a su vez dos formas de pago: con tarjeta oro (15% de descuento) y con tarjeta club (5% de descuento). El planteamiento sería: </p>
- <img src="prog2.jpg" alt=""><br>
-  <b>Ejemplo facturación grandes almacenes:  </b><br>
-• Pago con tarjeta oro → 15% de descuento.<br> 
-• Pago con tarjeta club → 5% de descuento. <br>
-• Modalidad joven de tarjeta → incrementa en 5% de descuento. <br>
-• Período de rebajas → incrementa 5% de descuento. <br>
-• Artículo en oferta → descuento del 10% sólo acumulable si la tarjeta es joven o es período de rebajas.<br>
-  <p>Para construir una tabla de decisión partiremos de una tabla dividida en cuatro zonas: lista de condiciones, cumplimiento de condiciones, lista de acciones y acciones a realizar. </p>
-    <img src="prog3.jpg" alt=""><br>
-    <img src="prog4.jpg" alt=""><br>
-    <img src="prog5.jpg" alt=""><br>
-     <p>El número de casos que tendremos es 2 n , siendo n el número de condiciones. En el ejemplo anterior tenemos dos condiciones y 2 n = 2 2 = 4 casos, que son Sí-Sí, Sí-No, 
-No-Sí y No-No. Para construir la zona 2 o de cumplimiento de condiciones seguiremos la siguiente estrategia: </p>
-  • Primero la columna con todo Sí.<br> 
-• Segundo todas las columnas posibles con un único No.<br> 
-• Tercero todas las columnas posibles con dos No. <br>
-• Sucesivamente todas las columnas posibles con tres, cuatro, cinco, etc. No. <br>
-• Finalmente la columna de todo No.<br>
- <p><b>Ejemplo:</b> Problema con 4 condiciones. ¿Cuántos casos tendremos? 2 4 = 16 casos. </p>
-  <h1>Parte I: Ejemplos de problemas que se resuelven usando una tabla de decisión</h1>
-   <p><b>Ejemplo: </b>Se quiere determinar el importe a facturar a los clientes de unos grandes almacenes según estos criterios: </p>
-• Si pagan con tarjeta oro tendrán un 15% de descuento.<br> 
-• Si pagan con tarjeta club tendrán un 5% de descuento. <br>
-• Si la tarjeta (oro o club) es modalidad joven, tendrán un 5% de descuento.<br> 
-• Los descuentos son acumulables. <br>
-  <img src="prog6.jpg" alt=""><br>
-   <p>El número de condiciones es 3 y el numero de casos 8, que es 2 3, por lo que en principio todo está correcto. En la hipótesis de que haya un mecanismo de bloqueo que impidiera que se dieran los casos inviables (1, 2 y 5) podríamos eliminarlos y simplificar la tabla de decisión, que quedaría: </p>
-   <img src="prog7.jpg" alt=""><br>
-   <p><b>Ejemplo: </b>Se quiere determinar la nómina de los empleados de una empresa de acuerdo con estos criterios: </p>
-• Si el empleado es altamente productivo tendrá en nómina un plus de productividad.<br> 
-• Si el empleado es encargado de su grupo tendrá en nómina un plus de encargado. <br>
-• Si el empleado ha cometido una infracción grave durante ese mes le será eliminado cualquier plus que pudiera tener.<br> 
-   <img src="prog8.jpg" alt=""><br>
-   <p>Los casos 1, 3, 4 y 5 dan lugar al mismo resultado, por lo que vamos a tratar de simplificar la tabla. Para ello sumaremos casos de dos en dos, agrupando aquellos cuyo cumplimiento de condiciones coincida en todos menos en un parámetro. Dicho parámetro se transformará en un ⎯ , equivalente a indiferente o Sí/No.  </p>
-   <p><b>Ejemplos:</b> (sólo aplicables en casos que puedan dar lugar al mismo resultado).</p>
-   <img src="prog9.jpg" alt=""><br>
-(***) En algunas ocasiones puede ser interesante analizar las peculiaridades que se produzcan. 
-<p>Téngase en cuenta que una indiferencia equivale a dos casos, dos indiferencias a cuatro casos, tres indiferencias a ocho casos, etc. Para introducir una segunda indiferencia hemos, por lo tanto, de estudiar cuatro casos. </p>
-<p>En el análisis del apartado f vemos que se trata de cuatro condiciones, de las cuales la primera y la tercera están fijadas en sí. Así pues nos quedamos con las dos condiciones variantes que suponen estos cuatro casos: </p>
-  <img src="prog10.jpg" alt=""><br>
-  <p>Analizamos qué ocurre en función del resultado del caso 4: </p>
-  a) Resultado del caso 4 = Resultado A.<br>
-   <img src="prog11.jpg" alt=""><br>
-   b) Resultado del caso 4 = Resultado B. No se podría simplificar y nos quedaríamos con:<br> 
-   <img src="prog12.jpg" alt=""><br>
-   Se trataría de una situación en que dos casos llevan a las mismas acciones por imposibilidad de simplificar. <br>
-   c) El caso 4 es imposible y se puede eliminar de la tabla. Situación similar a la anterior en la que no podemos simplificar. <br>
-   <img src="prog13.jpg" alt=""><br>
-   Eliminamos también la linea de inviable pues en ningún caso es útil. El resultado sería la siguiente tabla: <br>
-   <img src="prog14.jpg" alt=""><br>
-   <p>Volvemos a tener dos casos (el 1 - 3 y el 4 - 5) con el mismo resultado y trataremos de simplificar, considerando el guión como un signo de iguales propiedades al Sí/No a efectos de la suma. Por lo tanto: </p>
-   <img src="prog15.jpg" alt=""><br>
-   <p>Esta simplificación podríamos haberla hecho directamente a continuación de la otra (aquí se ha vuelto a construir la tabla para exponer el proceso paso a paso). La tabla resultante sería:</p>
-   <img src="prog16.jpg" alt=""><br>
-    <p>En un problema complejo se puede recurrir a insertar una tabla de decisión dentro de otra. Para ello una o varias de las acciones a realizar se marcarán con Tn, siendo esto indicación de: “acudir a la tabla número n”. </p>
-    <img src="prog17.jpg" alt=""><br>
-   <p>Si una acción remitiera a la tabla 1 se trataría de un anidamiento. Esto es admisible sólo si antes de que se remita a la tabla se ha producido un cambio en las condiciones que dé lugar a un caso sin anidamiento, de lo contrario se trataría de un proceso circular infinito y una tabla mal construida. </p> 
-   <br>
-<b>Ejemplo</b> 
-Construir la tabla de decisión para el siguiente problema. <br>
-<p>Una asignatura universitaria se estructura en cuatro módulos: teoría, problemas, prácticas de laboratorio y prácticas de campo. Si se aprueban los cuatro 
-módulos se obtiene la calificación como nota media. En otro caso se siguen estas premisas: </p>
-<p>Los exámenes se hacen en el siguiente orden: teoría → problemas → prácticas de laboratorio → prácticas de campo. </p>
-• El alumno que no haya aprobado la teoría no se puede presentar a problemas ni a prácticas de laboratorio.<br> 
-• Si un alumno aprueba teoría se le guardará la nota durante ese curso y el siguiente.<br> 
-• Si un alumno suspende un solo módulo se le citará en despacho antes de evaluarlo. <br>
- <img src="prog18.jpg" alt=""><br>
- <p>La tabla simplificada sería (unificamos las columnas 12 – 16 y 7 – 13):</p>
- <img src="prog19.jpg" alt=""><br>
- <img src="prog20.jpg" alt=""><br>
- <h1>Problemas con resolución intuida pero que no sabemos programar directamente.</h1>
- <p>Vamos a relacionar múltiples problemas indicando cómo los clasificaríamos: </p>
-a) Cerrar una puerta → resolución directa. <br>
-b) Clavar un clavo → resolución con iteraciones. <br>
-c) Calcular volumen de un cilindro → resolución directa. <br>
-d) Hablar → resolución intuida. <br>
-e) Preparar una bechamel → resolución documentada. <br>
-f) Pintar una casa → resolución directa. <br>
-g) Ordenar una serie de números → resolución intuida. <br>
-h) Facturar a un cliente en una agencia de viajes, existiendo múltiples condicionantes para determinar el precio → resolución con tabla de decisión.<br> 
-i) Realizar la declaración de la renta → resolución documentada.<br> 
-j) Elegir el color para pintar una casa → subjetivo, no programable. <br>
-k) Conducir un coche → resolución intuida. <br>
-l) Recoger a una persona que ha entrado a un cajero si llevamos un coche y nos vemos obligados a dar vueltas a la manzana → resolución con iteración.<br> 
-m) Calcular pérdidas de carga en tuberías → resolución documentada. <br>
-n) Calcular nóminas de los empleados de una empresa, existiendo múltiples condicionantes (pluses, sanciones, niveles, etc.) → resolución con tabla de decisión. <br>
-o) Determinar los números primos entre uno y mil → resolución intuida.<br> 
-p) ¿Qué hacer si nos encontramos a 100 Km del lugar donde tenemos una reunión dentro de 30 
-minutos? → subjetivo, no programable. <br>
-<p>En cuanto a los problemas de resolución intuida, observamos que tienen en común lo siguiente: </p>
-a) Sabemos resolverlos o sabemos que existe una vía matemática, lógica o de encadenamiento de acciones que dan lugar a la solución.<br> 
-b) No sabemos, o hay necesidad de reflexionar para determinarlos, cuáles son los pasos intermedios para llegar a la solución. <br>
-<p>Podríamos pensar en hablar como: </p>
-<img src="prog21.jpg" alt=""><br>
-<p>Las letras (o fonemas) serían las unidades que se conjuntan para crear vocablos con significación. Las convenciones, el acuerdo entre todos los hablantes de un lenguaje para que ciertas letras unidas signifiquen algo. </p>
-<p>Las normas de construcción del lenguaje rigen las formas verbales, la sintaxis. </p>
-<p>Por último, las excepciones a las normas constituirían circunstancias a conocer específicamente, tal es el caso de los verbos irregulares y las frases hechas, etc.</p>
-<p>Supongamos lo siguiente: tenemos una serie de números y queremos ordenarla (de menor a mayor). </p>
-<img src="prog22.jpg" alt=""><br>
-<p> Empezaremos tratando de responder a las preguntas de “Conocer el problema” como si de un caso normal se tratara. </p>
-<p>1. ¿Cuál es mi objetivo? Conocemos el objetivo genérico: ordenar una serie de números. Debemos acotarlo todo lo posible. Por ello plantearemos como objetivo ”Ordenar una serie de números de mayor a menor” </p>
-<p>2. ¿Cuáles son los condicionantes que afectan al problema? Quizás no los conozcamos todos ahora y haya que volver a este punto más adelante, pero vamos a tratar de determinarlos. Nos plantearemos: <br>
-• La cantidad de números a ordenar: el problema sería inmediato si se tratara de dos o tres números. Pero nos plantearemos el problema para un número indeterminado, esto es, n 
-números.<br> 
-• La existencia de ceros: dado que pensamos basarnos en comparaciones de números, el cero no tiene por qué darnos ningún problema. <br>
-• La existencia de números negativos: ídem al caso del cero.<br> 
-• La necesidad o no de conservar la lista inicial de números: habrá de considerarse en función de para qué queremos el programa. Suponemos que queremos conservarla. </p>
-<p>3. ¿Cuáles son los datos de partida? Una serie de n números. Trataremos de trabajar con letras. Así la serie estará compuesta por valor 1, valor 2, valor 3, valor 4, ..., valor n o abreviadamente v(1), v(2), v(3), v(4),..., v(n). </p>
-<p>4. ¿Qué método o estrategia de resolución voy a aplicar? De ello nos ocuparemos a continuación. </p>
-<p>5. ¿Qué resultados quiero obtener? Dado que queremos conservar la lista inicial, vamos a tratar de obtener una lista ordenada del tipo: orden 1 = ... , orden 2 = ... , orden 3 = ... , orden 4 = ... , ..., orden n = ... , o abreviadamente o(1), o(2), o(3), o(4), ..., o(n). </p>
-<h2>Parte I: Estrategias para resolver un problema de programación. </h2>
-<p>ESTRATEGIAS DE RESOLUCIÓN </p>
-La estrategia de aproximación al método es algo libre.<br>
-<p>1º) Planteamos varios casos. ¿Qué número n de valores cogemos? No hay respuesta fija: debemos huir de los valores que puedan suponerse especiales o no genéricos así como de valores que den lugar a procesos demasiado largos. En nuestro caso: </p>
-<img src="prog23.jpg" alt=""><br>
-<p> En esta ocasión, elegiremos estos cuatro casos: </p>
-<img src="prog24.jpg" alt=""><br>
-La elección de casos se hace buscando: <br>
-• Representatividad de situaciones.<br> 
-• Circunstancias especiales conocidas.<br> 
-• Sencillez.<br>
-De las series elegidas podríamos decir lo siguiente:<br> 
-<img src="prog25.jpg" alt=""><br>
-<p>2º) Tanteamos un método. A cada uno de los casos trataremos de aplicarle un mismo método a partir de una idea. En este caso la idea va a ser: “Considero al primer número como orden 1. A partir de ahí, cojo el segundo número y lo comparo con orden 1. Si es mayor orden 2 pasa a ser orden 1 y orden 1 pasa a ser el valor. Si es menor orden 2 es el valor. El proceso se repite, de forma que vamos comparando e intercalando donde proceda”. Aplicaremos el método y trataremos de dejar reflejo de los pasos seguidos como esquema gráfico, de cálculo o de encadenamiento de acciones.    </p>
-<img src="prog26.jpg" alt=""><br>
-<img src="prog27.jpg" alt=""><br>
-<img src="prog28.jpg" alt=""><br>
-<img src="prog28b.jpg" alt=""><br>
-<img src="prog29.jpg" alt=""><br>
-<img src="prog30.jpg" alt=""><br>
-<p>3º) Valoración preliminar. Un primer análisis de lo realizado nos permite decir que: <br>
-• En los cuatro casos se ha alcanzado un resultado satisfactorio.<br> 
-• El caso cuatro que presentaba dos valores iguales ha quedado bien resuelto. El que entra primero en la rueda de comparación, en este caso v(1), queda detrás al no cumplirse el ser mayor que 
-v(4). Pero a efectos prácticos nos es indistinto que quede detrás o delante. </p>
-<p>4º) Plantear relaciones y procesos con letras. Observando los distintos casos, trataremos de plantear qué relaciones y procesos se dan en todos ellos. <br>
-Se dan las siguientes circunstancias:<br> 
-• Vamos extrayendo sucesivamente v(1), v(2), v(3), ..., v(n)  <br>
-• Cuando el valor resulta mayor que un orden preexistente se produce un desplazamiento en cadena. 
-• Desplazar o no está condicionado por la comparación v(a) con los órdenes o(1), o(2), o(3), ...,  o(a-1). Si tras sucesivas comparaciones v(a) es menor que o(a-1) establecemos o(a) = v(a).</p>
-• En los desplazamientos observamos:<br>
-<img src="prog31.jpg" alt=""><br>
-<img src="prog32.jpg" alt=""><br>
-<img src="prog33.jpg" alt=""><br>
-<p>5º) Plantear el procedimiento de resolución. En base a las relaciones observadas, trataremos de plantear un procedimiento general de resolución. </p>
-<img src="prog34.jpg" alt=""><br>
-Procedimiento para desplazar: <br>
-<img src="prog35.jpg" alt=""><br>
-<h1>Parte I: Ejercicio empleando una estrategia para resolver un 
-problema. </h1>
-EJERCICIO:<br> 
-Determinar el método de resolución para el problema con los criterios expuestos a continuación: <br>
-1. Objetivo: “Ordenar una serie de números de mayor a menor”.<br> 
-2. Condicionantes: Cantidad de números a ordenar indeterminada. Necesario conservar la serie inicial de números.<br> 
-3. Datos de partida: Una serie de n números. <br>
-4. Método: Se basará en la siguiente idea. Se buscará el número más grande de la lista que pasará a una nueva lista. Con los elementos restantes repetimos el proceso para obtener el segundo número de la lista nueva. El proceso se repite hasta que no quedan números por extraer.<br> 
-5. Resultados a obtener: Lista ordenada del tipo orden(1) = ..., orden(2) = ..., orden(3) = ..., ...,   orden(n) = ...   <br>
-SOLUCIÓN: <br>
-1º) Planteamos varios casos: Problema muy similar al anterior. Repetimos pues las consideraciones antes expuestas y los cuatro casos que teníamos. <br>
-<img src="prog36.jpg" alt=""><br>
-2º) Tanteamos el método: Partimos de la idea expuesta y la aplicamos a los distintos casos.<br>
-<img src="prog37.jpg" alt=""><br>
-<img src="prog38.jpg" alt=""><br>
-CU00119A Ejercicio ejemplo estrategia resolucion problema programacion I
+http://es.wikipedia.org/wiki/POO 
+
+1. La POO es un paradigma que tiene sus orígenes desde antes de 1990 
+2. “Los objetos son entidades que combinan estado, comportamiento e 1identidad” 
+3. Fundamental, los beneficios que obtenemos usando este paradigma:  
+- “La programación orientada a objetos expresa un programa como un conjunto de estos objetos, que colaboran entre ellos para realizar tareas. Esto permite hacer los programas y módulos más fáciles de escribir, mantener y reutilizar.” 
+4. La razón de por qué no es necesario que todos los objetos que creemos tengan un id como si fuera una clave primaria de una tabla (con el fin de ubicar un objeto en particular): 
+-“De esta forma, un objeto contiene toda la información que permite definirlo e identificarlo frente a otros objetos pertenecientes a otras clases e incluso frente a objetos de una misma clase, al poder 
+tener valores bien diferenciados en sus atributos.” 
+5. Diferencias con respecto a la Programación Estructurada versus Programación Orientada a Objetos: la 
+primera se pensó como funcionalidad por un lado y datos por otro, es decir, llamar a una función y pasarle constantemente datos para que los procese, mientras que la POO está pensada para tener todo integrado en el mismo objeto. 
+- “En la programación estructurada sólo se escriben funciones que procesan datos. 
+Los programadores que emplean éste nuevo paradigma, en cambio, primero definen objetos para luego enviarles mensajes solicitándoles que realicen sus métodos por sí mismos.” 
+6. Muy importante es tener SIEMPRE en claro los conceptos FUNDAMENTALES, si no los tienes claros 
+cuando programas OO, algo está mal, seguro errarás el camino que define el paradigma: Clase, Herencia, Objeto, Método, Evento, Mensaje, Atributo, Estado Interno, Componentes de un objeto y Representación de un objeto. 
+7. Características de la POO: igual que el punto anterior, es fundamental tener claros estos conceptos cada vez que desarrollamos, con principal énfasis en el Principio de Ocultación (que es muy común confundir con Encapsulamiento), lo que explica por qué no deberían existir los atributos públicos ni abusar de los setter/getter 
+
+http://ar2.php.net/manual/es/langref.php
+http://ar2.php.net/oop
+
+1) “Los Objetos tienen Atributos, Comportamientos y Estados” 
+3) “La clase, un molde para construir objetos” 
+4) “Los atributos y comportamientos pueden ser públicos o privados” 
+
+“acceso público”
+“acceso privado”
+
+http://www.programacionextrema.org/articulos/designdead.es.html
+
+Las clases se construyen en la etapa de diseño donde definimos qué es lo que queremos crear.
+
+Lenguaje Unificado de Modelado (UML)
+
+diagramas de Casos de Uso
+diagramas de clases y 
+diagramas de paquetes. 
+
+Los diagramas UML permiten unificar y simplificar la comunicación en un proyecto, como así también
+apoyar el razonamiento en la etapa de diseño de una solución. 
+ 
+los diagramas MER/DER
+
+Primer Regla: de nomenclatura, los nombres de las clases son siempre en singular y la primer letra 
+de cada palabra en mayúsculas (CamelCase)
+-Tablas en base de datos:  personas, animales,usuarios, usuarios_administradores 
+- Clases en POO: Persona, Animal, 
+Usuario, UsuarioAdministrador 
+
+“Una persona tiene nombre, apellido y fecha de nacimiento, cuando se le pregunta qué edad tiene, responde con su edad que calcula en base a la fecha de nacimiento” 
+_____________________________
+|      Persona      |    #1
+-----------------------------
+|-nombre: String      |  
+|-apellido: String      |    #2  
+|-fechaNacimineto: Date    |
+-----------------------------
+|+decirEdad(): Integer    |    #3
+-----------------------------
+La Sección #1 es para definir el nombre 
+de la clase
+La Sección #2 es para definir los 
+atributos de nuestra clase 
+La Sección #3 es para definir los 
+métodos de nuestra clase
+
+Persona.php 
+#1
+<?php  
+class Persona  
+{  
+}  
+#2
+<?php  
+class Persona  
+{  
+   private $_nombre;  
+   private $_apellido;  
+   private $_fechaNacimiento;  
+}  
+
+<?php  
+class Persona  
+{  
+   private $_nombre = '';  
+   private $_apellido = '';  
+   private $_fechaNacimiento = '';  
+}  
+
+#3
+<?php  
+class Persona  
+{  
+   private $_nombre;  
+   private $_apellido;  
+   private $_fechaNacimiento;  
+ 
+   public function decirEdad()  
+   {  
+       /* calculo la fecha a partir de 
+$_fechaNacimiento */  
+        
+       return $edadCalculada;  
+       
+   }  
+} 
+
+la palabra reservada __construct() 
+
+<?php 
+class Persona 
+{ 
+    private $_fechaNacimiento; 
+ 
+    /** 
+     * 
+     * @param string $fechaNacimiento 5/8/1973 
+     */ 
+    public function __construct($fechaNacimiento) 
+    { 
+        $this->_fechaNacimiento = $fechaNacimiento; 
+    } 
+    public function decirEdad() 
+    { 
+        return $this->_calcularEdad(); 
+    } 
+    private function _calcularEdad() 
+    {         
+        $diaActual  = date(j); 
+        $mesActual= date(n); 
+        $añoActual = date(Y); 
+ 
+        list($dia, $mes, $año) = explode("/", $this->_fechaNacimiento); 
+ 
+        // si el mes es el mismo pero el dia inferior aun 
+        // no ha cumplido años, le quitaremos un año al actual 
+ 
+        if (($mes == $mesActual) && ($dia > $diaActual)) { 
+            $añoActual = $añoActual - 1; 
+        } 
+        // si el mes es superior al actual tampoco habra 
+        // cumplido años, por eso le quitamos un año al actual 
+ 
+        if ($mes > $mesActual) { 
+            $añoActual = $añoActual - 1; 
+        } 
+        // ya no habria mas condiciones, ahora simplemente 
+        // restamos los años y mostramos el resultado como su edad 
+        $edad = $añoActual - $año; 
+ 
+        return $edad; 
+    } 
+}  
+
+$persona = new Persona('5/8/1973'); 
+ 
+echo $persona->decirEdad();
+
+
+object(Persona)#1 (3) {  
+  ["_nombre:private"]=> NULL  
+  ["_apellido:private"]=> NULL  
+  ["_fechaNacimiento:private"]=> string(8) "5/8/1973"  
+}  
+object(Persona)#2 (3) {  
+  ["_nombre:private"]=> NULL  
+  ["_apellido:private"]=> NULL  
+  ["_fechaNacimiento:private"]=> string(8) "5/8/1973"  
+} 
+
+“Una clase, una única responsabilidad”
+
+Las clases nunca imprimen información, siempre retornan.
+
+"getter / setter"
+
+"accesores / modificadores"
+
+En PHP4 todos los atributos de un objeto son siempre atributos públicos
+
+class Usuario{ 
+    var $nombre; 
+    var $nombreReal; 
+    var $edad; 
+    var $clave; 
+} 
+
+PHP5
+
+class Usuario 
+{ 
+    public $nombre; 
+    public $nombreReal; 
+    public $edad; 
+    public $clave; 
+} 
+
+public, private y protected
+
+class Usuario 
+{ 
+    private $_nombre; 
+    private $_nombreReal; 
+    private $_edad; 
+    private $_clave; 
+} 
+
+los atributos de los objetos deben ser siempre "privados" (concepto "encapsulación": no son accesibles desde fuera del objeto, solo el objeto tiene la potestad de usarlos directamente) 
+
+- un método "setter" para "cargar un valor" (asignar un valor a una variable)  
+- un método "getter" para "retornar el valor" (solo devolver la información
+
+Requerimiento 1 
+La edad se puede acceder y modificar en todo momento, por consiguiente se deben agregar los dos métodos, un "get" y un "set" para ese atributo: 
+
+class Usuario 
+{ 
+    private $_nombre; 
+    private $_nombreReal; 
+    private $_edad; 
+    private $_clave; 
+ 
+    public function getEdad()  
+    { 
+       return $this->_edad; 
+    } 
+    public function setEdad($edad) 
+    { 
+       $this->_edad = $edad; 
+    } 
+} 
+
+los métodos y atributos privados deben iniciar con “_” y todas las llaves de métodos y clases inician a la izquierda (ninguna otra más, como un if, for, etc). 
+
+Requerimiento 2 
+Poder saber el nombre del usuario pero no modificarlo, para eso hay que agregar solo un método get para ese atributo: 
+
+public function getNombre() 
+    { 
+     return $this->_nombre; 
+    } 
+
+Requerimiento  3  
+No nos interesa que se sepa el nombre real del usuario 
+ 
+Lo dejamos como está y queda inaccesible desde fuera del objeto. 
+
+Requerimiento  4  
+Queremos que pueda colocar una nueva clave si el usuario se la olvida, pero no saber la que existe actualmente 
+
+Para eso, hacemos lo contrario que con el atributo nombre, agregamos un método "set" pero no el "get": 
+
+public function setClave($clave) 
+   { 
+      $this->_clave = $clave; 
+   } 
+
+"Evitar que el objeto muestre detalles de su implementación" 
+
+class Usuario 
+{ 
+  private $_nombre; 
+  private $_nombreReal; 
+  private $_edad; 
+  private $_clave; 
+ 
+  /** getter / setter */ 
+  public function getEdad(){return  $this->_edad;} 
+  public function setEdad($edad){$this->_edad = $edad;} 
+  public function getNombre(){return $this->_nombre;} 
+  public function setClave($clave){$this->_clave = $clave;} 
+} 
+
+1. Por defecto, atributos privados 
+2. Usa métodos comunes y no getter/setter 
+3. Si no queda otra opción, usa solo getter 
+4. Si no queda otra opción, usa setter 
+5. Trata de evitar getter y setter a la vez (efecto "atributo público") 
+
+"estado del objeto"
+
+"los métodos definen el comportamiento del objeto"
+
+http://www.agile-spain.com/agilev2/blog/traduccionmartinfowler
+
+La Relación de Dependencia “es una relación de uso entre dos entidades” (una usa a la otra)
+
+La relación de dependencia es cuando una clase depende de la funcionalidad que ofrece otra clase. 
+
+La representación en UML es una “flecha punteada” o “discontinua” que va desde la clase “cliente” del servicio/funcionalidad hasta la clase que ofrece el “servicio/funcionalidad”. 
+
+------------__________________---------------
+- La clase A depende de la clase B 
+- La clase A usa la clase B 
+- La clase A conoce la existencia de la clase B, pero la clase B no conoce la existencia de la clase A (es lo que significa el sentido de la flecha) 
+- Todo cambio que se haga en la clase B, por la relación que hay con la clase A, podrá afectar a la clase A. 
+
+“relación de uso”
+
+Solo existen dos situaciones posibles 
+1. En un método de la clase A instancio un objeto de tipo B y posteriormente lo uso. 
+2. En un método de la clase A recibo por parámetro un objeto de tipo B y posteriormente lo uso. 
+
+Caso 1 – instancio un objeto B dentro de un método de A 
+
+<?php  
+require_once 'B.php';  
+ 
+class A  
+{  
+   public function mostrar()  
+   {  
+       $b = new B();  
+         
+       /* etc */  
+   }  
+} 
+
+Caso 2 – recibo por parámetro de un método de A un objeto B  
+
+<?php 
+require_once 'B.php';  
+ 
+class A  
+{  
+   public function mostrar(B $b)  
+   {  
+       echo $b;  
+         
+       /* etc */  
+   }  
+}   
+
+Type Hinting (“indicando el tipo”)
+
+La Relación de Asociación 
+Definición: “es una relación estructural entre entidades” (una entidad se construye a partir de otras entidades) 
+
+La relación de asociación es cuando una clase tiene en su estructura a otra clase, o se puede decir también que se construye una clase a partir de otros elementos u objetos
+
+un objeto Auto y como atributos del mismo tendríamos los objetos Motor, Tanque y Antena.  
+
+“Principio de Ocultación”
+
+La representación en UML es una “flecha continua” que va apuntando desde la clase “compuesto” hasta la o las clases “componentes”.
+
+------------________________-------------
+- La clase A depende de la clase B 
+- La clase A está asociada a la clase B 
+- La clase A conoce la existencia de la clase B, pero la clase B no conoce la existencia de la clase A (sentido de la flecha) 
+- Todo cambio que se haga en la clase B, por la relación que hay con la clase A, podrá afectar a la clase A. 
+
+Creando una clase A que tiene como atributo un objeto de tipo clase B. 
+
+
+<?php 
+require_once 'B.php';  
+ 
+class A  
+{  
+   private $_b;  
+ 
+   public function __construct()  
+   {  
+       $this->_b = new B();  
+   }  
+}  
+ 
+$a = new A();
+
+PHP no soporta la creación de instancias en la definición de atributos
+
+<?php 
+require_once 'Motor.php';  
+require_once 'TanqueCombustible.php';  
+require_once 'AntenaRadio.php';  
+ 
+class Auto  
+{  
+   private $_motor;  
+   private $_tanqueCombustible;  
+   private $_antenaRadio;  
+ 
+   public function __construct()  
+   {  
+       $this->_motor = new Motor();  
+       $this->_tanqueCombustible = new TanqueCombustible();  
+       $this->_antenaRadio = new AntenaRadio();  
+   }  
+}  
+ 
+$auto = new Auto();  
+
+Variaciones de Asociación: 
+Relación de Agregación y Relación de Composición 
+
+Relación de Agregación 
+Es una relación de asociación pero en vez de ser “1 a 1” es de “1 a muchos”, la clase A agrega muchos elementos de tipo clase B 
+
+-----------____________--------------
+
+Relación de Composición 
+Similar a la agregación, solo aporta semántica a la relación al decir que además de “agregar”, existe una relación de vida, donde elementos de B no pueden existir sin la relación con A.  
+-----------____________--------------
+1) Un atributo de tipo array para contener todos los elementos  
+2) Por lo menos un método para agregar los elementos al array, que generalmente se representa con un 
+simple “add” (que como siempre queda sujeto a variar según nuestro criterio). 
+
+Ejemplo de traducción a código 
+Universidad.php 
+
+<?php  
+ 
+require_once 'Alumno.php';  
+ 
+class Universidad  
+{  
+   private $_alumnos = array();  
+ 
+   public function add(Alumno $alumno)  
+   {  
+      $this->_alumnos[] = $alumno;  
+   }  
+}  
+ 
+$universidad = new Universidad();  
+ 
+$universidad->add(new Alumno());  
+$universidad->add(new Alumno()); 
+$universidad->add(new Alumno()); 
+/*  
+ * Esta universidad contiene 3 alumnos  
+ */  
+
+¿Qué relaciones se deberían evitar? 
+Las relaciones bidireccionales y las relaciones cíclicas, ya que la visibilidad es en ambas partes 
+(A y B) y un cambio en una clase genera un impacto en la otra y viceversa, logrando una inestabilidad muy peligrosa. 
+
+<?php  
+ 
+class A  
+{  
+   private $_b;  
+ 
+   public function __construct()  
+   {  
+      $this->_b = new B();  
+   }  
+}  
+ 
+class B  
+{  
+   private $_a;  
+ 
+   public function __construct()  
+   {  
+      $this->_a = new A();  
+   }  
+} 
+
+“Navegabilidad” 
+La lectura que debe hacerse al interpretar los diagramas es: 
+
+
+A -> B 
+- “B no tiene idea de A” 
+- “A puede invocar métodos de B, pero no al revés” 
+
+A – B 
+- Bidireccionalidad: “A ve a B, pero en algún momento B ve a A” 
+
+“Definición de Roles” 
+Las relaciones tienen nombre: “tiene”, “contiene”, “fabrica”, etc. 
+A -tiene-> B 
+
+“Multiplicidad” 
+Parte de la documentación de UML, en una relación A->B, poder especificar la cantidad de objetos de B que se pueden ver en A 
+
+Por ejemplo: 
+- 1 
+- 1..* 
+- 0..* 
+- 3..14 
+
+Donde en el primer caso decimos que en A veremos siempre un objeto de B, en el segundo 
+caso “uno o muchos”, en el tercer caso “ninguno o muchos” y el en último caso “de 3 a 14”. 
+
+la dependencia es una relación más débil que la asociación
+
+http://ar2.php.net/manual/es/language.oop5.magic.php
+
+“__”
+
+index.php: 
+<?php 
+require_once 'Persona.php'; 
+require_once 'Perro.php'; 
+require_once 'Gato.php'; 
+require_once 'Escuela.php'; 
+ 
+/* Micaela tiene un perro */ 
+$persona  = new Persona('Micaela', 5); 
+$perro = new Perro('Tito', 'blanco y negro'); 
+ 
+$persona->setPerro($perro); 
+ 
+/* Martina, dueña del mismo perro... */ 
+$persona1 = new Persona('Martina', 3); 
+$persona1->setPerro($perro); 
+ 
+/* ... y hermana de Micaela */ 
+$persona->setHermano($persona1); 
+ 
+/* Marcos es dueño de un gato */ 
+$persona2 = new Persona('Marcos', 6); 
+$persona2->setGato(new Gato()); 
+ 
+/* Escuela Dos Corazones */ 
+ 
+$escuela = new Escuela('Dos Corazones'); 
+ 
+/* ... Micaela va junto con 5 niños más ... */ 
+ 
+$escuela->addAlumno($persona); 
+$escuela->addAlumno($persona1); 
+$escuela->addAlumno($persona2); 
+$escuela->addAlumno(new Persona('Julio',5)); 
+$escuela->addAlumno(new Persona('Martín',4)); 
+$escuela->addAlumno(new Persona('Carla',4)); 
+
+“por valor”
+
+“por referencia”
+
+todos los objetos son siempre “por referencia”
+
+$persona = new Persona(); 
+ 
+agregar_hermano($persona); 
+ 
+var_dump($persona); 
+ 
+/* Funciones */ 
+ 
+function agregar_hermano($persona){ 
+     $hermano = new Persona(); 
+     $persona->setHermano($hermano); 
+}   
+
+
+El var_dump final no mostraría al hermano, ya que cuando se envió por parámetro, pasó por valor y lo que cambió fue solo eso, no el objeto original, y fuera de la función, no ocurrió nada.
+
+$persona = agregar_hermano($persona); 
+
+Todo esto cambia cuando usamos por defecto “pasaje por referencia” (lo que ocurre en PHP5), ya que si pasamos un objeto es la referencia a este y no importa donde estemos, si cambia, estamos cambiando el objeto original (y único).  
+Se deberá entender entonces que no es necesario retornar nada cuando modificamos un objeto dentro de una función. 
+
+Perro.php: 
+<?php 
+ 
+class Perro 
+{ 
+   /* … */ 
+ 
+  public function __toString() 
+  { 
+      return $this->_nombre; 
+  } 
+} 
+
+echo $perro;   
+Que es lo mismo decir (y funciona): 
+echo $perro->__toString();
+
+toString es un método público, pero que no hace falta ejecutar literalmente
+
+<?php 
+class Escuela 
+{ 
+  private $_nombre; 
+  private $_alumnos = array(); 
+ 
+  public function __construct($nombre) 
+  { 
+      $this->_nombre = $nombre; 
+  } 
+  public function addAlumno(Persona $persona) 
+  { 
+      $this->_alumnos[] = $persona; 
+  } 
+  public function __toString() 
+  { 
+      $retorno = ''; 
+       
+      foreach ($this->_alumnos as $alumno) { 
+          $retorno .= $alumno .' '; 
+          /*  
+           * Es lo mismo que decir 
+           *  
+           * $retorno .= $alumno->__toString() .' '; 
+           * 
+           * solo que el objeto sabe cómo convertirse en  
+           * String, tema que detecta cuando se hace  
+           * una operación  de suma de cadenas  
+           * con el punto ".". 
+      */ 
+      } 
+      return $retorno; 
+  } 
+ 
+} 
+} 
+
+“El método reservado "toString()" es la forma que todo lenguaje POO tiene para que nosotros los desarrolladores podamos definir cómo convertir un objeto en "texto plano".” 
+
+<?php 
+class Persona 
+{ 
+   public function __toString() 
+   { 
+      return $this->_nombre . '' .$this->_apellido; 
+   } 
+} 
+
+echo $micaela;
+
+<?php 
+require_once 'Persona.php'; 
+require_once 'Perro.php'; 
+require_once 'Gato.php'; 
+require_once 'Escuela.php'; 
+ 
+class Index 
+{ 
+   public function ejecutar() 
+   { 
+      /* Micaela tiene un perro */ 
+      $persona  = new Persona('Micaela', 5); 
+      $perro = new Perro('Tito', 'blanco y negro'); 
+      $persona->setPerro($perro); 
+ 
+      /* Martina, dueña del mismo perro... */ 
+      $persona1 = new Persona('Martina', 3); 
+      $persona1->setPerro($perro); 
+ 
+      /* ... y hermana de Micaela */ 
+      $persona->setHermano($persona1); 
+ 
+      /* Marcos es dueño de un gato */ 
+      $persona2 = new Persona('Marcos', 6); 
+      $persona2->setGato(new Gato()); 
+ 
+      /* Escuela Dos Corazones */ 
+      $escuela = new Escuela('Dos Corazones'); 
+ 
+      /* ... Micaela va junto con 5 niños más ... */ 
+      $escuela->addAlumno($persona); 
+      $escuela->addAlumno($persona1); 
+      $escuela->addAlumno($persona2);   
+      $escuela->addAlumno(new Persona('Julio',5)); 
+      $escuela->addAlumno(new Persona('Martín',4)); 
+      $escuela->addAlumno(new Persona('Carla',4)); 
+ 
+      echo $escuela; 
+   } 
+} 
+ 
+Index::ejecutar(); 
+
+Lo fundamental de este ejercicio es comprender: 
+- Las distintas relaciones entre clases y su representación en código 
+- Reafirmar que los objetos pasan siempre por referencia y no se necesita ser retornados o en 
+determinados casos, ni siquiera un orden específico en sus asignaciones, ya que siempre 
+estamos tratando con una referencia al mismo objeto (no copias). 
+- La importancia del “index” como concepto de punto de partida de resolución del problema general. 
+- El uso correcto del toString(), más allá de lo sintáctico, cual es el concepto que debemos tener 
+en cuenta a la hora de definirlo. 
+
+Saber el contenido de todas las camionetas 
+- Saber el contenido de una camioneta 
+- Poder buscar a un niño y saber en qué camioneta está 
+- Representar como Personas al conductor y al ayudante 
+- El diagrama UML no debe tener información de tareas anteriores (no va ni perro, gato, etc) 
+
+“todo objeto hereda de un objeto llamado Object”
+
+“eliminar los números mágicos" 
+
+class CocheEscolar 
+{ 
+   private $_colAlumnos = array(); 
+ 
+   const LIMITE_CAPACIDAD = 5; 
+ 
+   public function estaLleno() 
+   { 
+      return count($this->_colAlumnos) >= self::LIMITE_CAPACIDAD; 
+   } 
+ 
+}  
+
+Navegabilidad se le dice al camino que debemos hacer para obtener la información necesaria a partir 
+del diseño de los objetos del problema y sus interacciones.
+
+Escuela -> Coche -> Niño
+
+- La escuela “conoce” a los niños 
+- Los niños “conocen” a sus camionetas 
+
+para un sistema “Orientado a Objetos” la unidad de trabajo son siempre “objetos”
+
+para la búsqueda de un Alumno, si lo encontramos, debemos retornar la instancia del objeto, de lo contrario retornamos “null” (como estándar de “no encontrado”)
+
+Si se agrega desde A la clase B, simplemente es: 
+ 
+  $a->agrego(b); 
+
+Y si se necesita retornar la clase B desde A, es simplemente 
+ 
+   $claseB = $a->retornoB(); 
+
+$cocheEncontrado = $escuela->buscarCoche('123456');
+
+una referencia con un “return”
+
+si se requieren dos veces una clase, con “_once” solo trae en el primer intento, en los otros casos da error por repetir la definición de una clase
+
+“include” no es lo mismo que “require”: el primero da un warning y sigue, el segundo falla y no continúa 
+(“requerir” es más fuerte, nuestra clase no puede continuar si le faltan sus partes). 
+
+Para simplificar la creación de múltiples instancias, muchas veces se omite la variable temporal 
+que luego es asignada a otro objeto 
+
+Ejemplo
+$niño15 = new Niño('alfredo beltran','Girasoles 7453');   
+ 
+$escuela->addAlumnos($niño15);
+
+Simplificación
+$escuela->addAlumnos( new Niño('alfredo beltran','Girasoles 7453') );
+
+http://www.php.net/manual/es/language.types.type-juggling.php
+
+return $this->getMatricula()."";  
+
+return (string)$this->getMatricula();
+
+Ejemplo de cómo sería la creación interna de un objeto, sin necesidad que esté creado en el exterior 
+para luego recibirlo por parámetros: 
+
+Nino.php: 
+<?php 
+require_once 'Casa.php'; 
+ 
+class Niño 
+{ 
+  private $_nombre; 
+  private $_casa; 
+ 
+  public function __construct($nombre, $direccion) 
+  { 
+      $this->_nombre = $nombre; 
+      $this->_casa = new Casa($direccion); 
+  } 
+  public function getNombre() 
+  { 
+      return $this->_nombre; 
+  } 
+}  
+
+1. La empresa registra primero a las personas que van a contestar la encuesta 
+2. Posteriormente se le asigna una encuesta a la persona; existe una encuesta para cada sexo. 
+3. La encuesta está compuesta por varias preguntas 
+4. Se requiere saber en todo momento cuales preguntas fueron respondidas 
+5. Y si estas fueron correctas o no 
+6. Finalmente, tener un resumen del resultado de cada encuesta. 
+
+1. Crear las clases con sus atributos a partir de los requerimientos 
+2. Relacionar las clases según lo que necesitamos cumplir de acuerdo con los requerimientos. 
+3. Agregarle los métodos a cada Clase según la responsabilidad que detectamos debería tener cada 
+una y sus relaciones con las demás clases de la solución. 
+
+“Persona tiene Sexo” 
+? La pregunta tiene –por lo menos- que tener un texto. 
+? La respuesta tiene –por lo menos- que registrar el texto que responde la Persona. 
+
+La asignación es simplemente una relación entre una persona y una encuesta, que exista una para 
+cada sexo en sí no se representaría a través de las relaciones en el diagrama, solo es una regla a tener en 
+cuenta (que hay que documentar) a la hora de crear Encuestas.
+
+“agregación de encuestas” 
+
+“La encuesta está compuesta por varias preguntas”
+
+En esta situación podríamos llegar a documentar que las preguntas no tienen sentido de existir si no 
+están relacionadas con la encuesta.
+
+“Se requiere saber en todo momento cuales preguntas fueron respondidas” 
+
+También podemos decir que las respuestas no deberían existir si no existe una asociación con la Persona 
+(composición)
+
+Definir Index: ¿qué necesitamos para armar el 
+sistema? 
+
+1. Creo la Empresa 
+2. Podemos decidir que crear una encuesta y sus preguntas es completamente problema de la Empresa, por lo tanto cuando se cree la empresa ya existirá una encuesta con sus preguntas. 
+3. Creo a la Persona y le pido una Encuesta a la Empresa y se la asigno a la Persona (para poder ubicar a una encuesta determinada se le agrega un atributo “nombre”). 
+4. Posteriormente solicito las preguntas de la encuesta y las recorro 
+5. Por cada Pregunta simulo una respuesta hipotética de una persona, por lo tanto registro en la Persona qué pregunta estoy respondiendo y mi respuesta (recordar, la persona ya tiene asociada a qué encuesta corresponde las respuestas y las preguntas, solo tendremos una encuesta por persona). 
+6. Hacer un resumen de las preguntas que fueron respondidas, para ello hay que preguntarle a la persona qué preguntas respondió. Si fueran muchas personas se le puede pedir a la Empresa que recorra a las personas y le pregunte a cada una lo mismo. 
+
+Index creado a “prueba y error” 
+Si se hicieron todas las relaciones y a “prueba y error” se creó la clase Index y no se sabes cómo definir correctamente las relaciones, se puede simplemente buscar todos los “new” y estos representarán 
+todas las dependencias de este contexto. 
+
+Resultado final, Index en este diseño dependería explícitamente de: 
+require_once 'Empresa.php'; 
+require_once 'Persona.php'; 
+require_once 'Respuesta.php'; 
+
+-Es mejor que las clases conozcan lo menos posible de los componentes de otras clases a las que usa.
+-Tampoco es bueno complicar un diseño por intentar esconder absolutamente todas las clases e intentar que exista una única relación contra una sola clase
+-A pesar que enviemos los datos por parámetros y no un objeto ya creado, “conceptualmente” esos datos son “el objeto”.
+-Cada vez que una clase tiene un “new” de otra clase, indudablemente hay una flecha que sale 
+hacia esa clase y tiene que haber un correspondiente “require_once” que represente en el 
+código esta relación. “New” y “require_once” van juntos, siempre. 
+
+el “polimorfismo”, considerado “el 
+patrón estratégico más importante de la POO”
+
+La Herencia 
+Definición: “es una relación de parentesco  
+entre dos entidades” (una es padre de la otra, 
+una es hija de la otra) 
+
+La representación en UML es una “flecha continua” que va desde la clase “hija” hasta la clase “padre”, 
+similar a la relación de “asociación”, pero con la diferencia que termina con una punta en forma de 
+triángulo. 
+
+1. Todos los atributos y métodos se 
+heredan del Padre al Hijo, pero… 
+
+2. Los atributos y métodos que son de 
+tipo “público” (public) o “protegido” 
+(protected) son visibles directamente 
+desde el Hijo (en el caso particular de 
+“público” son visibles de todos lados, 
+incluyendo desde el exterior del 
+objeto). 
+
+3. Los atributos y métodos que son de 
+tipo “privado” (private) se heredan del 
+padre a su hijo pero no son “visibles” de 
+forma directa, solo se podrá hacer a 
+través de métodos del padre que sean 
+públicos o protegidos. 
+
+http://ar.php.net/manual/es/language.oop5.visibility.php
+
+Caso 1 –Usuario hereda de Persona 
+
+class Persona  
+{  
+    private $_nombre;  
+    private $_apellido;  
+} 
+ 
+class Usuario extends Persona  
+{  
+}   
+
+
+class Impresora
+{
+  function imprime(Persona $persona)
+  {
+    echo $persona;
+  } 
+}
+
+$impresora = new Impresora();
+
+$impresora->imprime(new Persona('Dany'));
+$impresora->imprime(new Persona('Dany'));
+
+Usuario será aceptado sin ningún problema por el “Type Hinting / Validación de Tipo” reconoce al 
+usuario como un tipo de Persona, lo cual es válido y permite su ingreso al método “imprime”. 
+
+Caso 2 –Persona agrega un constructor 
+
+Repasando: si el hijo no define su constructor, 
+igual que sucede con  el toString, el destructor, 
+etc, estos serán heredados de su Padre y sí son 
+ejecutados de forma automática. 
+
+Si el usuario define su propio constructor: 
+
+class Persona
+{
+  private $_nombre;
+  private $_apellido;
+  
+  public function __construct($nombre, $apellido)
+  {
+   $this->_nombre = $nombre;
+   $this->_apellido = $qpellido;
+  }
+}
+
+class Usuario extends Persona
+{
+ public function __construct($nombre, $apellido)
+ {
+  parent::__construct($nombre, $apellido);
+ }
+}
+
+$usuario = new Usuario('Dany', 'Garcia');
+
+Aquí, la clase usuario visualiza el método público de su padre, pero no ve directamente los  atributos privados, pero, como ahora “Usuario es una Persona”, aunque no 
+podamos “manipular directamente” los atributos, estos están ahí. 
+
+Caso 3 –Persona agrega su toString 
+
+Definamos que Usuario es una Persona y que además de tener todos los datos de ella, se define ahora en la clase Padre el método toString
+
+Persona.php: 
+ 
+<?php  
+ 
+class Persona   
+{   
+   private $_nombre;   
+   private $_apellido;   
+ 
+   public function __construct($nombre, $apellido)  
+   {  
+      $this->_nombre = $nombre;  
+      $this->_apellido = $apellido;  
+   }  
+   public function __toString()  
+   {  
+      return $this->_nombre.” “.$this->_apellido;  
+   }  
+}  
+
+Usuario.php: 
+<?php  
+ 
+require_once „Persona.php?;  
+ 
+class Usuario extends Persona   
+{   
+   public function __construct($nombre, $apellido)  
+   {  
+      parent::__construct($nombre, $apellido);  
+   }  
+} 
+
+index.php: 
+<?php  
+/* Forma de uso en index.php */  
+ 
+/* Solo vamos a requerir la clase que   
+vamos a usar, no la clase padre, ese es   
+problema de la clase Usuario (recuerden   
+las flechas de relaciones, cada clase debe   
+saber a quién necesita para funcionar) */  
+ 
+require_once „Usuario.php?;  
+ 
+$usuario = new Usuario(„Enrique?,?Place?);  
+ 
+echo $usuario;
+
+La explicación es que, a diferencia que el constructor, el toString se hereda porque es público pero este se ejecuta de forma automática, sin necesidad de explicitar como en el anterior caso (constructor). 
+
+ Aquí es donde deberíamos entender que el principio de ocultación refuerza los diseños al ocultar y cerrar el acceso a detalles internos, pero no por eso nos impide poder aprovechar las implementaciones realizadas. Como es este caso, no tenemos acceso a los atributos de forma directa y no podemos modificarlos, pero perfectamente podemos asignarles información y usarlos.     
+ 
+Caso 4 – Los usuarios necesitan un id y una fecha de ingreso 
+
+La clase Persona sigue igual, lo que cambia es la clase Usuario y se ajusta la invocación desde Index: 
+
+Usuario.php: 
+<?php  
+require_once 'Persona.php';  
+ 
+class Usuario extends Persona  
+{  
+    private $_id;  
+    private $_fechaIngreso;  
+ 
+    public function __construct($id, $nombre, $apellido)  
+    {  
+      parent::__construct($nombre, $apellido);  
+ 
+      $this->_id = $id;  
+      $this->_fechaIngreso = date('w');  
+    }  
+    public function __toString()  
+    {  
+        return $this->_id.' '.parent::__toString();  
+    }  
+}  
+
+index.php: 
+<?php  
+require_once 'Usuario.php';  
+ 
+$usuario = new Usuario(1, 'Enrique','Place');  
+ 
+echo $usuario; // salida: “1 Enrique Place 
+
+Caso 5 – Los usuarios necesitan un id único “autogenerado”
+
+Aprovecharemos la situación para explicar los “atributos estáticos” (static), o lo que podríamos traducir como “atributos / métodos de Clase”. Estos elementos son de acceso común para todas las instancias de la misma clase.
+
+La clase Persona sigue igual, lo que cambia es la clase Usuario y se agrega un atributo protegido (lo cual 
+permitirá que una clase herede de Usuario y acceder directamente al atributo como propio) y se ajusta 
+el constructor de la clase para no solicitar más el id. 
+
+Usuario.php: 
+<?php  
+require_once 'Persona.php';  
+ 
+class Usuario extends Persona  
+{  
+    private $_id;  
+    private $_fechaIngreso;  
+    static protected $_ultimoId = 0;  
+ 
+    public function __construct($nombre, $apellido)  
+    {  
+      parent::__construct($nombre, $apellido);  
+ 
+      self::$_ultimoId += 1;  
+        
+      $this->_id = self::$_ultimoId;  
+      $this->_fechaIngreso = date('w');  
+    }  
+    public function __toString()  
+    {  
+        return $this->_id.'-'.parent::__toString();  
+    }  
+}  
+
+La forma de acceder al atributo estático es usando self::$atributo 
+
+index.php: 
+<?php  
+require_once 'Usuario.php';  
+ 
+$usuario1 = new Usuario('Enrique','Place');  
+$usuario2 = new Usuario('Bruce','Lee');  
+$usuario3 = new Usuario('Linus','Torvalds');  
+ 
+echo $usuario1.?<br>?.$usuario2.?<br>?.$usuario3; 
+
+Explicación sobre la 
+visibilidad de los atributos y 
+métodos 
+
+Existen tres posibilidades: público, privado y 
+protegido. 
+
+“Visibilidad Pública” 
+Se puede considerar como “sin restricciones”, lo 
+que es público todos lo pueden acceder o 
+modificar.  
+
+“Visibilidad Privada” 
+Un punto intermedio entre lo privado y lo 
+público, lo “protegido” son los atributos y 
+métodos que pueden ser accedidos de forma 
+directa como “propios” por parte de los “hijos” 
+de la clase “padre”. Para las clases que no 
+tienen una relación de parentesco su significado 
+es igual al de privado. 
+
+Caso 6 – Ejemplos varios 
+
+Clase abstracta 
+
+Técnicamente lo que hacemos definir que la 
+clase no puede ser instanciada, por lo que se le 
+antepone a “class” la palabra “abstract” y en 
+UML se representa con el nombre de la clase en 
+cursiva ó agregando un “estereotipo” (texto que 
+va arriba del nombre de la clase entre <<>>). 
+
+Conceptualmente lo que estamos diciendo es 
+que la clase no puede ser usada directamente y 
+que nos servirá de molde para crear otras clases 
+que sí serán concretas y candidatas a instanciar. 
+
+<?php  
+abstract class Persona  
+{  
+   /*sigue el código de la clase*/ 
+}  
+ 
+Lo cual impide hacer  
+ 
+$persona = new Persona(); 
+
+Herencia Múltiple 
+La mayoría de los lenguajes POO no 
+implementan la herencia múltiple, no porque 
+les falte, se considera que lo único que aporta 
+es más posibilidades de errores en los diseños. 
+
+“Sobre-escritura” de métodos  
+
+Otro elemento del lenguaje es poder sobre 
+escribir un método que heredamos de nuestro 
+padre. Esto se puede hacer simplemente 
+volviendo a definir en la case “hija” un método 
+con el mismo nombre.  
+
+class Padre  
+{  
+   public function metodo()  
+   {  
+      /* código */  
+   }  
+}  
+class Hijo extends Padre  
+{  
+   public function metodo()  
+   {  
+      /* nuevo código */  
+   }  
+}   
+
+class Hijo extends Padre  
+{  
+   public function metodo()  
+   {  
+      parent::metodo();  
+      /* nuevo código */  
+   }  
+}   
+
+Evitar la herencia y la “sobre-escritura” de métodos
+
+“final”, la que impide 
+la herencia de la clase o la sobre-escritura del método, de acuerdo en donde lo apliquemos
+
+Impedir heredar la clase Admin 
+ 
+final class Admin  
+{  
+}   
+ 
+Impedir alterar un método que pueda ser heredado 
+ 
+class Admin  
+{  
+   final function metodo()  
+   {  
+      /* código */  
+   }  
+}   
+
+“Generalización” versus 
+“Especialización”
+
+Por ejemplo, imaginemos que solo contamos 
+con la clase Persona y descubrimos que 
+necesitamos una clase Usuario, podemos decir 
+entonces que a partir de Persona hicimos una 
+“especialización” al crear la clase Usuario, ya 
+que tomamos un comportamiento más genérico 
+y lo adecuamos a una clase mucho más 
+concreta y aplicable a entornos más particulares. 
+
+Imaginemos lo contrario, contamos con dos 
+clases que están al mismo nivel, sin relaciones 
+entre ellas, que son Usuario y Admin, ambas 
+clases repiten muchos atributos y métodos 
+(como nombre y apellido), por lo que decidimos 
+hacer una “generalización” y creamos una clase 
+Persona haciendo un factoreo de todo lo común 
+entre ambas clases. 
+
+En resumen: podemos decir que son dos formas 
+distintas de referirnos a la relación de 
+“herencia”. 
+
+Entonces, ¿qué es 
+Polimorfismo? 
+
+En sí la palabra solo refiere a “muchas formas” y 
+aplicado a la POO es la capacidad de poder 
+tomar varias clases que tiene operaciones 
+iguales y poder invocar a cualquier instancia el 
+mismo método común. 
+
+Ventajas: Poder hacer un diseño genérico que 
+se apliquen a varios objetos que tienen 
+operaciones comunes. 
+Definamos el siguiente contexto: tenemos una 
+clase Impresora  que se encarga de recibir 
+cualquier cosa y la imprime con un “echo”(a 
+futuro podrá ser una impresora). 
+
+<?php  
+class Impresora  
+{  
+  public function imprimir($algo)  
+  {  
+      echo $algo;  
+  }  
+}  
+ 
+$impresora = new Impresora();  
+$impresora->imprimir('Hola mundo!); 
+
+La implementación 
+index.php 
+ 
+<?php   
+require_once 'Impresora.php';  
+require_once 'Informe.php';  
+require_once 'Curriculum.php';  
+ 
+Impresora::imprimir(new Informe());  
+Impresora::imprimir(new Curriculum()
+); 
+
+Impresora.php 
+ 
+<?php  
+abstract class Impresora  
+{  
+  public function imprimir($algo)  
+  {  
+      echo $algo->imprime();  
+  }  
+}  
+Informe.php 
+ 
+<?php  
+class Informe  
+{  
+  public function imprime()  
+  {  
+      return 'imprimo informe';  
+  }  
+}
+
+Bien, sin darnos cuenta y casi sin necesidad de 
+entenderlo, estamos haciendo uso del 
+polimorfismo. Nuestra clase de impresión 
+recibe distintos tipos de objetos que comparten 
+el mismo nombre común de un método que se 
+requiere para que la impresora pueda 
+funcionar. En distintas etapas de nuestro 
+sistema veremos distintas instancias haciendo 
+uso del mismo código de impresión: 
+“polimorfismo”, “muchas formas”. 
+
+“Diseño más robusto” 
+
+? Aplicamos una “generalización” 
+buscando lo común de ambas clases y 
+creando una clase “Hoja” que tendría 
+toda la información base para cualquier 
+documento que quiera imprimirse. Por 
+defecto la hoja sabe imprimirse, y en 
+caso de necesitar modificar el 
+comportamiento, sobre-escribiremos el 
+método imprime en la clase concreta 
+(Currículum o Informe). 
+? Se agrega el tipo “Hoja” en el método 
+imprimir de la clase Impresora, por 
+consiguiente no permitirá a ningún 
+objeto que no sea de tipo “Hoja” pasar 
+por allí.
+
+Bien, esto es el tradicional “polimorfismo por 
+herencia”. 
+
+¿La herencia está 
+limitada? 
+
+http://ar.php.net/interface
+
+Las interfaces: “el poder desconocido”
+
+Las interfaces son similares a la herencia: la herencia “agrupa” clases que “son lo mismo” (relación de 
+parentesco) y la interface “agrupa” clases que “que realizan las mismas operaciones” (pero no 
+necesariamente son iguales). 
+
+Implementación 
+ 
+ImprimibleInterface.php 
+
+interface Imprimible
+{
+ public function imprime();
+}
+
+Curriculum.php 
+
+require_once 'ImprimibleInterface.php';
+
+class Curriculum implements Imprimible
+{
+ public function imprime()
+ {
+  return 'El curriculum se imprime distinto que una hora comun';
+ }
+}
+
+Impresora.php 
+
+require_once 'ImprimibleInterface.php';
+
+class Impresora
+{
+ public function imprimir(Imprimible $algo)
+ {
+  echo $algo->imprime();
+ }
+}
+
+index.php
+
+require_once 'Impresora.php';
+require_once 'Curriculum.php';
+require_once 'Informe.php';
+
+abstract class Index()
+{
+ public function run()
+ {
+  $impresora = new Impresora();
+  
+  $impresora->imprimir(new Curriculum());
+  $impresora->imprimir(new Informe());
+ }
+}
+Index::run();
+
+Cómo funciona 
+
+1. Inmediatamente que agregamos el tipo 
+Imprimible en el método de la 
+Impresora, cualquier objeto que quiera 
+pasar por ahí deberá implementar la 
+interface Imprimible. 
+2. Una vez que lo implemente, el 
+compilador de PHP le dirá que su clase 
+no tienen el método “imprime” (esto lo 
+obliga la interface, usted no la está 
+cumpliendo), por lo tanto para que 
+pueda ser aceptada tiene que contar 
+con ese método. 
+
+? La flecha es similar a herencia, solo que 
+es “punteada” (“discontinua”), en vez 
+de decir “hereda” debemos decir 
+“realiza/implementa/cumple” con la 
+interfaz. 
+? Todos los métodos de la interfaz son 
+“firmas”, es decir, solo va el nombre y 
+la lista de parámetros, no existe 
+implementación, ni siquiera van las 
+llaves {}. 
+
+Las interfaces son “contratos de implementación” 
+
+Una interface es conceptualmente lo que se dice un “contrato de implementación”, ya que para usar 
+un servicio (Impresora) tiene que cumplir un contrato (interfaz) que lo obliga a cumplir una serie de 
+requisitos (las firmas de métodos que aparecen en la interfaz). 
+
+http://phpsenior.blogspot.com/2007/10/herencia-de-clases-y-el-principio-de.html
+
+http://phpsenior.blogspot.com/2006/08/herencia-mltiple-en-php5.html
+
+Resumen 
+ 
+Hicimos la primer introducción a la Herencia y las Interfaces, las diferencias entre ambas, y cómo se 
+aplica el polimorfismo y los distintos tipos que hay. También destacamos que conceptualmente el 
+Polimorfismo es un “patrón estratégico” y que las interfaces son “contratos de implementación”. 
+
+Ejercicio  “Clase de Persistencia” 
+
+Se necesita diseñar e implementar una clase de persistencia genérica llamada BaseDeDatos 
+que pueda recibir distintos tipos de "Manejadores de Base de Datos" como ser MySQL, 
+Postgres, etc, desde su constructor. Para ello deberán hacer uso de las interfaces, creando una 
+que se llame ManejadorBaseDeDatosInterface y que tenga en su "contrato de implementación" 
+las operaciones más básicas y elementales: conectar, desconectar, traer datos ejecutando una 
+consulta SQL, etc. 
+Posteriormente y para dividir responsabilidades, necesito que creen una clase SQL que se 
+encargue de procesar todos los pedidos SQL en partes, así poder a futuro hacer mayores 
+controles. 
+ 
+Por ejemplo, debería tener métodos como: 
+ addCampo 
+ addTabla 
+ addWhere 
+ addOrder 
+ etc 
+
+require_once 'BaseDeDatos.php'; 
+require_once 'MySQL.php'; 
+require_once 'Sql.php'; 
+ 
+$bd = new BaseDeDatos(new MySQL()); 
+ 
+$sql = new Sql(); 
+ 
+$sql->addTable("usuarios"); 
+$sql->addWhere("id = 1"); 
+$sql->addWhere("id = 1"); 
+$sql->addWhere("nombre = 'enrique' "); 
+
+$usuario = $bd->ejecutar($sql); // esto genera SELECT * FROM usuarios WHERE id = 1 AND nombre = 'enrique'; 
+
+Con “Persistencia” nos referimos tanto a guardar como recuperar 
+datos de un medio de almacenamiento permanente, por defecto 
+hablamos de una base de datos, pero perfectamente podría ser un 
+archivo de texto plano u otro medio. 
+
+"Cualquier problema en computación puede resolverse añadiendo otra capa de abstracción" 
+
+Primer escenario: “crear una 
+conexión a la base de datos”
+
+buscamos cada una de las sentencias en el 
+manual y  en el peor de los casos nuestro código 
+se plaga de sentencias tan específicas como:  
+mysql_connect, mysql_query, etc. 
+
+Segundo escenario: “crear 
+una clase de persistencia” 
+
+Tratando de prever esta situación podríamos 
+crear una “nueva capa de abstracción” y 
+generar un clase genéricas (conectar, traer 
+datos, desconectar) que nos permita “esconder” el código específico de MySQL. En caso de necesitar alguna funcionalidad extra o 
+cambiar de motor, simplemente el impacto en 
+nuestro sistema estaría reducido a modificar 
+nuestras funcionalidades de una clase que 
+oculta los detalles de implementación. 
+
+Tercer escenario: “abstraer 
+el tipo de base de datos”
+
+Imaginen que nuestro producto crece y lo 
+empezamos a comercializar para muchas 
+plataformas, y que uno de nuestros nuevos 
+requerimientos es poder contemplar varios 
+motores de bases de datos. Para ello tenemos 
+que “contener el foco de cambio”(*) y adaptar 
+a nuestro sistema para que solo agregando 
+“código nuevo sin modificar lo existente”  pueda 
+así soportar más motores de bases como 
+Oracle, MSSQL Server, Informix, Sybase, 
+Firebird, etc, etc. 
+
+Foco de cambio: se le dice al lugar 
+o lugares de nuestro sistema que por 
+los requerimientos que estamos 
+desarrollando, es seguro que ahí 
+habrán cambios (agregar, modificar, 
+etc) por consiguiente debemos 
+preverlo de alguna forma para bajar 
+su costo de modificación / 
+mantenimiento. 
+
+index.php 
+<?php  
+require_once 'BaseDeDatos.php'; 
+require_once 'MySQL.php'; 
+require_once 'Sql.php'; 
+ 
+abstract class Index 
+{ 
+    public function run() 
+    { 
+        $bd = new BaseDeDatos(new MySQL()); 
+ 
+        $sql = new Sql(); 
+ 
+        $sql->addTable('usuarios'); 
+        $sql->addWhere('id = 1'); 
+        $sql->addWhere('id = 1'); 
+        $sql->addWhere("nombre = 'enrique' "); 
+ 
+        $usuario = $bd->ejecutar($sql); 
+ 
+        echo highlight_string(var_export($usuario, true)); 
+         
+    } 
+} 
+ 
+Index::run();  
+
+
+ManejadorBaseDeDatosInterface.php 
+<?php 
+interface ManejadorBaseDeDatosInterface 
+{ 
+  public function conectar(); 
+  public function desconectar(); 
+  public function traerDatos(Sql $sql); 
+}  
+
+
+BaseDeDatos.php 
+<?php 
+require_once 'ManejadorBaseDeDatosInterface.php'; 
+require_once 'Sql.php';  
+ 
+class BaseDeDatos 
+{ 
+ private $_manejador; 
+ 
+ public function __construct(ManejadorBaseDeDatosInterface $manejador) 
+ { 
+     $this->_manejador = $manejador; 
+ } 
+ public function ejecutar(Sql $sql) 
+ { 
+     $this->_manejador->conectar(); 
+ 
+     $datos = $this->_manejador->traerDatos($sql); 
+ 
+     $this->_manejador->desconectar(); 
+ 
+     return $datos; 
+ } 
+} 
+
+
+MySQL.php 
+<?php 
+require_once 'ManejadorBaseDeDatosInterface.php'; 
+ 
+class MySQL implements ManejadorBaseDeDatosInterface 
+{ 
+    const USUARIO = 'root'; 
+    const CLAVE = ''; 
+    const BASE = 'tarea5'; 
+    const SERVIDOR = 'localhost'; 
+ 
+    private $_conexion; 
+ 
+    public function conectar() 
+    { 
+        $this->_conexion = mysql_connect( 
+            self::SERVIDOR, 
+            self::USUARIO, 
+            self::CLAVE 
+        ); 
+         
+        mysql_select_db( 
+            self::BASE, 
+            $this->_conexion 
+        ); 
+    } 
+    public function desconectar() 
+    { 
+        mysql_close($this->_conexion); 
+    } 
+    public function traerDatos(Sql $sql) 
+    { 
+        $resultado = mysql_query($sql, $this->_conexion); 
+         
+        while ($fila = mysql_fetch_array($resultado, MYSQL_ASSOC)){ 
+            $todo[] = $fila; 
+        } 
+        return $todo; 
+    } 
+}  
+
+
+Sql.php 
+<?php 
+class Sql 
+{ 
+  private $_colWhere = array(); 
+  private $_colSelect = array('*'); 
+  private $_colFrom = array(); 
+ 
+  public function addTable($table) 
+  { 
+      $this->_colFrom[] = $table; 
+  } 
+  public function addWhere($where) 
+  { 
+      $this->_colWhere[] = $where; 
+  } 
+  private function _generar() 
+  { 
+      $select = implode(',',array_unique($this->_colSelect)); 
+      $from   = implode(',',array_unique($this->_colFrom)); 
+      $where  = implode(' AND ',array_unique($this->_colWhere)); 
+ 
+      return 'SELECT '.$select.' FROM '.$from.' WHERE '.$where;  
+  } 
+  public function __toString() 
+  { 
+      return $this->_generar(); 
+  } 
+}  
+
+Principio de diseño “Abierto 
+/ Cerrado”
+
+nuestro costo en el 
+desarrollo se da cuando diseñamos un sistema 
+que cuando hay cambios de requerimientos 
+debemos modificar constantemente, por lo 
+tanto un buen diseño deberá ser “Abierto / 
+Cerrado”, se diseñará una vez y cuando se 
+necesite agregar nueva funcionalidad se hará 
+sin modificar el código existente, solo 
+agregando código nuevo
+
+Se dice que todo buen diseño (como 
+las implementaciones de los  
+Patrones de Diseño) de alguna forma 
+u otra termina cumpliendo con este 
+principio. 
+
+Pasando en limpio: cada vez 
+que necesitemos soportar otro 
+motor de base de datos 
+crearemos una nueva clase, 
+requerimos la interfaz 
+(“contrato de 
+implementación”) y esta nos 
+obligará a implementar los 
+métodos requeridos para que 
+todo funcione de acuerdo al 
+diseño. 
+
+Recuerda: trata de mecanizar esta buena práctica, una clase que ofrece un servicio debe implementar 
+en conjunto una interfaz que servirá de guía para todas las clases que quieran usar ese servicio. 
+
+
 </body>
 </html>
