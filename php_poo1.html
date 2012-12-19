@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
+<h1>Programación Orientada a Objetos en PHP5 </h1>
 Principio 1: RTFM - "Lee el Maldito Manual" <br> 
 Principio 2: DRY - "No Te Repitas" <br>
 Principio 3: KISS - "Mantenlo Simple, Estúpido!" <br>
@@ -21,37 +22,36 @@ Principio 4: Estándar de Codificación PHP / Zend<br><br>
 
 HTTP://FRAMEWORK.ZEND.COM/WIKI/DISPLAY/ZFDEV/PHP+CODING+STANDARD+(DRAFT)<br><br> 
 
-¿Qué es lo que intenta hacer entonces la Programación Orientada a los Objetos (POO)?<br>
+<b>¿Qué es lo que intenta hacer entonces la Programación Orientada a los Objetos (POO)?</b><br>
 “simplificar las abstracciones”
  <br>
 Lo más importante, es detectar los objetos dentro de un contexto determinado.<br> 
 
-“todo sistema tiene un contexto, un sistema no puede aplicarse en absolutamente todos los contextos”
+<em>“todo sistema tiene un contexto, un sistema no puede aplicarse en absolutamente todos los contextos”</em>
  <br> 
 <p> 
-El contexto, los objetos, sus atributos, sus acciones, cuáles pueden ser conocidos por otros objetos y cuales son (o deben ser) naturalmente internos del propio objeto, para finalmente hacerlos 
-interactuar como en una obra de teatro o en un cuento, con varios posibles principios y finales según la historia que necesitemos contar. </p>
+El contexto, los objetos, sus atributos, sus acciones, cuáles pueden ser conocidos por otros objetos y cuales son (o deben ser) naturalmente internos del propio objeto, para finalmente hacerlos interactuar como en una obra de teatro o en un cuento, con varios posibles principios y finales según la historia que necesitemos contar. </p>
 
 http://es.wikipedia.org/wiki/POO <br>
 
-1. La POO es un paradigma que tiene sus orígenes desde antes de 1990 <br>
-2. “Los objetos son entidades que combinan estado, comportamiento e 1identidad”  <br>
-3. Fundamental, los beneficios que obtenemos usando este paradigma:  <br>
-- “La programación orientada a objetos expresa un programa como un conjunto de estos objetos, que colaboran entre ellos para realizar tareas. Esto permite hacer los programas y módulos más fáciles de escribir, mantener y reutilizar.”<br> 
+1. La POO es un paradigma que tiene sus orígenes desde antes de 1990 <br><br>
+2. “Los objetos son entidades que combinan estado, comportamiento e 1identidad”  <br><br>
+3. Fundamental, los beneficios que obtenemos usando este paradigma:  <br><br>
+- “La programación orientada a objetos expresa un programa como un conjunto de estos objetos, que colaboran entre ellos para realizar tareas. Esto permite hacer los programas y módulos más fáciles de escribir, mantener y reutilizar.”<br> <br>
 4. La razón de por qué no es necesario que todos los objetos que creemos tengan un id como si fuera una clave primaria de una tabla (con el fin de ubicar un objeto en particular):     <br>
--“De esta forma, un objeto contiene toda la información que permite definirlo e identificarlo frente a otros objetos pertenecientes a otras clases e incluso frente a objetos de una misma clase, al poder tener valores bien diferenciados en sus atributos.”<br> 
+-“De esta forma, un objeto contiene toda la información que permite definirlo e identificarlo frente a otros objetos pertenecientes a otras clases e incluso frente a objetos de una misma clase, al poder tener valores bien diferenciados en sus atributos.”<br><br> 
 5. Diferencias con respecto a la Programación Estructurada versus Programación Orientada a Objetos: la primera se pensó como funcionalidad por un lado y datos por otro, es decir, llamar a una función y pasarle constantemente datos para que los procese, mientras que la POO está pensada para tener todo integrado en el mismo objeto. <br>
 - “En la programación estructurada sólo se escriben funciones que procesan datos. 
-Los programadores que emplean éste nuevo paradigma, en cambio, primero definen objetos para luego enviarles mensajes solicitándoles que realicen sus métodos por sí mismos.” <br>
-6. Muy importante es tener SIEMPRE en claro los conceptos FUNDAMENTALES, si no los tienes claros cuando programas OO, algo está mal, seguro errarás el camino que define el paradigma: Clase, Herencia, Objeto, Método, Evento, Mensaje, Atributo, Estado Interno, Componentes de un objeto y Representación de un objeto. <br>
-7. Características de la POO: igual que el punto anterior, es fundamental tener claros estos conceptos cada vez que desarrollamos, con principal énfasis en el Principio de Ocultación (que es muy común confundir con Encapsulamiento), lo que explica por qué no deberían existir los atributos públicos ni abusar de los setter/getter <br>
+Los programadores que emplean éste nuevo paradigma, en cambio, primero definen objetos para luego enviarles mensajes solicitándoles que realicen sus métodos por sí mismos.” <br><br>
+6. Muy importante es tener SIEMPRE en claro los conceptos FUNDAMENTALES, si no los tienes claros cuando programas OO, algo está mal, seguro errarás el camino que define el paradigma: Clase, Herencia, Objeto, Método, Evento, Mensaje, Atributo, Estado Interno, Componentes de un objeto y Representación de un objeto. <br><br>
+7. Características de la POO: igual que el punto anterior, es fundamental tener claros estos conceptos cada vez que desarrollamos, con principal énfasis en el Principio de Ocultación (que es muy común confundir con Encapsulamiento), lo que explica por qué no deberían existir los atributos públicos ni abusar de los setter/getter <br><br>
 
 http://ar2.php.net/manual/es/langref.php  <br>
 http://ar2.php.net/oop       <br>
 
-1) “Los Objetos tienen Atributos, Comportamientos y Estados” <br>
-3) “La clase, un molde para construir objetos”    <br>
-4) “Los atributos y comportamientos pueden ser públicos o privados” <br>
+1) <b>“Los Objetos tienen Atributos, Comportamientos y Estados” </b><br>
+3) <b>“La clase, un molde para construir objetos”</b>    <br>
+4) <b>“Los atributos y comportamientos pueden ser públicos o privados” </b><br>
 
 “acceso público”    <br>
 “acceso privado”   <br>
@@ -75,7 +75,7 @@ Primer Regla: de nomenclatura, los nombres de las clases son siempre en singular
 - Clases en POO: Persona, Animal, Usuario, UsuarioAdministrador <br>
 
 “Una persona tiene nombre, apellido y fecha de nacimiento, cuando se le pregunta qué edad tiene, responde con su edad que calcula en base a la fecha de nacimiento”<br> 
-_____________________________
+_____________________________  <br>
 |      Persona              |    #1<br>
 -----------------------------     <br>
 |-nombre: String            |  <br>
