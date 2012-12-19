@@ -139,50 +139,7 @@ class Persona
  <br>
 la palabra reservada __construct() 
 <br>
-<?php 
-class Persona 
-{ 
-    private $_fechaNacimiento; 
 
-    public function __construct($fechaNacimiento) 
-    { 
-        $this->_fechaNacimiento = $fechaNacimiento; 
-    } 
-    public function decirEdad() 
-    { 
-        return $this->_calcularEdad(); 
-    } 
-    private function _calcularEdad() 
-    {         
-        $diaActual  = date(j); 
-        $mesActual= date(n); 
-        $añoActual = date(Y); 
- 
-        list($dia, $mes, $año) = explode("/", $this->_fechaNacimiento); 
- 
-        // si el mes es el mismo pero el dia inferior aun 
-        // no ha cumplido años, le quitaremos un año al actual 
- 
-        if (($mes == $mesActual) && ($dia > $diaActual)) { 
-            $añoActual = $añoActual - 1; 
-        } 
-        // si el mes es superior al actual tampoco habra 
-        // cumplido años, por eso le quitamos un año al actual 
- 
-        if ($mes > $mesActual) { 
-            $añoActual = $añoActual - 1; 
-        } 
-        // ya no habria mas condiciones, ahora simplemente 
-        // restamos los años y mostramos el resultado como su edad 
-        $edad = $añoActual - $año; 
- 
-        return $edad; 
-    } 
-}  
-
-$persona = new Persona('5/8/1973'); 
- 
-echo $persona->decirEdad();
 
 <br>
 object(Persona)#1 (3) {  
