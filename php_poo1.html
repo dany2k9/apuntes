@@ -206,33 +206,38 @@ los atributos de los objetos deben ser siempre "privados" (concepto "encapsulaci
 Requerimiento 1 
 La edad se puede acceder y modificar en todo momento, por consiguiente se deben agregar los dos métodos, un "get" y un "set" para ese atributo: 
 
-class Usuario 
-{ 
-    private $_nombre; 
-    private $_nombreReal; 
-    private $_edad; 
-    private $_clave; 
- 
-    public function getEdad()  
-    { 
-       return $this->_edad; 
-    } 
-    public function setEdad($edad) 
-    { 
-       $this->_edad = $edad; 
-    } 
-} 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
 los métodos y atributos privados deben iniciar con “_” y todas las llaves de métodos y clases inician a la izquierda (ninguna otra más, como un if, for, etc). 
 
 Requerimiento 2 
 Poder saber el nombre del usuario pero no modificarlo, para eso hay que agregar solo un método get para ese atributo: 
 
-public function getNombre() 
-    { 
-     return $this->_nombre; 
-    } 
-
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getNombre</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 Requerimiento  3  
 No nos interesa que se sepa el nombre real del usuario 
  
@@ -243,26 +248,32 @@ Queremos que pueda colocar una nueva clave si el usuario se la olvida, pero no s
 
 Para eso, hacemos lo contrario que con el atributo nombre, agregamos un método "set" pero no el "get": 
 
-public function setClave($clave) 
-   { 
-      $this->_clave = $clave; 
-   } 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setClave</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_clave</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
 "Evitar que el objeto muestre detalles de su implementación" 
 
-class Usuario 
-{ 
-  private $_nombre; 
-  private $_nombreReal; 
-  private $_edad; 
-  private $_clave; 
- 
-  /** getter / setter */ 
-  public function getEdad(){return  $this->_edad;} 
-  public function setEdad($edad){$this->_edad = $edad;} 
-  public function getNombre(){return $this->_nombre;} 
-  public function setClave($clave){$this->_clave = $clave;} 
-} 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/** getter / setter */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '>  </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getNombre</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setClave</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_clave</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
 1. Por defecto, atributos privados 
 2. Usa métodos comunes y no getter/setter 
