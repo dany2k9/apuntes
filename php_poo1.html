@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title></title>  
+  <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+<h1>Ejemplo de búsqueda de soluciones a un problema con iteración</h1>
+objetivo  <br>
+condicionantes  <br>
+m&eacute;todo    <br>
+&nbsp;&nbsp;Problema con resoluci&oacute;n directa    <br>
+&nbsp;&nbsp;Problema con iteraci&oacute;n para b&uacute;squeda de soluciones   <br>
+"proceso circular" o bucle   <br><br>
+
+1. Se detectan datos de entrada inductores de bucle infinito.    <br>
+2. El n&uacute;mero de iteraciones supera el valor que se ha fijado como aceptable.<br> 
+3. El tiempo empleado en iteraciones supera el valor que se ha fijado como aceptable.<br> 
+4. Se detecta que la soluci&oacute;n est&aacute; tendiendo a m&aacute;s o menos infinito.<br> 
+5. Soluci&oacute;n se sale del rango previsto o deseado. 
+   <br><br>
+Objetivo: Buscar el valor de x que siendo un n&uacute;mero real positivo hace <b>f(x) = 5x2 - 3x - 4 igual a cero</b> de acuerdo con estas reglas.<br>
+1. Se admite la desviaci&oacute;n de f(x) respecto al valor pedido de ± 0'01. <br>
+2. Hemos perdido toda nuestra memoria: no se admite el uso de f&oacute;rmulas o estrategias de resoluci&oacute;n 
+gr&aacute;ficas o anal&aacute;ticas: debemos basarnos en un tanteo puro ordenado (no aleatorio) y constante. <br>
+3. Se sabe que la soluci&oacute;n est&aacute; entre 1 y 10, debiendo comenzar la b&uacute;squeda por uno de estos dos extremos. <br><br>
+
+Se pide: definir el esquema de b&uacute;squeda limitando el n&uacute;mero m&aacute;ximo de iteraciones.<br> <br>
+
+Datos in&iacute;ciales ------Sucesivas evaluaciones de f(x)-----Fin por obtener resultado 
+o por superar n&uacute;mero m&aacute;ximo de iteraciones  
+  <br><br><br>
+Datos:<br> 
+* f(x) = ax2 + bx + c , funci&oacute;n.<br> 
+* e , error admisible. <br>
+* lim inf , l&iacute;mite inferior del intervalo de b&uacute;squeda. <br>
+* lim sup , l&iacute;mite superior del intervalo de b&uacute;squeda.<br> 
+* int , valor incremental para cada tanteo.<br> 
+* Nmax , n&uacute;mero m&aacute;ximo de iteraciones. <br><br>
+
+* Trataremos de barrer todo el intervalo de b&uacute;squeda. <br>
+* Trataremos de no superar las 104 iteraciones. <br>
+* En nuestro caso el intervalo de b&uacute;squeda comprende 10 - 1 = 9 enteros.<br><br>
+
+* Cerraremos el asunto estableciendo:  int = ± 0,001 ; Nmax = 9000 <br><br>
+
+Pasemos ahora al procedimiento.<br>
+<p>Evaluaremos la imagen del punto inicial y si resulta inferior o igual al valor 
+admisible e, daremos por resuelto el problema. En caso contrario, evaluaremos si hemos llegado al 
+número máximo de iteraciones, y si no es así, volveremos a repetir el proceso para un valor a evaluar 
+igual al anterior más el intervalo de búsqueda. Por último haremos este esquema reflejo de todo lo 
+anterior. </p>
+<img src="prog1.jpg" alt="">
+<h1>Problemas que se resuelven recurriendo a una tabla de decisión</h1>
+ <p>Importe = Precio unitario x Cantidad x Descuento </p>
+ <p>Supongamos a su vez dos formas de pago: con tarjeta oro (15% de descuento) y con tarjeta club (5% de descuento). El planteamiento sería: </p>
+ <img src="prog2.jpg" alt=""><br>
+  <b>Ejemplo facturación grandes almacenes:  </b><br>
+• Pago con tarjeta oro → 15% de descuento.<br> 
+• Pago con tarjeta club → 5% de descuento. <br>
+• Modalidad joven de tarjeta → incrementa en 5% de descuento. <br>
+• Período de rebajas → incrementa 5% de descuento. <br>
+• Artículo en oferta → descuento del 10% sólo acumulable si la tarjeta es joven o es período de rebajas.<br>
+  <p>Para construir una tabla de decisión partiremos de una tabla dividida en cuatro zonas: lista de condiciones, cumplimiento de condiciones, lista de acciones y acciones a realizar. </p>
+    <img src="prog3.jpg" alt=""><br>
+    <img src="prog4.jpg" alt=""><br>
+    <img src="prog5.jpg" alt=""><br>
+     <p>El número de casos que tendremos es 2 n , siendo n el número de condiciones. En el ejemplo anterior tenemos dos condiciones y 2 n = 2 2 = 4 casos, que son Sí-Sí, Sí-No, 
+No-Sí y No-No. Para construir la zona 2 o de cumplimiento de condiciones seguiremos la siguiente estrategia: </p>
+  • Primero la columna con todo Sí.<br> 
+• Segundo todas las columnas posibles con un único No.<br> 
+• Tercero todas las columnas posibles con dos No. <br>
+• Sucesivamente todas las columnas posibles con tres, cuatro, cinco, etc. No. <br>
+• Finalmente la columna de todo No.<br>
+ <p><b>Ejemplo:</b> Problema con 4 condiciones. ¿Cuántos casos tendremos? 2 4 = 16 casos. </p>
+  <h1>Parte I: Ejemplos de problemas que se resuelven usando una tabla de decisión</h1>
+   <p><b>Ejemplo: </b>Se quiere determinar el importe a facturar a los clientes de unos grandes almacenes según estos criterios: </p>
+• Si pagan con tarjeta oro tendrán un 15% de descuento.<br> 
+• Si pagan con tarjeta club tendrán un 5% de descuento. <br>
+• Si la tarjeta (oro o club) es modalidad joven, tendrán un 5% de descuento.<br> 
+• Los descuentos son acumulables. <br>
+  <img src="prog6.jpg" alt=""><br>
+   <p>El número de condiciones es 3 y el numero de casos 8, que es 2 3, por lo que en principio todo está correcto. En la hipótesis de que haya un mecanismo de bloqueo que impidiera que se dieran los casos inviables (1, 2 y 5) podríamos eliminarlos y simplificar la tabla de decisión, que quedaría: </p>
+   <img src="prog7.jpg" alt=""><br>
+   <p><b>Ejemplo: </b>Se quiere determinar la nómina de los empleados de una empresa de acuerdo con estos criterios: </p>
+• Si el empleado es altamente productivo tendrá en nómina un plus de productividad.<br> 
+• Si el empleado es encargado de su grupo tendrá en nómina un plus de encargado. <br>
+• Si el empleado ha cometido una infracción grave durante ese mes le será eliminado cualquier plus que pudiera tener.<br> 
+   <img src="prog8.jpg" alt=""><br>
+   <p>Los casos 1, 3, 4 y 5 dan lugar al mismo resultado, por lo que vamos a tratar de simplificar la tabla. Para ello sumaremos casos de dos en dos, agrupando aquellos cuyo cumplimiento de condiciones coincida en todos menos en un parámetro. Dicho parámetro se transformará en un ⎯ , equivalente a indiferente o Sí/No.  </p>
+   <p><b>Ejemplos:</b> (sólo aplicables en casos que puedan dar lugar al mismo resultado).</p>
+   <img src="prog9.jpg" alt=""><br>
+(***) En algunas ocasiones puede ser interesante analizar las peculiaridades que se produzcan. 
+<p>Téngase en cuenta que una indiferencia equivale a dos casos, dos indiferencias a cuatro casos, tres indiferencias a ocho casos, etc. Para introducir una segunda indiferencia hemos, por lo tanto, de estudiar cuatro casos. </p>
+<p>En el análisis del apartado f vemos que se trata de cuatro condiciones, de las cuales la primera y la tercera están fijadas en sí. Así pues nos quedamos con las dos condiciones variantes que suponen estos cuatro casos: </p>
+  <img src="prog10.jpg" alt=""><br>
+  <p>Analizamos qué ocurre en función del resultado del caso 4: </p>
+  a) Resultado del caso 4 = Resultado A.<br>
+   <img src="prog11.jpg" alt=""><br>
+   b) Resultado del caso 4 = Resultado B. No se podría simplificar y nos quedaríamos con:<br> 
+   <img src="prog12.jpg" alt=""><br>
+   Se trataría de una situación en que dos casos llevan a las mismas acciones por imposibilidad de simplificar. <br>
+   c) El caso 4 es imposible y se puede eliminar de la tabla. Situación similar a la anterior en la que no podemos simplificar. <br>
+   <img src="prog13.jpg" alt=""><br>
+   Eliminamos también la linea de inviable pues en ningún caso es útil. El resultado sería la siguiente tabla: <br>
+   <img src="prog14.jpg" alt=""><br>
+   <p>Volvemos a tener dos casos (el 1 - 3 y el 4 - 5) con el mismo resultado y trataremos de simplificar, considerando el guión como un signo de iguales propiedades al Sí/No a efectos de la suma. Por lo tanto: </p>
+   <img src="prog15.jpg" alt=""><br>
+   <p>Esta simplificación podríamos haberla hecho directamente a continuación de la otra (aquí se ha vuelto a construir la tabla para exponer el proceso paso a paso). La tabla resultante sería:</p>
+   <img src="prog16.jpg" alt=""><br>
+    <p>En un problema complejo se puede recurrir a insertar una tabla de decisión dentro de otra. Para ello una o varias de las acciones a realizar se marcarán con Tn, siendo esto indicación de: “acudir a la tabla número n”. </p>
+    <img src="prog17.jpg" alt=""><br>
+   <p>Si una acción remitiera a la tabla 1 se trataría de un anidamiento. Esto es admisible sólo si antes de que se remita a la tabla se ha producido un cambio en las condiciones que dé lugar a un caso sin anidamiento, de lo contrario se trataría de un proceso circular infinito y una tabla mal construida. </p> 
+   <br>
+<b>Ejemplo</b> 
+Construir la tabla de decisión para el siguiente problema. <br>
+<p>Una asignatura universitaria se estructura en cuatro módulos: teoría, problemas, prácticas de laboratorio y prácticas de campo. Si se aprueban los cuatro 
+módulos se obtiene la calificación como nota media. En otro caso se siguen estas premisas: </p>
+<p>Los exámenes se hacen en el siguiente orden: teoría → problemas → prácticas de laboratorio → prácticas de campo. </p>
+• El alumno que no haya aprobado la teoría no se puede presentar a problemas ni a prácticas de laboratorio.<br> 
+• Si un alumno aprueba teoría se le guardará la nota durante ese curso y el siguiente.<br> 
+• Si un alumno suspende un solo módulo se le citará en despacho antes de evaluarlo. <br>
+ <img src="prog18.jpg" alt=""><br>
+ <p>La tabla simplificada sería (unificamos las columnas 12 – 16 y 7 – 13):</p>
+ <img src="prog19.jpg" alt=""><br>
+ <img src="prog20.jpg" alt=""><br>
+ <h1>Problemas con resolución intuida pero que no sabemos programar directamente.</h1>
+ <p>Vamos a relacionar múltiples problemas indicando cómo los clasificaríamos: </p>
+a) Cerrar una puerta → resolución directa. <br>
+b) Clavar un clavo → resolución con iteraciones. <br>
+c) Calcular volumen de un cilindro → resolución directa. <br>
+d) Hablar → resolución intuida. <br>
+e) Preparar una bechamel → resolución documentada. <br>
+f) Pintar una casa → resolución directa. <br>
+g) Ordenar una serie de números → resolución intuida. <br>
+h) Facturar a un cliente en una agencia de viajes, existiendo múltiples condicionantes para determinar el precio → resolución con tabla de decisión.<br> 
+i) Realizar la declaración de la renta → resolución documentada.<br> 
+j) Elegir el color para pintar una casa → subjetivo, no programable. <br>
+k) Conducir un coche → resolución intuida. <br>
+l) Recoger a una persona que ha entrado a un cajero si llevamos un coche y nos vemos obligados a dar vueltas a la manzana → resolución con iteración.<br> 
+m) Calcular pérdidas de carga en tuberías → resolución documentada. <br>
+n) Calcular nóminas de los empleados de una empresa, existiendo múltiples condicionantes (pluses, sanciones, niveles, etc.) → resolución con tabla de decisión. <br>
+o) Determinar los números primos entre uno y mil → resolución intuida.<br> 
+p) ¿Qué hacer si nos encontramos a 100 Km del lugar donde tenemos una reunión dentro de 30 
+minutos? → subjetivo, no programable. <br>
+<p>En cuanto a los problemas de resolución intuida, observamos que tienen en común lo siguiente: </p>
+a) Sabemos resolverlos o sabemos que existe una vía matemática, lógica o de encadenamiento de acciones que dan lugar a la solución.<br> 
+b) No sabemos, o hay necesidad de reflexionar para determinarlos, cuáles son los pasos intermedios para llegar a la solución. <br>
+<p>Podríamos pensar en hablar como: </p>
+<img src="prog21.jpg" alt=""><br>
+<p>Las letras (o fonemas) serían las unidades que se conjuntan para crear vocablos con significación. Las convenciones, el acuerdo entre todos los hablantes de un lenguaje para que ciertas letras unidas signifiquen algo. </p>
+<p>Las normas de construcción del lenguaje rigen las formas verbales, la sintaxis. </p>
+<p>Por último, las excepciones a las normas constituirían circunstancias a conocer específicamente, tal es el caso de los verbos irregulares y las frases hechas, etc.</p>
+<p>Supongamos lo siguiente: tenemos una serie de números y queremos ordenarla (de menor a mayor). </p>
+<img src="prog22.jpg" alt=""><br>
+<p> Empezaremos tratando de responder a las preguntas de “Conocer el problema” como si de un caso normal se tratara. </p>
+<p>1. ¿Cuál es mi objetivo? Conocemos el objetivo genérico: ordenar una serie de números. Debemos acotarlo todo lo posible. Por ello plantearemos como objetivo ”Ordenar una serie de números de mayor a menor” </p>
+<p>2. ¿Cuáles son los condicionantes que afectan al problema? Quizás no los conozcamos todos ahora y haya que volver a este punto más adelante, pero vamos a tratar de determinarlos. Nos plantearemos: <br>
+• La cantidad de números a ordenar: el problema sería inmediato si se tratara de dos o tres números. Pero nos plantearemos el problema para un número indeterminado, esto es, n 
+números.<br> 
+• La existencia de ceros: dado que pensamos basarnos en comparaciones de números, el cero no tiene por qué darnos ningún problema. <br>
+• La existencia de números negativos: ídem al caso del cero.<br> 
+• La necesidad o no de conservar la lista inicial de números: habrá de considerarse en función de para qué queremos el programa. Suponemos que queremos conservarla. </p>
+<p>3. ¿Cuáles son los datos de partida? Una serie de n números. Trataremos de trabajar con letras. Así la serie estará compuesta por valor 1, valor 2, valor 3, valor 4, ..., valor n o abreviadamente v(1), v(2), v(3), v(4),..., v(n). </p>
+<p>4. ¿Qué método o estrategia de resolución voy a aplicar? De ello nos ocuparemos a continuación. </p>
+<p>5. ¿Qué resultados quiero obtener? Dado que queremos conservar la lista inicial, vamos a tratar de obtener una lista ordenada del tipo: orden 1 = ... , orden 2 = ... , orden 3 = ... , orden 4 = ... , ..., orden n = ... , o abreviadamente o(1), o(2), o(3), o(4), ..., o(n). </p>
+<h2>Parte I: Estrategias para resolver un problema de programación. </h2>
+<p>ESTRATEGIAS DE RESOLUCIÓN </p>
+La estrategia de aproximación al método es algo libre.<br>
+<p>1º) Planteamos varios casos. ¿Qué número n de valores cogemos? No hay respuesta fija: debemos huir de los valores que puedan suponerse especiales o no genéricos así como de valores que den lugar a procesos demasiado largos. En nuestro caso: </p>
+<img src="prog23.jpg" alt=""><br>
+<p> En esta ocasión, elegiremos estos cuatro casos: </p>
+<img src="prog24.jpg" alt=""><br>
+La elección de casos se hace buscando: <br>
+• Representatividad de situaciones.<br> 
+• Circunstancias especiales conocidas.<br> 
+• Sencillez.<br>
+De las series elegidas podríamos decir lo siguiente:<br> 
+<img src="prog25.jpg" alt=""><br>
+<p>2º) Tanteamos un método. A cada uno de los casos trataremos de aplicarle un mismo método a partir de una idea. En este caso la idea va a ser: “Considero al primer número como orden 1. A partir de ahí, cojo el segundo número y lo comparo con orden 1. Si es mayor orden 2 pasa a ser orden 1 y orden 1 pasa a ser el valor. Si es menor orden 2 es el valor. El proceso se repite, de forma que vamos comparando e intercalando donde proceda”. Aplicaremos el método y trataremos de dejar reflejo de los pasos seguidos como esquema gráfico, de cálculo o de encadenamiento de acciones.    </p>
+<img src="prog26.jpg" alt=""><br>
+<img src="prog27.jpg" alt=""><br>
+<img src="prog28.jpg" alt=""><br>
+<img src="prog28b.jpg" alt=""><br>
+<img src="prog29.jpg" alt=""><br>
+<img src="prog30.jpg" alt=""><br>
+<p>3º) Valoración preliminar. Un primer análisis de lo realizado nos permite decir que: <br>
+• En los cuatro casos se ha alcanzado un resultado satisfactorio.<br> 
+• El caso cuatro que presentaba dos valores iguales ha quedado bien resuelto. El que entra primero en la rueda de comparación, en este caso v(1), queda detrás al no cumplirse el ser mayor que 
+v(4). Pero a efectos prácticos nos es indistinto que quede detrás o delante. </p>
+<p>4º) Plantear relaciones y procesos con letras. Observando los distintos casos, trataremos de plantear qué relaciones y procesos se dan en todos ellos. <br>
+Se dan las siguientes circunstancias:<br> 
+• Vamos extrayendo sucesivamente v(1), v(2), v(3), ..., v(n)  <br>
+• Cuando el valor resulta mayor que un orden preexistente se produce un desplazamiento en cadena. 
+• Desplazar o no está condicionado por la comparación v(a) con los órdenes o(1), o(2), o(3), ...,  o(a-1). Si tras sucesivas comparaciones v(a) es menor que o(a-1) establecemos o(a) = v(a).</p>
+• En los desplazamientos observamos:<br>
+<img src="prog31.jpg" alt=""><br>
+<img src="prog32.jpg" alt=""><br>
+<img src="prog33.jpg" alt=""><br>
+<p>5º) Plantear el procedimiento de resolución. En base a las relaciones observadas, trataremos de plantear un procedimiento general de resolución. </p>
+<img src="prog34.jpg" alt=""><br>
+Procedimiento para desplazar: <br>
+<img src="prog35.jpg" alt=""><br>
+<h1>Parte I: Ejercicio empleando una estrategia para resolver un 
+problema. </h1>
+EJERCICIO:<br> 
+Determinar el método de resolución para el problema con los criterios expuestos a continuación: <br>
+1. Objetivo: “Ordenar una serie de números de mayor a menor”.<br> 
+2. Condicionantes: Cantidad de números a ordenar indeterminada. Necesario conservar la serie inicial de números.<br> 
+3. Datos de partida: Una serie de n números. <br>
+4. Método: Se basará en la siguiente idea. Se buscará el número más grande de la lista que pasará a una nueva lista. Con los elementos restantes repetimos el proceso para obtener el segundo número de la lista nueva. El proceso se repite hasta que no quedan números por extraer.<br> 
+5. Resultados a obtener: Lista ordenada del tipo orden(1) = ..., orden(2) = ..., orden(3) = ..., ...,   orden(n) = ...   <br>
+SOLUCIÓN: <br>
+1º) Planteamos varios casos: Problema muy similar al anterior. Repetimos pues las consideraciones antes expuestas y los cuatro casos que teníamos. <br>
+<img src="prog36.jpg" alt=""><br>
+2º) Tanteamos el método: Partimos de la idea expuesta y la aplicamos a los distintos casos.<br>
+<img src="prog37.jpg" alt=""><br>
+<img src="prog38.jpg" alt=""><br>
+CU00119A Ejercicio ejemplo estrategia resolucion problema programacion I
+</body>
+</html>
