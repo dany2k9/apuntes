@@ -985,7 +985,7 @@ van juntos, siempre. <br />
 <br />
 <br />
 
-La Herencia 
+<h3>La Herencia </h3>
 Definición: <b>“es una relación de parentesco entre dos entidades” </b>(una es padre de la otra, una es hija de la otra) <br />
 <p>
 La representación en UML es una “flecha continua” que va desde la clase “hija” 
@@ -1084,104 +1084,111 @@ directamente los  atributos privados, pero, como ahora “Usuario es una Persona
 aunque no podamos “manipular directamente” los atributos, estos están ahí. 
 </p>
 
-<img src="uml12.jpg" alt="" />
-Caso 3 –Persona agrega su toString 
-
+<img src="uml12.jpg" alt="" /> <br />
+Caso 3 –Persona agrega su toString  <br />
+<p>
 Definamos que Usuario es una Persona y que además de tener todos los datos de 
 ella, se define ahora en la clase Padre el método toString
+</p>
+Persona.php: <br />
+ 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Persona   </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_apellido</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_apellido</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#000000; background:#ffffe8; '>” “</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_apellido</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-Persona.php: 
- 
-<?php  
- 
-class Persona   
-{   
-   private $_nombre;   
-   private $_apellido;   
- 
-   public function __construct($nombre, $apellido)  
-   {  
-      $this->_nombre = $nombre;  
-      $this->_apellido = $apellido;  
-   }  
-   public function __toString()  
-   {  
-      return $this->_nombre.” “.$this->_apellido;  
-   }  
-}  
+Usuario.php: <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Persona.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> Persona   </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>parent</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-Usuario.php: 
-<?php  
- 
-require_once „Persona.php?;  
- 
-class Usuario extends Persona   
-{   
-   public function __construct($nombre, $apellido)  
-   {  
-      parent::__construct($nombre, $apellido);  
-   }  
-} 
+index.php: <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#696969; background:#ffffe8; '>/* Forma de uso en index.php */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* Solo vamos a requerir la clase que   </span>
+<span style='color:#696969; background:#ffffe8; '>vamos a usar, no la clase padre, ese es   </span>
+<span style='color:#696969; background:#ffffe8; '>problema de la clase Usuario (recuerden   </span>
+<span style='color:#696969; background:#ffffe8; '>las flechas de relaciones, cada clase debe   </span>
+<span style='color:#696969; background:#ffffe8; '>saber a quién necesita para funcionar) */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Usuario.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Usuario</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>„Enrique</span><span style='color:#800080; background:#ffffe8; '>?</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#800080; background:#ffffe8; '>?</span><span style='color:#000000; background:#ffffe8; '>Place</span><span style='color:#800080; background:#ffffe8; '>?</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-index.php: 
-<?php  
-/* Forma de uso en index.php */  
- 
-/* Solo vamos a requerir la clase que   
-vamos a usar, no la clase padre, ese es   
-problema de la clase Usuario (recuerden   
-las flechas de relaciones, cada clase debe   
-saber a quién necesita para funcionar) */  
- 
-require_once „Usuario.php?;  
- 
-$usuario = new Usuario(„Enrique?,?Place?);  
- 
-echo $usuario;
-
+<p>
 La explicación es que, a diferencia que el constructor, el toString se hereda 
 porque es público pero este se ejecuta de forma automática, sin necesidad de 
 explicitar como en el anterior caso (constructor). 
-
+</p>
+<p>
  Aquí es donde deberíamos entender que el principio de ocultación refuerza los 
  diseños al ocultar y cerrar el acceso a detalles internos, pero no por eso nos 
  impide poder aprovechar las implementaciones realizadas. Como es este caso, no 
  tenemos acceso a los atributos de forma directa y no podemos modificarlos, pero perfectamente podemos asignarles información y usarlos.     
- 
-Caso 4 – Los usuarios necesitan un id y una fecha de ingreso 
+</p> 
+Caso 4 – Los usuarios necesitan un id y una fecha de ingreso <br />
 
 La clase Persona sigue igual, lo que cambia es la clase Usuario y se ajusta la 
-invocación desde Index: 
+invocación desde Index: <br />
 
-Usuario.php: 
-<?php  
-require_once 'Persona.php';  
- 
-class Usuario extends Persona  
-{  
-    private $_id;  
-    private $_fechaIngreso;  
- 
-    public function __construct($id, $nombre, $apellido)  
-    {  
-      parent::__construct($nombre, $apellido);  
- 
-      $this->_id = $id;  
-      $this->_fechaIngreso = date('w');  
-    }  
-    public function __toString()  
-    {  
-        return $this->_id.' '.parent::__toString();  
-    }  
-}  
+Usuario.php: <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Persona.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> Persona  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_id</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_fechaIngreso</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$id</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>parent</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_id</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$id</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_fechaIngreso</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>date</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'w'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_id</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>' '</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>parent</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-index.php: 
-<?php  
-require_once 'Usuario.php';  
- 
-$usuario = new Usuario(1, 'Enrique','Place');  
- 
-echo $usuario; // salida: “1 Enrique Place 
+index.php: <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Usuario.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Usuario</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#008c00; background:#ffffe8; '>1</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Enrique'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#0000e6; background:#ffffe8; '>'Place'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#696969; background:#ffffe8; '>// salida: “1 Enrique Place</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
 Caso 5 – Los usuarios necesitan un id único “autogenerado”
 
@@ -1739,8 +1746,6 @@ de acuerdo al diseño.
 Recuerda: trata de mecanizar esta buena práctica, una clase que ofrece un 
 servicio debe implementar en conjunto una interfaz que servirá de guía para 
 todas las clases que quieran usar ese servicio. 
-
-<h1>Programación Orientada a Objetos en PHP5 </h1>
 
 
 </body>
