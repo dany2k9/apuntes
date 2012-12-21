@@ -1190,335 +1190,374 @@ index.php: <br />
 <span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#696969; background:#ffffe8; '>// salida: “1 Enrique Place</span><span style='color:#000000; background:#ffffe8; '></span>
 </pre>
 
-Caso 5 – Los usuarios necesitan un id único “autogenerado”
-
+Caso 5 – Los usuarios necesitan un id único “autogenerado” <br />
+<p>
 Aprovecharemos la situación para explicar los “atributos estáticos” (static), o 
 lo que podríamos traducir como “atributos / métodos de Clase”. Estos elementos s
 on de acceso común para todas las instancias de la misma clase.
-
+</p>
+<p>
 La clase Persona sigue igual, lo que cambia es la clase Usuario y se agrega un 
 atributo protegido (lo cual permitirá que una clase herede de Usuario y acceder directamente al atributo como propio) y se ajusta el constructor de la clase 
 para no solicitar más el id. 
+</p>
+Usuario.php: <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Persona.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> Persona  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_id</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_fechaIngreso</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>protected</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_ultimoId</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>0</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>parent</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$apellido</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_ultimoId</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>+</span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>1</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_id</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_ultimoId</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_fechaIngreso</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>date</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'w'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_id</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>'-'</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>parent</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-Usuario.php: 
-<?php  
-require_once 'Persona.php';  
- 
-class Usuario extends Persona  
-{  
-    private $_id;  
-    private $_fechaIngreso;  
-    static protected $_ultimoId = 0;  
- 
-    public function __construct($nombre, $apellido)  
-    {  
-      parent::__construct($nombre, $apellido);  
- 
-      self::$_ultimoId += 1;  
-        
-      $this->_id = self::$_ultimoId;  
-      $this->_fechaIngreso = date('w');  
-    }  
-    public function __toString()  
-    {  
-        return $this->_id.'-'.parent::__toString();  
-    }  
-}  
+La forma de acceder al atributo estático es usando self::$atributo <br />
 
-La forma de acceder al atributo estático es usando self::$atributo 
+index.php: <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Usuario.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$usuario1</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Usuario</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Enrique'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#0000e6; background:#ffffe8; '>'Place'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#797997; background:#ffffe8; '>$usuario2</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Usuario</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Bruce'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#0000e6; background:#ffffe8; '>'Lee'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#797997; background:#ffffe8; '>$usuario3</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Usuario</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Linus'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#0000e6; background:#ffffe8; '>'Torvalds'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$usuario1</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>'&lt;br>'</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$usuario2</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>'&lt;br>'</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$usuario3</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-index.php: 
-<?php  
-require_once 'Usuario.php';  
- 
-$usuario1 = new Usuario('Enrique','Place');  
-$usuario2 = new Usuario('Bruce','Lee');  
-$usuario3 = new Usuario('Linus','Torvalds');  
- 
-echo $usuario1.?<br>?.$usuario2.?<br>?.$usuario3; 
+Explicación sobre la visibilidad de los atributos y métodos <br />
 
-Explicación sobre la visibilidad de los atributos y métodos 
+Existen tres posibilidades: público, privado y protegido. <br /> 
 
-Existen tres posibilidades: público, privado y protegido. 
-
-“Visibilidad Pública” 
+“Visibilidad Pública” <br />
+<p>
 Se puede considerar como “sin restricciones”, lo que es público todos lo pueden 
 acceder o modificar.  
-
-“Visibilidad Privada” 
+</p>
+“Visibilidad Privada” <br />
+<p>
 Un punto intermedio entre lo privado y lo público, lo “protegido” son los 
 atributos y métodos que pueden ser accedidos de forma directa como “propios” 
 por parte de los “hijos” de la clase “padre”. Para las clases que no tienen una 
 relación de parentesco su significado es igual al de privado. 
+</p>
+Caso 6 – Ejemplos varios <br />
 
-Caso 6 – Ejemplos varios 
-
-Clase abstracta 
-
+<h3>Clase abstracta </h3>
+<p>
 Técnicamente lo que hacemos definir que la clase no puede ser instanciada, por 
 lo que se le antepone a “class” la palabra “abstract” y en UML se representa con 
 el nombre de la clase en cursiva ó agregando un “estereotipo” (texto que va 
 arriba del nombre de la clase entre <<>>). 
-
+</p>
+<p>
 Conceptualmente lo que estamos diciendo es que la clase no puede ser usada 
 directamente y que nos servirá de molde para crear otras clases que sí serán 
 concretas y candidatas a instanciar. 
-
-<?php  
-abstract class Persona  
-{  
-   /*sigue el código de la clase*/ 
-}  
+</p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>abstract</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Persona  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/*sigue el código de la clase*/</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
  
-Lo cual impide hacer  
+Lo cual impide hacer  <br />
  
-$persona = new Persona(); 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-Herencia Múltiple 
+<h3>Herencia Múltiple </h3>
+<p>
 La mayoría de los lenguajes POO no implementan la herencia múltiple, no porque 
 les falte, se considera que lo único que aporta es más posibilidades de errores 
 en los diseños. 
+</p>
 
-“Sobre-escritura” de métodos  
-
+<h3>“Sobre-escritura” de métodos</h3>  
+<p>
 Otro elemento del lenguaje es poder sobre escribir un método que heredamos de 
 nuestro padre. Esto se puede hacer simplemente volviendo a definir en la case 
 “hija” un método con el mismo nombre.  
+</p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Padre  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> metodo</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* código */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Hijo </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> Padre  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> metodo</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* nuevo código */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Hijo </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> Padre  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> metodo</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>parent</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>metodo</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* nuevo código */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>  
 
-class Padre  
-{  
-   public function metodo()  
-   {  
-      /* código */  
-   }  
-}  
-class Hijo extends Padre  
-{  
-   public function metodo()  
-   {  
-      /* nuevo código */  
-   }  
-}   
-
-class Hijo extends Padre  
-{  
-   public function metodo()  
-   {  
-      parent::metodo();  
-      /* nuevo código */  
-   }  
-}   
-
-Evitar la herencia y la “sobre-escritura” de métodos
+Evitar la herencia y la “sobre-escritura” de métodos <br />
 
 “final”, la que impide la herencia de la clase o la sobre-escritura del método, 
-de acuerdo en donde lo apliquemos
+de acuerdo en donde lo apliquemos <br />
 
-Impedir heredar la clase Admin 
+Impedir heredar la clase Admin <br />
  
-final class Admin  
-{  
-}   
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>final</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Admin  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
  
-Impedir alterar un método que pueda ser heredado 
+Impedir alterar un método que pueda ser heredado <br />
  
-class Admin  
-{  
-   final function metodo()  
-   {  
-      /* código */  
-   }  
-}   
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Admin  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>final</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> metodo</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* código */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-“Generalización” versus “Especialización”
-
+<h3>“Generalización” versus “Especialización”</h3>
+<p>
 Por ejemplo, imaginemos que solo contamos con la clase Persona y descubrimos que 
 necesitamos una clase Usuario, podemos decir entonces que a partir de Persona 
 hicimos una “especialización” al crear la clase Usuario, ya que tomamos un 
 comportamiento más genérico y lo adecuamos a una clase mucho más concreta y 
 aplicable a entornos más particulares. 
-
+</p>
+<p>
 Imaginemos lo contrario, contamos con dos clases que están al mismo nivel, sin 
 relaciones entre ellas, que son Usuario y Admin, ambas clases repiten muchos 
 atributos y métodos (como nombre y apellido), por lo que decidimos hacer una 
 “generalización” y creamos una clase Persona haciendo un factoreo de todo lo 
 común entre ambas clases. 
-
+</p>
+<p>
 En resumen: podemos decir que son dos formas distintas de referirnos a la 
 relación de “herencia”. 
-
-Entonces, ¿qué es Polimorfismo? 
-
+</p>
+Entonces, ¿qué es Polimorfismo? <br />
+<p>
 En sí la palabra solo refiere a “muchas formas” y aplicado a la POO es la 
 capacidad de poder tomar varias clases que tiene operaciones iguales y poder 
 invocar a cualquier instancia el mismo método común. 
-
+</p>
+<p>
 Ventajas: Poder hacer un diseño genérico que se apliquen a varios objetos que 
 tienen operaciones comunes. 
 Definamos el siguiente contexto: tenemos una clase Impresora que se encarga de 
 recibir cualquier cosa y la imprime con un “echo”(a futuro podrá ser una 
 impresora). 
+</p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Impresora  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$algo</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$algo</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$impresora</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Impresora</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#797997; background:#ffffe8; '>$impresora</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Hola mundo!);</span>
+</pre>
 
-<?php  
-class Impresora  
-{  
-  public function imprimir($algo)  
-  {  
-      echo $algo;  
-  }  
-}  
+La implementación <br />
+index.php <br />
  
-$impresora = new Impresora();  
-$impresora->imprimir('Hola mundo!); 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Impresora.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Informe.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Curriculum.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>Impresora</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Informe</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>Impresora</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Curriculum</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-La implementación 
-index.php 
+Impresora.php <br />
  
-<?php   
-require_once 'Impresora.php';  
-require_once 'Informe.php';  
-require_once 'Curriculum.php';  
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>abstract</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Impresora  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$algo</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$algo</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>imprime</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
+Informe.php <br />
  
-Impresora::imprimir(new Informe());  
-Impresora::imprimir(new Curriculum()
-); 
-
-Impresora.php 
- 
-<?php  
-abstract class Impresora  
-{  
-  public function imprimir($algo)  
-  {  
-      echo $algo->imprime();  
-  }  
-}  
-Informe.php 
- 
-<?php  
-class Informe  
-{  
-  public function imprime()  
-  {  
-      return 'imprimo informe';  
-  }  
-}
-
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Informe  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> imprime</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'imprimo informe'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
+<p>
 Bien, sin darnos cuenta y casi sin necesidad de entenderlo, estamos haciendo uso 
 del polimorfismo. Nuestra clase de impresión recibe distintos tipos de objetos 
 que comparten el mismo nombre común de un método que se requiere para que la 
 impresora pueda funcionar. En distintas etapas de nuestro sistema veremos 
 distintas instancias haciendo uso del mismo código de impresión: “polimorfismo”, 
 “muchas formas”. 
-
-“Diseño más robusto” 
+</p>
+“Diseño más robusto” <br />
 
 - Aplicamos una “generalización” buscando lo común de ambas clases y creando una 
 clase “Hoja” que tendría toda la información base para cualquier documento que 
 quiera imprimirse. Por defecto la hoja sabe imprimirse, y en caso de necesitar 
 modificar el comportamiento, sobre-escribiremos el método imprime en la clase 
-concreta (Currículum o Informe). 
+concreta (Currículum o Informe). <br />
 - Se agrega el tipo “Hoja” en el método imprimir de la clase Impresora, por 
 consiguiente no permitirá a ningún objeto que no sea de tipo “Hoja” pasar 
-por allí.
+por allí.<br />
 
-Bien, esto es el tradicional “polimorfismo por herencia”. 
+Bien, esto es el tradicional “polimorfismo por herencia”. <br />
 
-¿La herencia está limitada? 
+¿La herencia está limitada? <br /><br />
 
-http://ar.php.net/interface
+http://ar.php.net/interface<br /><br />
 
-Las interfaces: “el poder desconocido”
-
+<h3>Las interfaces: “el poder desconocido”</h3>
+<p>
 Las interfaces son similares a la herencia: la herencia “agrupa” clases que 
 “son lo mismo” (relación de parentesco) y la interface “agrupa” clases que 
 “que realizan las mismas operaciones” (pero no necesariamente son iguales). 
-
-Implementación 
+</p>
+Implementación <br />
  
-ImprimibleInterface.php 
+ImprimibleInterface.php <br />
 
-interface Imprimible
-{
- public function imprime();
-}
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>interface</span><span style='color:#000000; background:#ffffe8; '> Imprimible</span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> imprime</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-Curriculum.php 
+Curriculum.php <br />
 
-require_once 'ImprimibleInterface.php';
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'ImprimibleInterface.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Curriculum </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>implements</span><span style='color:#000000; background:#ffffe8; '> Imprimible</span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> imprime</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'El curriculum se imprime distinto que una hora comun'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-class Curriculum implements Imprimible
-{
- public function imprime()
- {
-  return 'El curriculum se imprime distinto que una hora comun';
- }
-}
+Impresora.php <br />
 
-Impresora.php 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'ImprimibleInterface.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Impresora</span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>Imprimible </span><span style='color:#797997; background:#ffffe8; '>$algo</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$algo</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>imprime</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-require_once 'ImprimibleInterface.php';
+index.php <br />
 
-class Impresora
-{
- public function imprimir(Imprimible $algo)
- {
-  echo $algo->imprime();
- }
-}
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Impresora.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Curriculum.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Informe.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>abstract</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Index</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$impresora</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Impresora</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$impresora</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Curriculum</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$impresora</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>imprimir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Informe</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>Index</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-index.php
-
-require_once 'Impresora.php';
-require_once 'Curriculum.php';
-require_once 'Informe.php';
-
-abstract class Index()
-{
- public function run()
- {
-  $impresora = new Impresora();
-  
-  $impresora->imprimir(new Curriculum());
-  $impresora->imprimir(new Informe());
- }
-}
-Index::run();
-
-Cómo funciona 
+Cómo funciona <br />
 
 1. Inmediatamente que agregamos el tipo Imprimible en el método de la Impresora, 
 cualquier objeto que quiera pasar por ahí deberá implementar la interface 
-Imprimible. 
+Imprimible. <br />
 2. Una vez que lo implemente, el compilador de PHP le dirá que su clase no 
 tienen el método “imprime” (esto lo obliga la interface, usted no la está 
 cumpliendo), por lo tanto para que pueda ser aceptada tiene que contar con ese 
-método. 
+método. <br />
 
 - La flecha es similar a herencia, solo que es “punteada” (“discontinua”), en 
-vez de decir “hereda” debemos decir “realiza/implementa/cumple” con la interfaz. 
+vez de decir “hereda” debemos decir “realiza/implementa/cumple” con la interfaz. <br />
 - Todos los métodos de la interfaz son “firmas”, es decir, solo va el nombre y 
-la lista de parámetros, no existe implementación, ni siquiera van las llaves {}. 
+la lista de parámetros, no existe implementación, ni siquiera van las llaves {}. <br />
 
-Las interfaces son “contratos de implementación” 
+Las interfaces son “contratos de implementación” <br />
 
 Una interface es conceptualmente lo que se dice un “contrato de implementación”, 
 ya que para usar un servicio (Impresora) tiene que cumplir un contrato 
 (interfaz) que lo obliga a cumplir una serie de requisitos (las firmas de 
-métodos que aparecen en la interfaz). 
+métodos que aparecen en la interfaz). <br /><br />
 
-http://phpsenior.blogspot.com/2007/10/herencia-de-clases-y-el-principio-de.html
+http://phpsenior.blogspot.com/2007/10/herencia-de-clases-y-el-principio-de.html<br /><br />
 
-http://phpsenior.blogspot.com/2006/08/herencia-mltiple-en-php5.html
+http://phpsenior.blogspot.com/2006/08/herencia-mltiple-en-php5.html<br /><br />
 
-Resumen 
+Resumen <br />
  
 Hicimos la primer introducción a la Herencia y las Interfaces, las diferencias 
-entre ambas, y cómo se aplica el polimorfismo y los distintos tipos que hay. 
+entre ambas, y cómo se aplica el polimorfismo y los distintos tipos que hay. <br />
 También destacamos que conceptualmente el Polimorfismo es un 
-“patrón estratégico” y que las interfaces son “contratos de implementación”. 
+“patrón estratégico” y que las interfaces son “contratos de implementación”. <br />
 
-Ejercicio  “Clase de Persistencia” 
+Ejercicio  “Clase de Persistencia” <br />
 
 Se necesita diseñar e implementar una clase de persistencia genérica llamada 
 BaseDeDatos que pueda recibir distintos tipos de "Manejadores de Base de Datos" 
@@ -1526,226 +1565,235 @@ como ser MySQL, Postgres, etc, desde su constructor. Para ello deberán hacer us
 de las interfaces, creando una que se llame ManejadorBaseDeDatosInterface y que 
 tenga en su "contrato de implementación" las operaciones más básicas y 
 elementales: conectar, desconectar, traer datos ejecutando una consulta SQL, 
-etc. 
+etc. <br />
 Posteriormente y para dividir responsabilidades, necesito que creen una clase 
 SQL que se encargue de procesar todos los pedidos SQL en partes, así poder a 
-futuro hacer mayores controles. 
+futuro hacer mayores controles. <br />
  
-Por ejemplo, debería tener métodos como: 
-- addCampo 
-- addTabla 
-- addWhere 
-- addOrder 
-- etc 
+Por ejemplo, debería tener métodos como: <br />
+- addCampo <br />
+- addTabla <br />
+- addWhere <br />
+- addOrder <br />
+- etc <br />
 
-require_once 'BaseDeDatos.php'; 
-require_once 'MySQL.php'; 
-require_once 'Sql.php'; 
- 
-$bd = new BaseDeDatos(new MySQL()); 
- 
-$sql = new Sql(); 
- 
-$sql->addTable("usuarios"); 
-$sql->addWhere("id = 1"); 
-$sql->addWhere("id = 1"); 
-$sql->addWhere("nombre = 'enrique' "); 
-
-$usuario = $bd->ejecutar($sql); // esto genera SELECT * FROM usuarios WHERE id = 1 AND nombre = 'enrique'; 
-
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'BaseDeDatos.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'MySQL.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Sql.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$bd</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> BaseDeDatos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> MySQL</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Sql</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addTable</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>"usuarios"</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>"id = 1"</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>"id = 1"</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>"nombre = 'enrique' "</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$bd</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>ejecutar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#696969; background:#ffffe8; '>// esto genera SELECT * FROM usuarios WHERE id = 1 AND nombre = 'enrique';</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+<p>
 Con “Persistencia” nos referimos tanto a guardar como recuperar datos de un 
 medio de almacenamiento permanente, por defecto hablamos de una base de datos, 
 pero perfectamente podría ser un archivo de texto plano u otro medio. 
+</p>
+<b>"Cualquier problema en computación puede resolverse añadiendo otra capa de 
+abstracción" </b>
+<br />
+<br />
 
-"Cualquier problema en computación puede resolverse añadiendo otra capa de 
-abstracción" 
-
-Primer escenario: “crear una conexión a la base de datos”
+Primer escenario: “crear una conexión a la base de datos”<br />
 
 buscamos cada una de las sentencias en el manual y  en el peor de los casos 
-nuestro código se plaga de sentencias tan específicas como:  
-mysql_connect, mysql_query, etc. 
+nuestro código se plaga de sentencias tan específicas como:  <br />
+mysql_connect, mysql_query, etc. <br />
 
-Segundo escenario: “crear una clase de persistencia” 
+Segundo escenario: “crear una clase de persistencia” <br />
 
 Tratando de prever esta situación podríamos crear una “nueva capa de 
 abstracción” y generar un clase genéricas (conectar, traer datos, desconectar) 
 que nos permita “esconder” el código específico de MySQL. En caso de necesitar 
 alguna funcionalidad extra o cambiar de motor, simplemente el impacto en 
 nuestro sistema estaría reducido a modificar nuestras funcionalidades de una 
-clase que oculta los detalles de implementación. 
+clase que oculta los detalles de implementación. <br />
 
-Tercer escenario: “abstraer el tipo de base de datos”
+Tercer escenario: “abstraer el tipo de base de datos”<br />
 
 Imaginen que nuestro producto crece y lo empezamos a comercializar para muchas 
 plataformas, y que uno de nuestros nuevos requerimientos es poder contemplar 
 varios motores de bases de datos. Para ello tenemos que “contener el foco de 
 cambio”(*) y adaptar a nuestro sistema para que solo agregando “código nuevo sin
 modificar lo existente”  pueda así soportar más motores de bases como Oracle, 
-MSSQL Server, Informix, Sybase, Firebird, etc, etc. 
+MSSQL Server, Informix, Sybase, Firebird, etc, etc. <br />
 
 Foco de cambio: se le dice al lugar o lugares de nuestro sistema que por 
 los requerimientos que estamos desarrollando, es seguro que ahí habrán cambios 
 (agregar, modificar, etc) por consiguiente debemos preverlo de alguna forma para
-bajar su costo de modificación / mantenimiento. 
+bajar su costo de modificación / mantenimiento. <br />
 
-index.php 
-<?php  
-require_once 'BaseDeDatos.php'; 
-require_once 'MySQL.php'; 
-require_once 'Sql.php'; 
- 
-abstract class Index 
-{ 
-    public function run() 
-    { 
-        $bd = new BaseDeDatos(new MySQL()); 
- 
-        $sql = new Sql(); 
- 
-        $sql->addTable('usuarios'); 
-        $sql->addWhere('id = 1'); 
-        $sql->addWhere('id = 1'); 
-        $sql->addWhere("nombre = 'enrique' "); 
- 
-        $usuario = $bd->ejecutar($sql); 
- 
-        echo highlight_string(var_export($usuario, true)); 
-         
-    } 
-} 
- 
-Index::run();  
-
-
-ManejadorBaseDeDatosInterface.php 
-<?php 
-interface ManejadorBaseDeDatosInterface 
-{ 
-  public function conectar(); 
-  public function desconectar(); 
-  public function traerDatos(Sql $sql); 
-}  
+index.php <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'BaseDeDatos.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'MySQL.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Sql.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>abstract</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Index </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$bd</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> BaseDeDatos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> MySQL</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Sql</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addTable</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'usuarios'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'id = 1'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'id = 1'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>"nombre = 'enrique' "</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$bd</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>ejecutar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>highlight_string</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#400000; background:#ffffe8; '>var_export</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$usuario</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>true</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>Index</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
 
-BaseDeDatos.php 
-<?php 
-require_once 'ManejadorBaseDeDatosInterface.php'; 
-require_once 'Sql.php';  
- 
-class BaseDeDatos 
-{ 
- private $_manejador; 
- 
- public function __construct(ManejadorBaseDeDatosInterface $manejador) 
- { 
-     $this->_manejador = $manejador; 
- } 
- public function ejecutar(Sql $sql) 
- { 
-     $this->_manejador->conectar(); 
- 
-     $datos = $this->_manejador->traerDatos($sql); 
- 
-     $this->_manejador->desconectar(); 
- 
-     return $datos; 
- } 
-} 
+ManejadorBaseDeDatosInterface.php <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>interface</span><span style='color:#000000; background:#ffffe8; '> ManejadorBaseDeDatosInterface </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> conectar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> desconectar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> traerDatos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>Sql </span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
 
-MySQL.php 
-<?php 
-require_once 'ManejadorBaseDeDatosInterface.php'; 
- 
-class MySQL implements ManejadorBaseDeDatosInterface 
-{ 
-    const USUARIO = 'root'; 
-    const CLAVE = ''; 
-    const BASE = 'tarea5'; 
-    const SERVIDOR = 'localhost'; 
- 
-    private $_conexion; 
- 
-    public function conectar() 
-    { 
-        $this->_conexion = mysql_connect( 
-            self::SERVIDOR, 
-            self::USUARIO, 
-            self::CLAVE 
-        ); 
-         
-        mysql_select_db( 
-            self::BASE, 
-            $this->_conexion 
-        ); 
-    } 
-    public function desconectar() 
-    { 
-        mysql_close($this->_conexion); 
-    } 
-    public function traerDatos(Sql $sql) 
-    { 
-        $resultado = mysql_query($sql, $this->_conexion); 
-         
-        while ($fila = mysql_fetch_array($resultado, MYSQL_ASSOC)){ 
-            $todo[] = $fila; 
-        } 
-        return $todo; 
-    } 
-}  
+BaseDeDatos.php <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'ManejadorBaseDeDatosInterface.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Sql.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> BaseDeDatos </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_manejador</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>ManejadorBaseDeDatosInterface </span><span style='color:#797997; background:#ffffe8; '>$manejador</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_manejador</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$manejador</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> ejecutar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>Sql </span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_manejador</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>conectar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$datos</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_manejador</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>traerDatos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_manejador</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>desconectar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$datos</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
 
-Sql.php 
-<?php 
-class Sql 
-{ 
-  private $_colWhere = array(); 
-  private $_colSelect = array('*'); 
-  private $_colFrom = array(); 
- 
-  public function addTable($table) 
-  { 
-      $this->_colFrom[] = $table; 
-  } 
-  public function addWhere($where) 
-  { 
-      $this->_colWhere[] = $where; 
-  } 
-  private function _generar() 
-  { 
-      $select = implode(',',array_unique($this->_colSelect)); 
-      $from   = implode(',',array_unique($this->_colFrom)); 
-      $where  = implode(' AND ',array_unique($this->_colWhere)); 
- 
-      return 'SELECT '.$select.' FROM '.$from.' WHERE '.$where;  
-  } 
-  public function __toString() 
-  { 
-      return $this->_generar(); 
-  } 
-}  
+MySQL.php <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'ManejadorBaseDeDatosInterface.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> MySQL </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>implements</span><span style='color:#000000; background:#ffffe8; '> ManejadorBaseDeDatosInterface </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>const</span><span style='color:#000000; background:#ffffe8; '> USUARIO </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'root'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>const</span><span style='color:#000000; background:#ffffe8; '> CLAVE </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>''</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>const</span><span style='color:#000000; background:#ffffe8; '> BASE </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'tarea5'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>const</span><span style='color:#000000; background:#ffffe8; '> SERVIDOR </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'localhost'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_conexion</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> conectar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_conexion</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>mysql_connect</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>SERVIDOR</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>USUARIO</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>CLAVE </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#400000; background:#ffffe8; '>mysql_select_db</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>BASE</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_conexion</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> desconectar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#400000; background:#ffffe8; '>mysql_close</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_conexion</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> traerDatos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>Sql </span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$resultado</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>mysql_query</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$sql</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_conexion</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>while</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$fila</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>mysql_fetch_array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$resultado</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#7d0045; background:#ffffe8; '>MYSQL_ASSOC</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$todo</span><span style='color:#808030; background:#ffffe8; '>[</span><span style='color:#808030; background:#ffffe8; '>]</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$fila</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$todo</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-Principio de diseño “Abierto 
-/ Cerrado”
+
+Sql.php <br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Sql </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_colWhere</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_colSelect</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'*'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_colFrom</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> addTable</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$table</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_colFrom</span><span style='color:#808030; background:#ffffe8; '>[</span><span style='color:#808030; background:#ffffe8; '>]</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$table</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> addWhere</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$where</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_colWhere</span><span style='color:#808030; background:#ffffe8; '>[</span><span style='color:#808030; background:#ffffe8; '>]</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$where</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> _generar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$select</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>implode</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>','</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#400000; background:#ffffe8; '>array_unique</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_colSelect</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$from</span><span style='color:#000000; background:#ffffe8; '>   </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>implode</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>','</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#400000; background:#ffffe8; '>array_unique</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_colFrom</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$where</span><span style='color:#000000; background:#ffffe8; '>  </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>implode</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>' AND '</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#400000; background:#ffffe8; '>array_unique</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_colWhere</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'SELECT '</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$select</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>' FROM '</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$from</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>' WHERE '</span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$where</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>_generar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
+
+Principio de diseño “Abierto / Cerrado” <br />
 
 nuestro costo en el desarrollo se da cuando diseñamos un sistema que cuando hay 
 cambios de requerimientos debemos modificar constantemente, por lo tanto un 
 buen diseño deberá ser “Abierto / Cerrado”, se diseñará una vez y cuando se 
 necesite agregar nueva funcionalidad se hará sin modificar el código existente, 
-solo agregando código nuevo
+solo agregando código nuevo<br />
 
 Se dice que todo buen diseño (como las implementaciones de los  Patrones de 
-Diseño) de alguna forma u otra termina cumpliendo con este principio. 
+Diseño) de alguna forma u otra termina cumpliendo con este principio. <br />
 
 Pasando en limpio: cada vez que necesitemos soportar otro motor de base de datos 
 crearemos una nueva clase, requerimos la interfaz (“contrato de implementación”) 
 y esta nos obligará a implementar los métodos requeridos para que todo funcione 
-de acuerdo al diseño. 
+de acuerdo al diseño. <br />
 
 Recuerda: trata de mecanizar esta buena práctica, una clase que ofrece un 
 servicio debe implementar en conjunto una interfaz que servirá de guía para 
-todas las clases que quieran usar ese servicio. 
+todas las clases que quieran usar ese servicio. <br />
 
 
 </body>
