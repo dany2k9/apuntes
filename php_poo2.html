@@ -210,636 +210,673 @@ la palabra reservada __construct()
 </pre>
 
 
-object(Persona)#1 (3) {  
-  ["_nombre:private"]=> NULL  
-  ["_apellido:private"]=> NULL  
-  ["_fechaNacimiento:private"]=> string(8) "5/8/1973"  
-}  
-object(Persona)#2 (3) {  
-  ["_nombre:private"]=> NULL  
-  ["_apellido:private"]=> NULL  
-  ["_fechaNacimiento:private"]=> string(8) "5/8/1973"  
-} 
+<img src="" alt="uml02.jpg"><br>
 
-“Una clase, una única responsabilidad”
+<b>“Una clase, una única responsabilidad”</b><br>
 
-Las clases nunca imprimen información, siempre retornan.
+Las clases nunca imprimen información, siempre retornan.<br><br>
 
-"getter / setter"
+<b>"getter / setter"</b><br><br>
 
-"accesores / modificadores"
+<b>"accesores / modificadores"</b><br><br>
 
-En PHP4 todos los atributos de un objeto son siempre atributos públicos
+En PHP4 todos los atributos de un objeto son siempre atributos públicos<br>
 
-class Usuario{ 
-    var $nombre; 
-    var $nombreReal; 
-    var $edad; 
-    var $clave; 
-} 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>var</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>var</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>var</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>var</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+<br>
+PHP5<br>
 
-PHP5
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
-class Usuario 
-{ 
-    public $nombre; 
-    public $nombreReal; 
-    public $edad; 
-    public $clave; 
-} 
+<b>public, private y protected</b><br><br>
 
-public, private y protected
-
-class Usuario 
-{ 
-    private $_nombre; 
-    private $_nombreReal; 
-    private $_edad; 
-    private $_clave; 
-} 
-
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+<p>
 los atributos de los objetos deben ser siempre "privados" (concepto 
 "encapsulación": no son accesibles desde fuera del objeto, solo el objeto tiene 
 la potestad de usarlos directamente) 
+</p>
+- un método "setter" para "cargar un valor" (asignar un valor a una variable) <br> 
+- un método "getter" para "retornar el valor" (solo devolver la información)<br>
 
-- un método "setter" para "cargar un valor" (asignar un valor a una variable)  
-- un método "getter" para "retornar el valor" (solo devolver la información
-
-Requerimiento 1 
+Requerimiento 1 <br>
 La edad se puede acceder y modificar en todo momento, por consiguiente se deben 
-agregar los dos métodos, un "get" y un "set" para ese atributo: 
+agregar los dos métodos, un "get" y un "set" para ese atributo: <br>
 
-class Usuario 
-{ 
-    private $_nombre; 
-    private $_nombreReal; 
-    private $_edad; 
-    private $_clave; 
- 
-    public function getEdad()  
-    { 
-       return $this->_edad; 
-    } 
-    public function setEdad($edad) 
-    { 
-       $this->_edad = $edad; 
-    } 
-} 
-
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+<p>
 los métodos y atributos privados deben iniciar con “_” y todas las llaves de 
 métodos y clases inician a la izquierda (ninguna otra más, como un if, for, etc). 
-
-Requerimiento 2 
+</p>
+Requerimiento 2 <br>
 Poder saber el nombre del usuario pero no modificarlo, para eso hay que agregar 
-solo un método get para ese atributo: 
+solo un método get para ese atributo:<br> 
 
-public function getNombre() 
-    { 
-     return $this->_nombre; 
-    } 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getNombre</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
-Requerimiento  3  
-No nos interesa que se sepa el nombre real del usuario 
+Requerimiento  3  <br>
+No nos interesa que se sepa el nombre real del usuario <br>
  
-Lo dejamos como está y queda inaccesible desde fuera del objeto. 
+Lo dejamos como está y queda inaccesible desde fuera del objeto. <br>
 
-Requerimiento  4  
+Requerimiento  4  <br>
 Queremos que pueda colocar una nueva clave si el usuario se la olvida, pero no 
-saber la que existe actualmente 
+saber la que existe actualmente<br> 
 
 Para eso, hacemos lo contrario que con el atributo nombre, agregamos un método 
-"set" pero no el "get": 
+"set" pero no el "get": <br>
 
-public function setClave($clave) 
-   { 
-      $this->_clave = $clave; 
-   } 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setClave</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_clave</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
-"Evitar que el objeto muestre detalles de su implementación" 
+<b>"Evitar que el objeto muestre detalles de su implementación" </b><br><br>
 
-class Usuario 
-{ 
-  private $_nombre; 
-  private $_nombreReal; 
-  private $_edad; 
-  private $_clave; 
- 
-  /** getter / setter */ 
-  public function getEdad(){return  $this->_edad;} 
-  public function setEdad($edad){$this->_edad = $edad;} 
-  public function getNombre(){return $this->_nombre;} 
-  public function setClave($clave){$this->_clave = $clave;} 
-} 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Usuario </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombreReal</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/** getter / setter */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '>  </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setEdad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_edad</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$edad</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getNombre</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> setClave</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_clave</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$clave</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
-1. Por defecto, atributos privados 
-2. Usa métodos comunes y no getter/setter 
-3. Si no queda otra opción, usa solo getter 
-4. Si no queda otra opción, usa setter 
-5. Trata de evitar getter y setter a la vez (efecto "atributo público") 
+1. Por defecto, atributos privados <br>
+2. Usa métodos comunes y no getter/setter<br> 
+3. Si no queda otra opción, usa solo getter<br> 
+4. Si no queda otra opción, usa setter <br>
+5. Trata de evitar getter y setter a la vez (efecto "atributo público")<br><br> 
 
-"estado del objeto"
+<b>"estado del objeto"</b><br><br>
 
-"los métodos definen el comportamiento del objeto"
+<b>"los métodos definen el comportamiento del objeto"</b><br><br>
 
-http://www.agile-spain.com/agilev2/blog/traduccionmartinfowler
+http://www.agile-spain.com/agilev2/blog/traduccionmartinfowler<br><br>
 
 La Relación de Dependencia “es una relación de uso entre dos entidades” (una usa 
-a la otra)
+a la otra)<br>
 
 La relación de dependencia es cuando una clase depende de la funcionalidad que 
-ofrece otra clase. 
+ofrece otra clase. <br>
 
 La representación en UML es una “flecha punteada” o “discontinua” que va desde 
 la clase “cliente” del servicio/funcionalidad hasta la clase que ofrece el 
-“servicio/funcionalidad”. 
+“servicio/funcionalidad”. <br>
 
-------------__________________---------------
-- La clase A depende de la clase B 
-- La clase A usa la clase B 
+<img src="uml03.jpg" alt=""><br>
+
+- La clase A depende de la clase B <br>
+- La clase A usa la clase B <br>
 - La clase A conoce la existencia de la clase B, pero la clase B no conoce la 
-existencia de la clase A (es lo que significa el sentido de la flecha) 
+existencia de la clase A (es lo que significa el sentido de la flecha) <br>
 - Todo cambio que se haga en la clase B, por la relación que hay con la clase A, 
-podrá afectar a la clase A. 
+podrá afectar a la clase A. <br><br>
 
-“relación de uso”
+<b>“relación de uso”</b><br><br>
 
-Solo existen dos situaciones posibles 
+Solo existen dos situaciones posibles <br>
 1. En un método de la clase A instancio un objeto de tipo B y posteriormente lo 
-uso. 
+uso.<br> 
 2. En un método de la clase A recibo por parámetro un objeto de tipo B y 
-posteriormente lo uso. 
+posteriormente lo uso. <br>
 
-Caso 1 – instancio un objeto B dentro de un método de A 
+Caso 1 – instancio un objeto B dentro de un método de A <br>
 
-<?php  
-require_once 'B.php';  
- 
-class A  
-{  
-   public function mostrar()  
-   {  
-       $b = new B();  
-         
-       /* etc */  
-   }  
-} 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'B.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> A  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> mostrar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$b</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> B</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* etc */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
+Caso 2 – recibo por parámetro de un método de A un objeto B  <br>
 
-Caso 2 – recibo por parámetro de un método de A un objeto B  
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'B.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> A  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> mostrar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>B </span><span style='color:#797997; background:#ffffe8; '>$b</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$b</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* etc */</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-<?php 
-require_once 'B.php';  
- 
-class A  
-{  
-   public function mostrar(B $b)  
-   {  
-       echo $b;  
-         
-       /* etc */  
-   }  
-}   
+<b>Type Hinting (“indicando el tipo”)</b><br><br>
 
-Type Hinting (“indicando el tipo”)
-
-La Relación de Asociación 
-Definición: “es una relación estructural entre entidades” (una entidad se 
-construye a partir de otras entidades) 
+<h3>La Relación de Asociación</h3> 
+Definición: <b>“es una relación estructural entre entidades” (una entidad se 
+construye a partir de otras entidades)</b><br> 
 
 La relación de asociación es cuando una clase tiene en su estructura a otra 
 clase, o se puede decir también que se construye una clase a partir de otros 
-elementos u objetos
+elementos u objetos<br>
 
 un objeto Auto y como atributos del mismo tendríamos los objetos Motor, Tanque y 
-Antena.  
+Antena.<br><br>  
 
-“Principio de Ocultación”
+<b>“Principio de Ocultación”</b><br><br>
 
 La representación en UML es una “flecha continua” que va apuntando desde la 
 clase “compuesto” hasta la o las clases “componentes”.
 
-------------________________-------------
-- La clase A depende de la clase B 
-- La clase A está asociada a la clase B 
+<img src="uml04.jpg" alt=""><br>
+- La clase A depende de la clase B<br> 
+- La clase A está asociada a la clase B<br> 
 - La clase A conoce la existencia de la clase B, pero la clase B no conoce la 
-existencia de la clase A (sentido de la flecha) 
+existencia de la clase A (sentido de la flecha)<br> 
 - Todo cambio que se haga en la clase B, por la relación que hay con la clase A, 
-podrá afectar a la clase A. 
+podrá afectar a la clase A. <br>
 
-Creando una clase A que tiene como atributo un objeto de tipo clase B. 
+Creando una clase A que tiene como atributo un objeto de tipo clase B. <br>
 
 
-<?php 
-require_once 'B.php';  
- 
-class A  
-{  
-   private $_b;  
- 
-   public function __construct()  
-   {  
-       $this->_b = new B();  
-   }  
-}  
- 
-$a = new A();
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'B.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> A  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_b</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_b</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> B</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$a</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> A</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-PHP no soporta la creación de instancias en la definición de atributos
+PHP no soporta la creación de instancias en la definición de atributos<br>
 
-<?php 
-require_once 'Motor.php';  
-require_once 'TanqueCombustible.php';  
-require_once 'AntenaRadio.php';  
- 
-class Auto  
-{  
-   private $_motor;  
-   private $_tanqueCombustible;  
-   private $_antenaRadio;  
- 
-   public function __construct()  
-   {  
-       $this->_motor = new Motor();  
-       $this->_tanqueCombustible = new TanqueCombustible();  
-       $this->_antenaRadio = new AntenaRadio();  
-   }  
-}  
- 
-$auto = new Auto();  
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Motor.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'TanqueCombustible.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'AntenaRadio.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Auto  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_motor</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_tanqueCombustible</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_antenaRadio</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_motor</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Motor</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_tanqueCombustible</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> TanqueCombustible</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_antenaRadio</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> AntenaRadio</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$auto</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Auto</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-Variaciones de Asociación: 
-Relación de Agregación y Relación de Composición 
+Variaciones de Asociación:<br> 
+Relación de Agregación y Relación de Composición <br>
 
-Relación de Agregación 
+Relación de Agregación <br>
 Es una relación de asociación pero en vez de ser “1 a 1” es de “1 a muchos”, la 
-clase A agrega muchos elementos de tipo clase B 
+clase A agrega muchos elementos de tipo clase B<br> 
 
------------____________--------------
+<img src="uml05.jpg" alt=""><br>
 
-Relación de Composición 
+Relación de Composición<br> 
 Similar a la agregación, solo aporta semántica a la relación al decir que además 
 de “agregar”, existe una relación de vida, donde elementos de B no pueden 
-existir sin la relación con A.  
------------____________--------------
-1) Un atributo de tipo array para contener todos los elementos  
+existir sin la relación con A.  <br>
+<img src="uml06.jpg" alt=""><br>
+<img src="uml07.jpg" alt=""><br><br>
+1) Un atributo de tipo array para contener todos los elementos<br>  
 2) Por lo menos un método para agregar los elementos al array, que generalmente 
 se representa con un simple “add” (que como siempre queda sujeto a variar según 
-nuestro criterio). 
+nuestro criterio). <br>
 
-Ejemplo de traducción a código 
-Universidad.php 
+Ejemplo de traducción a código<br> 
+Universidad.php<br> 
 
-<?php  
- 
-require_once 'Alumno.php';  
- 
-class Universidad  
-{  
-   private $_alumnos = array();  
- 
-   public function add(Alumno $alumno)  
-   {  
-      $this->_alumnos[] = $alumno;  
-   }  
-}  
- 
-$universidad = new Universidad();  
- 
-$universidad->add(new Alumno());  
-$universidad->add(new Alumno()); 
-$universidad->add(new Alumno()); 
-/*  
- * Esta universidad contiene 3 alumnos  
- */  
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Alumno.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Universidad  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_alumnos</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>add</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>Alumno </span><span style='color:#797997; background:#ffffe8; '>$alumno</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_alumnos</span><span style='color:#808030; background:#ffffe8; '>[</span><span style='color:#808030; background:#ffffe8; '>]</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$alumno</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$universidad</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Universidad</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$universidad</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#400000; background:#ffffe8; '>add</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Alumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#797997; background:#ffffe8; '>$universidad</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#400000; background:#ffffe8; '>add</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Alumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$universidad</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#400000; background:#ffffe8; '>add</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Alumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#696969; background:#ffffe8; '>/*  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;* Esta universidad contiene 3 alumnos  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;*/</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-¿Qué relaciones se deberían evitar? 
+¿Qué relaciones se deberían evitar? <br>
+<p>
 Las relaciones bidireccionales y las relaciones cíclicas, ya que la visibilidad 
 es en ambas partes (A y B) y un cambio en una clase genera un impacto en la otra 
 y viceversa, logrando una inestabilidad muy peligrosa. 
+</p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> A  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_b</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_b</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> B</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> B  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_a</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_a</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> A</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-<?php  
- 
-class A  
-{  
-   private $_b;  
- 
-   public function __construct()  
-   {  
-      $this->_b = new B();  
-   }  
-}  
- 
-class B  
-{  
-   private $_a;  
- 
-   public function __construct()  
-   {  
-      $this->_a = new A();  
-   }  
-} 
+“Navegabilidad”<br> 
+La lectura que debe hacerse al interpretar los diagramas es:<br> 
 
-“Navegabilidad” 
-La lectura que debe hacerse al interpretar los diagramas es: 
+<img src="uml08.jpg" alt=""><br>
 
+“Definición de Roles”<br> 
+Las relaciones tienen nombre: “tiene”, “contiene”, “fabrica”, etc. <br>
+<b>A -tiene-> B </b><br>
 
-A -> B 
-- “B no tiene idea de A” 
-- “A puede invocar métodos de B, pero no al revés” 
-
-A – B 
-- Bidireccionalidad: “A ve a B, pero en algún momento B ve a A” 
-
-“Definición de Roles” 
-Las relaciones tienen nombre: “tiene”, “contiene”, “fabrica”, etc. 
-A -tiene-> B 
-
-“Multiplicidad” 
+“Multiplicidad”<br> 
 Parte de la documentación de UML, en una relación A->B, poder especificar la 
-cantidad de objetos de B que se pueden ver en A 
+cantidad de objetos de B que se pueden ver en A <br>
 
-Por ejemplo: 
-- 1 
-- 1..* 
-- 0..* 
-- 3..14 
-
+Por ejemplo: <br>
+- 1 <br>
+- 1..*    <br>
+- 0..*<br> 
+- 3..14 <br>
+<p>
 Donde en el primer caso decimos que en A veremos siempre un objeto de B, en el 
 segundo caso “uno o muchos”, en el tercer caso “ninguno o muchos” y el en 
 último caso “de 3 a 14”. 
+</p>
+<b>la dependencia es una relación más débil que la asociación  </b><br><br>
 
-la dependencia es una relación más débil que la asociación
+http://ar2.php.net/manual/es/language.oop5.magic.php<br><br>
 
-http://ar2.php.net/manual/es/language.oop5.magic.php
+<b>“__”  </b><br><br>
 
-“__”
+index.php:<br> 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Persona.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Perro.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Gato.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Escuela.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* Micaela tiene un perro */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#000000; background:#ffffe8; '>  </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Micaela'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>5</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Perro</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Tito'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'blanco y negro'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setPerro</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* Martina, duenia del mismo perro... */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Martina'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>3</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setPerro</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* ... y hermana de Micaela */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setHermano</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* Marcos es duenio de un gato */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$persona2</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Marcos'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>6</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$persona2</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setGato</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Gato</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* Escuela Dos Corazones */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Escuela</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Dos Corazones'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* ... Micaela va junto con 5 ninios más ... */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona2</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Julio'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#008c00; background:#ffffe8; '>5</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Martín'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#008c00; background:#ffffe8; '>4</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Carla'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#008c00; background:#ffffe8; '>4</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-index.php: 
-<?php 
-require_once 'Persona.php'; 
-require_once 'Perro.php'; 
-require_once 'Gato.php'; 
-require_once 'Escuela.php'; 
- 
-/* Micaela tiene un perro */ 
-$persona  = new Persona('Micaela', 5); 
-$perro = new Perro('Tito', 'blanco y negro'); 
- 
-$persona->setPerro($perro); 
- 
-/* Martina, dueña del mismo perro... */ 
-$persona1 = new Persona('Martina', 3); 
-$persona1->setPerro($perro); 
- 
-/* ... y hermana de Micaela */ 
-$persona->setHermano($persona1); 
- 
-/* Marcos es dueño de un gato */ 
-$persona2 = new Persona('Marcos', 6); 
-$persona2->setGato(new Gato()); 
- 
-/* Escuela Dos Corazones */ 
- 
-$escuela = new Escuela('Dos Corazones'); 
- 
-/* ... Micaela va junto con 5 niños más ... */ 
- 
-$escuela->addAlumno($persona); 
-$escuela->addAlumno($persona1); 
-$escuela->addAlumno($persona2); 
-$escuela->addAlumno(new Persona('Julio',5)); 
-$escuela->addAlumno(new Persona('Martín',4)); 
-$escuela->addAlumno(new Persona('Carla',4)); 
+<b>“por valor”</b><br><br>
 
-“por valor”
+<b>“por referencia”</b><br><br>
 
-“por referencia”
+<b>todos los objetos son siempre “por referencia”</b><br><br>
 
-todos los objetos son siempre “por referencia”
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>agregar_hermano</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#400000; background:#ffffe8; '>var_dump</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#696969; background:#ffffe8; '>/* Funciones */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> agregar_hermano</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$hermano</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setHermano</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$hermano</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>  
 
-$persona = new Persona(); 
- 
-agregar_hermano($persona); 
- 
-var_dump($persona); 
- 
-/* Funciones */ 
- 
-function agregar_hermano($persona){ 
-     $hermano = new Persona(); 
-     $persona->setHermano($hermano); 
-}   
-
-
+<p>
 El var_dump final no mostraría al hermano, ya que cuando se envió por parámetro, 
 pasó por valor y lo que cambió fue solo eso, no el objeto original, y fuera de 
 la función, no ocurrió nada.
-
-$persona = agregar_hermano($persona); 
-
+</p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> agregar_hermano</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
+<p>
 Todo esto cambia cuando usamos por defecto “pasaje por referencia” (lo que 
 ocurre en PHP5), ya que si pasamos un objeto es la referencia a este y no 
 importa donde estemos, si cambia, estamos cambiando el objeto original (y único).  
 Se deberá entender entonces que no es necesario retornar nada cuando modificamos 
 un objeto dentro de una función. 
+</p>
+Perro.php:<br> 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Perro </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* … */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
+Que es lo mismo decir (y funciona):<br> 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-Perro.php: 
-<?php 
- 
-class Perro 
-{ 
-   /* … */ 
- 
-  public function __toString() 
-  { 
-      return $this->_nombre; 
-  } 
+<b>toString es un método público, pero que no hace falta ejecutar literalmente</b><br><br>
+
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Escuela </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_alumnos</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$nombre</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '>Persona </span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_alumnos</span><span style='color:#808030; background:#ffffe8; '>[</span><span style='color:#808030; background:#ffffe8; '>]</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$retorno</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>''</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>foreach</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_alumnos</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>as</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$alumno</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$retorno</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$alumno</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#0000e6; background:#ffffe8; '>' '</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/*  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* Es lo mismo que decir </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;*  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* $retorno .= $alumno->__toString() .' '; </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* solo que el objeto sabe cómo convertirse en  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* String, tema que detecta cuando se hace  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* una operación  de suma de cadenas  </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;* con el punto ".". </span>
+<span style='color:#696969; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;*/</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$retorno</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 } 
-
-echo $perro;   
-Que es lo mismo decir (y funciona): 
-echo $perro->__toString();
-
-toString es un método público, pero que no hace falta ejecutar literalmente
-
-<?php 
-class Escuela 
-{ 
-  private $_nombre; 
-  private $_alumnos = array(); 
- 
-  public function __construct($nombre) 
-  { 
-      $this->_nombre = $nombre; 
-  } 
-  public function addAlumno(Persona $persona) 
-  { 
-      $this->_alumnos[] = $persona; 
-  } 
-  public function __toString() 
-  { 
-      $retorno = ''; 
-       
-      foreach ($this->_alumnos as $alumno) { 
-          $retorno .= $alumno .' '; 
-          /*  
-           * Es lo mismo que decir 
-           *  
-           * $retorno .= $alumno->__toString() .' '; 
-           * 
-           * solo que el objeto sabe cómo convertirse en  
-           * String, tema que detecta cuando se hace  
-           * una operación  de suma de cadenas  
-           * con el punto ".". 
-      */ 
-      } 
-      return $retorno; 
-  } 
- 
-} 
-} 
-
+<p>
 “El método reservado "toString()" es la forma que todo lenguaje POO tiene para 
 que nosotros los desarrolladores podamos definir cómo convertir un objeto en 
 "texto plano".” 
+</p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Persona </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__toString</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_nombre</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>''</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>.</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_apellido</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$micaela</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-<?php 
-class Persona 
-{ 
-   public function __toString() 
-   { 
-      return $this->_nombre . '' .$this->_apellido; 
-   } 
-} 
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Persona.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Perro.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Gato.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Escuela.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Index </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> ejecutar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* Micaela tiene un perro */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#000000; background:#ffffe8; '>  </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Micaela'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>5</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Perro</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Tito'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'blanco y negro'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setPerro</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* Martina, duenia del mismo perro... */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Martina'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>3</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setPerro</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$perro</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* ... y hermana de Micaela */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setHermano</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* Marcos es duenio de un gato */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona2</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Marcos'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>6</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$persona2</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>setGato</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Gato</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* Escuela Dos Corazones */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Escuela</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Dos Corazones'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>/* ... Micaela va junto con 5 ninios más ... */</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona1</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$persona2</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Julio'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#008c00; background:#ffffe8; '>5</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Martín'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#008c00; background:#ffffe8; '>4</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Persona</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'Carla'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#008c00; background:#ffffe8; '>4</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>Index</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>ejecutar</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+</pre>
 
-echo $micaela;
-
-<?php 
-require_once 'Persona.php'; 
-require_once 'Perro.php'; 
-require_once 'Gato.php'; 
-require_once 'Escuela.php'; 
- 
-class Index 
-{ 
-   public function ejecutar() 
-   { 
-      /* Micaela tiene un perro */ 
-      $persona  = new Persona('Micaela', 5); 
-      $perro = new Perro('Tito', 'blanco y negro'); 
-      $persona->setPerro($perro); 
- 
-      /* Martina, dueña del mismo perro... */ 
-      $persona1 = new Persona('Martina', 3); 
-      $persona1->setPerro($perro); 
- 
-      /* ... y hermana de Micaela */ 
-      $persona->setHermano($persona1); 
- 
-      /* Marcos es dueño de un gato */ 
-      $persona2 = new Persona('Marcos', 6); 
-      $persona2->setGato(new Gato()); 
- 
-      /* Escuela Dos Corazones */ 
-      $escuela = new Escuela('Dos Corazones'); 
- 
-      /* ... Micaela va junto con 5 niños más ... */ 
-      $escuela->addAlumno($persona); 
-      $escuela->addAlumno($persona1); 
-      $escuela->addAlumno($persona2);   
-      $escuela->addAlumno(new Persona('Julio',5)); 
-      $escuela->addAlumno(new Persona('Martín',4)); 
-      $escuela->addAlumno(new Persona('Carla',4)); 
- 
-      echo $escuela; 
-   } 
-} 
- 
-Index::ejecutar(); 
-
-Lo fundamental de este ejercicio es comprender: 
-- Las distintas relaciones entre clases y su representación en código 
+Lo fundamental de este ejercicio es comprender:<br> 
+- Las distintas relaciones entre clases y su representación en código <br>
 - Reafirmar que los objetos pasan siempre por referencia y no se necesita ser 
 retornados o en determinados casos, ni siquiera un orden específico en sus 
 asignaciones, ya que siempre estamos tratando con una referencia al mismo objeto 
-(no copias). 
+(no copias).<br> 
 - La importancia del “index” como concepto de punto de partida de resolución del 
-problema general. 
+problema general. <br>
 - El uso correcto del toString(), más allá de lo sintáctico, cual es el concepto 
-que debemos tener en cuenta a la hora de definirlo. 
+que debemos tener en cuenta a la hora de definirlo.<br><br> 
 
-Saber el contenido de todas las camionetas 
-- Saber el contenido de una camioneta 
-- Poder buscar a un niño y saber en qué camioneta está 
-- Representar como Personas al conductor y al ayudante 
+-Saber el contenido de todas las camionetas <br>
+- Saber el contenido de una camioneta <br>
+- Poder buscar a un niño y saber en qué camioneta está <br>
+- Representar como Personas al conductor y al ayudante <br>
 - El diagrama UML no debe tener información de tareas anteriores (no va ni 
-perro, gato, etc) 
+perro, gato, etc)<br> <br>
 
-“todo objeto hereda de un objeto llamado Object”
+<b>“todo objeto hereda de un objeto llamado Object”</b><br><br>
 
-“eliminar los números mágicos" 
+<b>“eliminar los números mágicos" </b><br><br>
 
-class CocheEscolar 
-{ 
-   private $_colAlumnos = array(); 
- 
-   const LIMITE_CAPACIDAD = 5; 
- 
-   public function estaLleno() 
-   { 
-      return count($this->_colAlumnos) >= self::LIMITE_CAPACIDAD; 
-   } 
- 
-}  
-
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> CocheEscolar </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_colAlumnos</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>array</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>const</span><span style='color:#000000; background:#ffffe8; '> LIMITE_CAPACIDAD </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#008c00; background:#ffffe8; '>5</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> estaLleno</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>count</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>this</span><span style='color:#808030; background:#ffffe8; '>-></span><span style='color:#797997; background:#ffffe8; '>_colAlumnos</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>LIMITE_CAPACIDAD</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+<p>
 Navegabilidad se le dice al camino que debemos hacer para obtener la información 
 necesaria a partir del diseño de los objetos del problema y sus interacciones.
+</p>
+<b>Escuela -> Coche -> Niño</b><br><br>
 
-Escuela -> Coche -> Niño
+- La escuela “conoce” a los niños <br>
+- Los niños “conocen” a sus camionetas <br><br>
 
-- La escuela “conoce” a los niños 
-- Los niños “conocen” a sus camionetas 
-
-para un sistema “Orientado a Objetos” la unidad de trabajo son siempre “objetos”
+<b>para un sistema “Orientado a Objetos” la unidad de trabajo son siempre “objetos”</b><br><br>
 
 para la búsqueda de un Alumno, si lo encontramos, debemos retornar la instancia 
-del objeto, de lo contrario retornamos “null” (como estándar de “no encontrado”)
+del objeto, de lo contrario retornamos “null” (como estándar de “no encontrado”)<br>
 
-Si se agrega desde A la clase B, simplemente es: 
+Si se agrega desde A la clase B, simplemente es: <br>
  
-  $a->agrego(b); 
+  <b>$a->agrego(b);</b><br> 
 
-Y si se necesita retornar la clase B desde A, es simplemente 
+Y si se necesita retornar la clase B desde A, es simplemente <br>
  
-   $claseB = $a->retornoB(); 
+   <b>$claseB = $a->retornoB(); </b><br>
 
-$cocheEncontrado = $escuela->buscarCoche('123456');
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$cocheEncontrado</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>buscarCoche</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'123456'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
 
-una referencia con un “return”
-
+una referencia con un “return”<br>
+<p>
 si se requieren dos veces una clase, con “_once” solo trae en el primer intento, 
 en los otros casos da error por repetir la definición de una clase
-
+</p>
+<p>
 “include” no es lo mismo que “require”: el primero da un warning y sigue, 
 el segundo falla y no continúa 
 (“requerir” es más fuerte, nuestra clase no puede continuar si le faltan sus 
 partes). 
-
+</p>
+<p>
 Para simplificar la creación de múltiples instancias, muchas veces se omite la 
 variable temporal que luego es asignada a otro objeto 
+</p>
+Ejemplo<br>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$ninio15</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Ninio</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'alfredo beltran'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#0000e6; background:#ffffe8; '>'Girasoles 7453'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '>   </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumnos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$ninio15</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#696969; background:#ffffe8; '>//Simplificación</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#797997; background:#ffffe8; '>$escuela</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>addAlumnos</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Ninio</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#0000e6; background:#ffffe8; '>'alfredo beltran'</span><span style='color:#808030; background:#ffffe8; '>,</span><span style='color:#0000e6; background:#ffffe8; '>'Girasoles 7453'</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
 
-Ejemplo
-$niño15 = new Niño('alfredo beltran','Girasoles 7453');   
- 
-$escuela->addAlumnos($niño15);
+http://www.php.net/manual/es/language.types.type-juggling.php<br><br>
 
-Simplificación
-$escuela->addAlumnos( new Niño('alfredo beltran','Girasoles 7453') );
-
-http://www.php.net/manual/es/language.types.type-juggling.php
-
-return $this->getMatricula()."";  
-
-return (string)$this->getMatricula();
+<img src="uml09.jpg" alt=""><br>
 
 Ejemplo de cómo sería la creación interna de un objeto, sin necesidad que esté 
 creado en el exterior para luego recibirlo por parámetros: 
