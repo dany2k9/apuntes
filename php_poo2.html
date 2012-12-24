@@ -2031,6 +2031,161 @@ FiltroAutor.php: <br>
 <span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
 <span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
 </pre>
+<hr>
+<h3> “Los Paquetes en UML”</h3>
+<p>Los paquetes son la representación de un agrupador de clases (o de otros paquetes) en un 
+sistema Orientado a Objetos, lo que generalmente se traduce físicamente en un directorio .</p>
+Cómo se representan <br>
+En UML se hace gráficamente con el dibujo de una "carpeta" como representación del concepto de "agrupador de clases".   <br>
+<img src="uml15.jpg" alt=""><br>
+La clase Index se encuentra en la raíz de nuestro proyecto, y la relación siempre con y entre los paquetes es de "dependencia". <br> 
+Aquí tenemos un nuevo nivel de abstracción donde "conocemos" que nuestra clase Index depende de un paquete "Lógica" (que a dentro contendrá clases) y que a su vez el paquete de Lógica depende del paquete de "Dispositivos". <br>
+<h3>¿Qué es una Arquitectura de 3 capas? </h3>
+<b>No es más que crear 3 paquetes con nombres como: presentación, dominio y persistencia, y darle a 
+cada uno una responsabilidad concreta.</b><br>
+La regla será que siempre deberán entrar las peticiones desde 
+la interfaz (lo que usa el usuario), pasar por el dominio (donde realmente se resuelve el sistema) y 
+finalmente la capa de persistencia (donde se guardan o recuperan los datos).<br>
+Cada capa recibe una petición de la otra, si alguna no tiene nada que hacer con ella, simplemente juega 
+de "pasamanos" para la capa correspondiente según su responsabilidad. <br>
+<img src="uml16.jpg" alt=""><br>
+<h3>¿Que son entonces los Namespaces? </h3>
+- Java tiene la sentencia "import" que 
+permite definir el paquete en el cual 
+pertenece la clase en cuestión y a su vez 
+incluir él o los paquetes que 
+necesitamos acceder desde una clase 
+particular. <br>
+- En .Net, por ejemplo con Visual Basic, 
+el nombre cambia a "namespace" y a 
+pesar que sirve para implementar los 
+"paquetes", es un concepto un poco 
+más amplio : permite definir que una 
+clase es parte de un paquete, 
+independientemente de donde se 
+encuentre físicamente el archivo de la 
+clase, por lo que podríamos tener varios 
+archivos distribuidos en un sistema pero 
+ser parte del mismo "paquete".<br><br>
+http://phpsenior.blogspot.com/2006/04/php5-diseo-en-3-capas-y-problemas-con.html<br><br>
+http://ar2.php.net/manual/es/language.namespaces.php<br><br>
+<p>Los paquetes permiten un nuevo nivel de abstracción y que podemos usar para definir una 
+arquitectura dividida en 3 capas, que no es más complejo que separar físicamente los archivos de las 
+clases bajo el criterio único de la responsabildad de la capa.</p>
+<h3> Ejercicio “Programación ‘Orientada a la Implementación’ vs ‘Orientada a la Interface’"</h3>
+<br>
+<hr>
+http://phpsenior.blogspot.com/2006/04/programacin-orientada-la-implementacin.html
+<hr>
+<p>Supongamos que tenemos un sistema que hará las funciones de "máquina de escribir", donde obtendrá información a través de un dispositivo de entrada y luego enviará esta información a un dispositivo de salida.</p>
+<img src="dise_o_paquetes.jpg" alt=""><br>
+Nuestro diseño estará compuesto por dos paquetes (en el contexto UML) que nos ofrecen los siguientes servicios:<br>
+<b>Lógica</b>: donde tendremos la implementación de "alto nivel" de nuestro problema (donde se manipularán los dispositivos).<br>
+<b>Dispositivos</b>: donde la implementación de nuestro paquete de "lógica" tendrá acceso a servicios de "bajo nivel" provisto por este paquete.<br>
+<img src="dise_o_paquetes_class.jpg" alt=""><br>
+Entrando en el diseño interno de los paquetes, tendremos:<br>
+- Dentro del paquete "Dispositivos": las clases "Teclado", que retornará información en formato de texto, e "Impresora", que en algún momento recibirá un texto para ser impreso.<br>
+
+- Dentro del paquete "Lógica": la clase "MaquinaDeEscribir", que se encargará de crear las instancias correspondientes a los dispositivos de entrada/salida, y pasar la información que devuelve una clase a otra clase.<br>
+Imprementación<br>
+Seguiremos textualmente los diagramas UML para hacer la codificación de nuestras clases.<br> 
+Empezaremos con los dispositivos.<br>
+Archivo: Teclado.php<br>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Teclado </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> leer</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>// a efectos del ejemplo, solo retornará un</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>// un texto como representación de una</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#696969; background:#ffffe8; '>// entrada de datos</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>"texto ingresado"</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+Archivo: Impresora.php<br>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Impresora</span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> escribir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$texto</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$texto</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+Archivo: MaquinaDeEscribir.php<br>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'dispositivos/Teclado.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'dispositivos/Impresora.php'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>abstract</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> MaquinaDeEscribir</span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$miTeclado</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Teclado</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$miImpresora</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Impresora</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#797997; background:#ffffe8; '>$miImpresora</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>escribir</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$miTeclado</span><span style='color:#808030; background:#ffffe8; '>-</span><span style='color:#808030; background:#ffffe8; '>></span><span style='color:#000000; background:#ffffe8; '>leer</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+¿Cómo se prueba?<br>
+Una posible solución creativa, tratando de llevar a PHP hacia un lenguaje 100% Orientado a Objetos (como Java), donde *todo* debería ser un objeto, se usará el "index.php" como una clase "Index".<br>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>require_once</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>"logica/MaquinaDeEscribir.php"</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>abstract</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Index</span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>echo</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'Ejecuto máquina de escribir->'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;MaquinaDeEscribir</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#000000; background:#ffffe8; '>Index</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#000000; background:#ffffe8; '>run</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '>?></span>
+</pre>
+Programación Orientada a la Interface<br>
+<p>En el caso anterior, la clase de "alto nivel" dependía de dos clases de "bajo nivel", lo que significa algo muy grave: "la clase de alto nivel es *dependiente* de los cambios que puedan sucederle a las clases de bajo nivel, es decir, nuestro alto nivel depende de los detalles de implementación del bajo nivel".</p>
+El problema de nuestro diseño es que estamos programando "orientado a la implementación"<br>.
+¿El diseño anterior, puede considerarse un buen diseño?<br>
+-¿Cuan mantenible será nuestro sistema si elementos de bajo nivel pueden generar cambios en todo el modelo?  <br>
+-¿Es correcto que nuestra MaquinaDeEscribir dependa de cómo se toman los datos y de cómo se imprimen?<br>
+-¿Qué es lo más importante en nuestro diseño? ¿la Lógica o los Dispositivos?<br>
+-¿Este diseño, es reutilizable? ¿podemos reutilizar el MaquinaDeEscribir en otros contextos?
+-¿Su costo de mantenimiento es alto o bajo? ¿cuanto código hay que agregar para extender su comportamiento (para cubrir un nuevo requerimiento)?<br>
+-¿el código presentado se mantiene, o hay que adaptarlo cada vez que queramos extender su funcionamiento?    <br>
+<hr>
+<p>Index usa la clase MaquinaDeEscribir.php que se encuentra dentro del paquete"logica", por 
+consiguiente, desde la vista de paquetes, Index depende del paquete "logica", y como dentro 
+de lógica la clase MaquinaDeEscribir depende de dos clases que están dentro del paquete 
+"dispositivos", el paquete "logica" (donde está MaquinaDeEscribir), depende del paquete 
+"dispositivos". </p>
+Requerimientos<br>
+Enunciado:"La máquina de escribir tiene un dispositivo de entrada de datos (teclado) y un 
+dispositivo de salida de datos (impresora)"<br> 
+ 
+Como convención los nombres de paquetes son siempre en minúsculas y se traducen como un 
+subdirectorio en nuestro sistema como forma de organizar nuestras clases. <br>
+<img src="uml17.jpg" alt=""><br>
+Lo que solicita el ejercicio es: <br>
+1. Dos implementaciones que deberán llamarse version1 y version2 <br>
+2. La primera tendrá la programación "orientada a la implementación", deberán 
+completar el diagrama presentado y hacer su implementación. <br>
+3. La segunda deberá ser programación "orientada a la interfaz" (como dice su nombre, 
+usando "interfaces"), también deberán hacer el diagrama e implementación de la 
+solución (todo de acuerdo a los conceptos vertidos en el artículo presentado 
+oportunamente en el blog):<br> 
+4. Deberá depender de las interfaces y no de las clases concretas. <br>
+5. Finalmente, cuando el diseño esté completamente terminado, ver la forma de 
+solucionar un problema en el diseño: cambiar la dependencia entre los paquetes, ya 
+que la lógica no debería depender de los detalles de implementación de los dispositivos, 
+sino, los dispositivos cambiar en caso de que la lógica cambie ("lo menos importante 
+depende de lo más importante").<br> 
 
 </body>
 </html>
