@@ -2186,6 +2186,108 @@ solucionar un problema en el diseño: cambiar la dependencia entre los paquetes,
 que la lógica no debería depender de los detalles de implementación de los dispositivos, 
 sino, los dispositivos cambiar en caso de que la lógica cambie ("lo menos importante 
 depende de lo más importante").<br> 
+Solución<br>
+<p>La primera parte, repasar el concepto y la forma de requerir las clases y cómo hacerlo en caso 
+de tener subdirectorios  (representados en UML como “paquetes” para agrupar clases). </p>
+<p>La segunda parte, buscaba seguir aplicando con ejemplos por qué cada vez que 
+implementamos un “servicio” debemos de forma casi mecánica incluir una interfaz para dejar el 
+camino definido a cualquier clase que necesite usar ese servicio. </p>
+<h4>Parte 1: hacer una “máquina de escribir” siguiendo el ejemplo del artículo </h4>
+El diseño UML  era el siguiente: <br>
+<img src="uml18.jpg" alt=""> <br>
+Y la vista de paquetes era la siguiente <br>
+<img src="uml19.jpg" alt=""> <br>
+<b>Implementación </b><br>
+index.php <br>
+<img src="uml20.jpg" alt=""> <br>
+MaquinaDeEscribir.php (dentro del paquete “lógica”) <br>
+<img src="uml21.jpg" alt=""> <br>
+Teclado.php (dentro del paquete “dispositivos”)<br>
+<img src="uml22.jpg" alt=""> <br>
+Impresora.php (dentro del paquete “dispositivos”)<br>
+<img src="uml23.jpg" alt=""> <br>
+Conclusión <br>
+Según se explica en el artículo de referencia (PHPSenior), la lectura de los diagramas y sus 
+relaciones nos hacen llegar a la siguiente conclusión:   <br>
+<img src="uml24.jpg" alt=""> <br>
+<p>“La lógica de nuestro sistema depende de los dispositivos, por lo pronto esto significa un 
+problema en nuestro diseño , ya que según el sentido de las flechas, cualquier cambio en 
+nuestros dispositivos de bajo nivel afectarán el corazón de nuestro sistema” </p>
+<h4>Parte 2: Agregar interfaces al diseño propuesto en la parte 1 </h4>
+<img src="uml25.jpg" alt=""> <br>
+Aquí separamos la clase MaquinaDeEscribir de depender directamente de las clases Teclado e 
+Impresora.<br>
+Hay varios detalles importantes:<br> 
+- Pasamos de depender de “implementaciones concretas” a depender de 
+“implementaciones abstractas”, ya que para MaquinaDeEscribir lo único con que se 
+relaciona es con elementos de tipo las interfaces y no se preocupa cómo se 
+implementen las clases que cumplan con el “contrato de implementación”  (es 
+problema de la interfaz definir lo que se necesita y de la clase que quiere el servicio 
+en cumplir los requisitos necesarios para usarlo). <br>
+- Casi sin darnos cuenta estamos cumpliendo con el principio “Abierto/Cerrado”, ya 
+que vamos a estar “cerrados al cambio pero abiertos a la extensión”, el “foco de 
+cambio” será agregar nuevos dispositivos pero no necesitaremos modificar el 
+funcionamiento de MaquinaDeEscribir, ya que su algoritmo será siempre el mismo.  <br>
+Se podría decir que solo falta la flecha de Index a la clase MaquinaDeEscribir: <br>
+<img src="uml26.jpg" alt=""> <br>
+<p>Pero no, no es suficiente, ya que para que MaquinaDeEscribir pueda funcionar depende de que 
+le ingresen dos elementos de tipo Lector y Escritor. Prestar atención, la clase 
+MaquinaDeEscribir no depende directamente de las clases concretas, sí las terminará usando 
+a través de polimorfismo (a esto se le llama “indirección” o “relación indirecta”: usa elementos 
+concretos pero depende en realidad de elementos abstractos). </p>
+El diagrama correcto debería ser el siguiente: <br>
+<img src="uml27.jpg" alt=""> <br>
+Implementación <br>
+Lo medular de la implementación es el nuevo método “run” de la clase MaquinaDeEscribir, que 
+recibe ahora dos tipos de objetos, “lectores” y “escritores”:  <br>
+index.php <br>
+<img src="uml28.jpg" alt=""> <br>
+MaquinaDeEscribir.php <br>
+<img src="uml29.jpg" alt=""> <br>
+LectorInterface.php <br>
+<img src="uml30.jpg" alt=""> <br>
+EscritorInterface.php <br>
+<img src="uml31.jpg" alt=""> <br>
+Impresora.php <br>
+<img src="uml32.jpg" alt=""> <br>
+<p>Nota: como Impresora y la interfaz Escritor son del mismo paquete, no llevan rutas en el 
+require_once que hagan referencia desde donde se ejecuta Index, ya que esta ubicación puede 
+cambiar y la relación entre los paquetes debe estar fija por diseño (revisar las flechas del 
+diagrama anterior).  </p>
+Teclado.php <br>
+<img src="uml33.jpg" alt=""> <br>
+¿Y el Diagrama de Paquetes? <br>
+…  ¿cómo quedará ahora la relación vista a nivel de paquetes? Viendo el sentido de las flechas y 
+solo representando una flecha de dependencia (así son siempre entre paquetes) resumiendo 
+todas las existentes (aumentamos el nivel de abstracción) … <br>
+<img src="uml34.jpg" alt=""> <br>
+Entonces, la vista de paquetes se ve así: <br>
+<img src="uml35.jpg" alt=""> <br>
+<p>Lo que no debe asustar es que existan dos flechas de dependencia contra el paquete desde 
+Index, ya que esto es normal (para usar un servicio o conjunto de clases podremos depender de 
+uno o más paquetes), lo que sí debería preocuparnos (además de evitar las relaciones cíclicas) 
+es que –a pesar de haber mejorado hacia un diseño “que depende de interfaces y no de 
+implementaciones concretas”- nuestro paquete de “lógica” sigue dependiendo del paquete de 
+“dispositivos”…  </p>
+<h4>El  “Principio de Inversión de dependencias (DIP)”</h4>
+<p>¿Cómo solucionamos esto? Cambio de sentido de flechas entre paquetes  
+Hay una técnica para cambiar el sentido de las dependencias entre paquetes que es  mover  las 
+clases de un paquete hacia el otro paquete, o en su defecto, creando un tercer paquete y 
+mover las clases para cambiar el sentido de las direcciones. Para este caso concreto, 
+moveremos las interfaces a la clase que provee el servicio, por lo tanto cambiaremos el sentido 
+de las dependencias entre paquetes: </p>
+<img src="uml36.jpg" alt=""> <br>
+<p>Nuevamente, prestar atención el sentido de las flechas de implementación, ahora apunta a las 
+clases que están en el paquete de arriba (“lógica”), así que pasando en limpio el diagrama de 
+paquetes ahora quedaría: </p>
+<img src="uml37.jpg" alt=""> <br>
+<img src="uml38.jpg" alt=""> <br>
+<p>Alternativa: como solución alternativa podríamos crear un tercer paquete para las Interfaces, 
+donde la lógica y los dispositivos dependerían, rompiendo la relación directa que antes existía. </p>
+<b>Resumen </b>
+Premisa: “En general, las interfaces pertenecen a las entidades que las emplean” 
+El paquete de “lógica” conoce y tiene una interfaz para conectarse con el paquete “dispositivos”, pero 
+no sabe qué hay dentro del paquete “dispositivos”. <br>
 
 </body>
 </html>
