@@ -1279,5 +1279,243 @@ Usuario.php <br />
 <script src="https://gist.github.com/4385112.js"></script>
 UsuarioPersistencia.php <br />
 <script src="https://gist.github.com/4385118.js"></script>
+<h3>Anexo: “Manejo de excepciones” </h3>
+<a href="http://www.php.net/manual/es/language.exceptions.php">excepciones</a> <br />
+Introducción <br />
+Una excepción es una situación anormal que ocurre durante la ejecución de un sistema que 
+no está contemplada en el flujo esperado de nuestro código. <br />
+Debemos contemplar todas las situaciones que “no son esperadas / no son 
+normales” para que nuestro sistema sepa cómo proceder en caso de fallas:  
+- el servidor de base de datos está fuera de servicio,  <br />
+- cambió la clave del usuario que usamos para conectarnos,  <br />
+- no existe la tabla de usuarios,  <br />
+- algún campo de la tabla cambió de nombre,  <br />
+- etc. <br />
+<p>En la programación tradicional, haríamos algo como esto (extrato del manual oficial): </p>
+<script src="https://gist.github.com/4393428.js"></script>
+<p>Aquí solo estamos controlando que se pudo hacer la conexión a la base de datos, pero no
+los demás casos.  </p>
+Podríamos agregarle entonces: <br />
+<script src="https://gist.github.com/4393439.js"></script>
+<h4>Básicamente cómo funcionan las excepciones  </h4>
+<p>Existen dos claras zonas, la primera de “try” que se traduce cómo “intentar ejecutar el 
+código que está entre llaves y que es posible que pueda fallar” y el “catch”, el código 
+previsto para tratar el fallo que pueda ocurrir. </p>
+<script src="https://gist.github.com/4393447.js"></script>
+<script src="https://gist.github.com/4393449.js"></script>
+<p>Si vienes prestando atención, el echo $e retorna información porque la 
+clase Exception implementa el método toString() con el mensaje básico de error. </p>
+<b>Estructura interna de una clase Exception</b> <br /> 
+La estructura de una clase Exception es (según el manual oficial): <br />
+<script src="https://gist.github.com/4393455.js"></script>
+<p>Esto significa que podemos hacer uso de los métodos listados para poder, si así lo deseamos, generar un mensaje a medida para el usuario de acuerdo a nuestras necesidades. </p>
+<p>Un ejemplo de un mensaje breve y sin menos datos: </p>
+<script src="https://gist.github.com/4393462.js"></script>
+<p>Tal ver preferimos dar una referencia, un código para poder completar en un formulario de asistencia técnica.</p>
+<script src="https://gist.github.com/4393465.js"></script>
+<script src="https://gist.github.com/4393469.js"></script>
+<b>Importante: PHP no tiene excepciones por defecto </b><br />
+<p>Una de las ventajas viene directamente por el paradigma POO, como las excepciones se 
+representan con objetos, podemos extender la clase Exception y crear nuestras propias 
+excepciones de acuerdo a nuestras necesidades.</p>
+¿Cuan grave es no tener Excepciones predefinidas y por defecto? <br />
+<p>Que es muy normal que lo primero que probemos sea una sentencia de conexión a una 
+base de datos (como vimos al principio de este capítulo) y que las excepciones no funcionen, 
+dejandonos algo confusos. </p>
+Por lo tanto tenemos dos problemas: <br />
+- En PHP5 debemos crearnos nuestras propias excepciones a partir de la única 
+clase que nos provee el lenguaje: Exception. <br />
+- Todo lo que atrapemos debemos asegurarnos que retorne una 
+Excepción, y como el lenguaje no lo hace por defecto, debemos hacerlo a nivel de clases 
+propias, validando internamente de la forma tradicional (if/else/switch), pero al subir de 
+nivel el resto podrá hacer uso normal de los try/catch. <br />
+Ejemplo funcional de excepciones en PHP5 <br />
+Aquí veremos cómo hacerlas funcionar sin excepciones por defecto creando una clase genérica que tendrá todo el código del primer ejemplo donde retornaba los mensajes de error clásicos 
+y los cambiaremos ahora por excepciones (comentaré las líneas que cambian y agrego a 
+continuación las nuevas): <br />
+<script src="https://gist.github.com/4393484.js"></script>
+<p>Se podría decir que el "throw" es similar a "return algo", lo que hace es "lanzar la excepción" a un nivel más arriba, donde se invocó originalmente la rutina, para que tomen el 
+control de la situación anómala y procedan en consecuencia. </p>
+<p>Por lo tanto, si todo el código anterior queremos “atraparlo” en un "try" para tenerlo 
+controlado en caso de fallas, deberíamos hacer lo siguiente:</p>
+<script src="https://gist.github.com/4393493.js"></script>
+<script src="https://gist.github.com/4393496.js"></script>
+Beneficios de las Excepciones <br />
+- Permiten separar el código de manejo de errores del código que debe cumplir con los 
+requerimientos de funcionalidad de la aplicación <br />
+- Permite un manejo homogéneo de los errores: evitará que tengamos distintas estructuras para 
+contener los errores, como ser: en algunos casos una cascada de if, en otros un switch y tal vez en otros algún objetos de manejo de errores. <br /> 
+- No solo transfiere el control del sistema de un lugar a otro, sino que también trasmite 
+información sobre la situación anómala: como unidad todas las excepciones manejan objetos 
+de tipo Excepción y como todo objeto, tendrá atributos y métodos relacionados con el manejo 
+de errores. <br />
+<hr />
+<p>El diseño tradicional de “3 capas” con el mismo sentido de flechas desde la 
+”presentación” pasando por “dominio” y terminando en “persistencia”, por más aceptado que 
+esté, el diseño no cumple con todos los conceptos que vimos, por lo tanto, el verdadero 
+diseño de 3 capas bien implementado debería ser como en el diagrama de la derecha 
+(“persistencia apuntando a dominio”). </p>
+<img src="uml44.jpg" alt=""> <br>
+<hr />
+<b>Anexo I: "Qué es lo nuevo en PHP5?" </b><br />
+1.Modificadores de acceso "public/private/protected" <br />
+Se incorpora el uso de modificadores de acceso "public / private / protected" para atributos y métodos.  <br />
+Definir el "alcance o visibilidad" (scope) es importante para poder aplicar el "principio de ocultación", es decir, proteger al objeto del exterior y solo permitir acceso a los datos y 
+comportamientos que nosotros especifiquemos. PHP4 carecía completamente de esta posibilidad 
+y antes "todo era público". <br />
+Aunque por defecto cualquier método que no diga nada al principio de su firma signifca que es "public", para unificar el criterio y claridad de la codificación se sugiere que todos 
+los método públicos inicien siempre con el "modificador de acceso" correspondiente. <br />
+<img src="uml45.jpg" alt=""> <br>
+<b>2. El método reservado __construct() </b><br />
+En PHP4 para definir un constructor había que escribir un método con el mismo nombre de la clase (al igual que lo hace Java) <br />
+<img src="uml46.jpg" alt=""> <br>
+PHP5 incorpora ahora un método exclusivo, a través del métod reservado __construct <br />
+<img src="uml47.jpg" alt=""> <br>
+<b>3. El método reservado __destructor() </b><br />
+<p>De la misma forma que el constructor, se agrega un método reservado que permite agregar 
+funcionalidad cuando el objeto se destruya (por ejemplo, desconectarnos de una base de datos en el momento que se haga un unset de la instancia).</p>
+<img src="uml48.jpg" alt=""> <br>
+<b>4. Interfaces</b><br />
+<p>Se incorpora por primera vez la posibilidad de crear interfaces y poder agrupar clases "que hacen lo mismo" o "que tienen operaciones comunes". </p>
+<img src="uml49.jpg" alt=""> <br>
+<p>A diferencia de la herencia, se pueden implementar varias interfaces, por lo que podemos llegar a tener una clase que herede de una clase y que además implemente varias interfaces: 
+</p>
+<img src="uml50.jpg" alt=""> <br>
+<b>5. El operador "instance of"  </b><br />
+<p>Se deja de usar el operador de PHP4 is_a() y se agrega uno nuevo más especializado para objetos: "es instancia de": </p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>if</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$obj</span><span style='color:#000000; background:#ffffe8; '> instance of Circle</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>print</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'$obj is a Circle'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
+Aquí estamos preguntando si la instancia "obj" es de tipo "la clase Círculo".  <br />
+<p>Aunque "tecnicamente exista y pueda usarse ", no se recomienda estar preguntando  a las instancias cual es su clase, ya que rompemos los diseños genéricos que pueden hacer uso del 
+polimorfismo (estrategia base del DOO). </p>
+<b>6. Operador "final" para los métodos </b><br />
+<p>Final es otra herramienta que nos permite reforzar el diseño de nuestra clase. En este caso podemos definir qué métodos que otra clase vaya a heredar no pueden ser modificados a 
+través de la "sobreescritura" de los mismos (los métodos deben usarse tal cual se reciben de 
+su padre).  </p>
+<img src="uml51.jpg" alt=""> <br>
+<b>7. Operador "final" para la clase </b><br />
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>final</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> FinalClass </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> BogusClass </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> FinalClass  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
+<p>En este caso el sistema dará un error grave porque se intentó heredar de una clase que está definida como "final". </p>
+<b>8. Método reservado __clone para clonado de objetos</b><br />
+<p>Desde que PHP5 empieza a trabajar por referencia y no por valor (como hacía por defecto PHP4), toda asignación con objetos representa una copia de la referencia a un mismo objeto, 
+pero nunca se crea otro objeto duplicado. Si necesitáramos hacerlo (en casos muy 
+especiales), podremos usar el comando clone. </p>
+<img src="uml52.jpg" alt=""> <br>
+<img src="uml53.jpg" alt=""> <br>
+<p>En este ejemplo podemos ver cómo se usa el método __clone, en el cual agregaremos que si alguien quiere clonar nuestro objeto no tenga el valor de la clave del objeto original. </p>
+<b>9. Atributos Constantes para las clases </b><br />
+<p>Ahora se incorpora la posibilidad de incluir atributos constantes en las clases. Hay que tener en cuenta que como toda constante, estas son siempre públicas, y no podemos desde la 
+clase esconderlas (su ámbito siempre será la clase). </p>
+<img src="uml54.jpg" alt=""> <br>
+<p>En este ejemplo podemos observar el uso de las constantes como forma de documentar y evitar los "números mágicos" (técnica de Refactoring), donde para conocer la lista de 
+parámetros (sin importar saber de memoria sus valores) se lo podemos pedir a la misma clase 
+consultando sus constantes (que son públicas y su propia descripción auto-documentan su 
+uso). </p>
+<p>Nota: las constantes se consideran "elementos de clase" (ver más adelante el apartado sobre "métodos estáticos"), por lo tanto dentro de la clase deberías usar self::CONSTANTE  
+(igual puedes usar Clase::CONSTANTE).</p>
+<b>10. Miembros estáticos o de clase (static) </b><br />
+<p>Las clases pueden incluir elementos "estáticos" (también denominados "elementos de clase"), accesibles a través de la clase y no de la instancia.</p>
+<p>El ejemplo más común es crear una clase Usuario que cada vez que se cree una instancia, 
+la clase sepa cual es el último número de id y asignar dinámicamente un número más para el nuevo usuario. </p>
+<img src="uml55.jpg" alt=""> <br>
+<p>En este ejemplo podemos ver cómo a través del "atributo de clase" se mantiene la 
+información entre instancias de la misma clase. Hay que tener en cuenta que este ejemplo no 
+es del todo útil más allá de explicar cómo funciona, ya que cada vez que reiniciemos nuestra 
+página, el contador empezará nuevamente de cero (para evitarlo habría que persistir esta 
+información de alguna forma). </p>
+<p>Otro uso común de los miembros estáticos es en el patrón Singleton, el cual está pensado para retornar siempre la misma instancia de un objeto: </p>
+<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Singleton  </span>
+<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> NULL</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getInstance</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>if</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> NULL</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Singleton</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
+<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
+<span style='color:#5f5035; background:#ffffe8; '></span>
+</pre>
+<b>11. Métodos estáticos o de clase (static) </b><br />
+<p>De la misma forma que ahora se pueden crear atributos de clase, también se pueden crear métodos de clase o estáticos. En esencia la lógica es la misma, son métodos que se comparten 
+entre elementos de la misma clase y no son "de instancia" (no requieren una instancia para 
+poder usarse). </p>
+<p>Por ejemplo, PHP tiene una función strtolower(), si quisiéramos ordenarlo en un entorno 100% Orientado a Objetos, podríamos decir que debería ser un método de una clase String, y 
+deberíamos poder usarlo en cualquier ambiente, tanto bajo una instancia como sin ella. Si 
+creamos un método común, solo lo podremos usar con una instancia: </p>
+<img src="uml56.jpg" alt=""> <br>
+<p>Bien podríamos cambiar el diseño y decir que no necesitamos crear constantemente una instancia que luego no se va a usar, por lo tanto cambiemos el método a "de clase".</p>
+<img src="uml57.jpg" alt=""> <br>
+De ahora en más podremos usarla de dos formas. <br />
+Hay que tener en cuenta que si llamamos al método internamente, debemos cambiar el $this que se aplica a instancias por el método self que se aplica a elementos de clase. <br />
+<img src="uml58.jpg" alt=""> <br>
+<p>Otro ejemplo de uso muy tradicional es la típica clase Index, donde no necesariamente 
+requiere que creemos una instancia, ya que solo la usaremos para iniciar la ejecución de un 
+sistema, por lo que acceder a un método es suficiente. </p>
+<b>12. Clases Abstractas  </b><br />
+"abstract" es una forma de decir que una clase "no se puede instanciar". <br />
+<b>13. Métodos abstractos </b><br />
+<p>Un método abstracto obliga a una clase que hereda de la clase que lo contiene (al método abstracto) a definir el contenido de ese método. </p>
+Una clase que tiene métodos abstractos debe definirse como clase abstracta. <br />
+<p>De la misma forma que podemos decir que una clase abstracta puede ser usada como una 
+clase "modelo" para que otra herede de ella, podemos decir que un método abstracto sirve de 
+modelo para que una clase que herede tenga que implementar el método definido en la clase 
+padre. </p>
+<img src="uml59.jpg" alt=""> <br>
+<b>14. Validación de Tipo a través de Clases ( type hints)</b><br />
+<p>PHP desde sus orígenes es un lenguaje "dinámicamente tipado", lo que hace que cada 
+variable defina su tipo según el valor que se le asigne, pero en sí no necesitamos como Java 
+que es obligatorio definir el tipo antes de usarlo.</p>
+<img src="uml60.jpg" alt=""> <br>
+<p>Un detalle importante a tener en cuenta es que la validación es "mecánica", es decir, 
+cuando recibe el objeto pregunta cual es su tipo (con qué clase se creó o cuales son sus 
+padres) y luego comparará exactamente con la cadena de texto que agregamos a la izquierda 
+(en este caso MyClass). </p>
+De aquí se desprenden dos cosas: <br />
+1. No es técnicamente necesario incluir la clase de filtro, por ejemplo, para usar el filtro MyClass no hace falta hacer un require_once de MyClass, ya que con el nombre solo ya le 
+alcanza para hacer la comprobación. <br />
+2. Cuando se hereda, una clase es del tipo base (su clase) y la de su padre, por lo tanto si 
+soy un Usuario y además heredé de Persona, la validación puede ser filtro(Persona $persona) y ambas serán aceptadas, porque ambos objetos son "personas". <br />
+<b>15.Soporte a invocaciones anidadas de objetos retornados </b><br />
+En PHP4 estábamos obligados a hacer lo siguiente: 
+<b>$dummy = $obj->method(); </b> <br />
+<b>$dummy->method2(); </b> <br />
+Ahora en PHP 5 podemos hacer las invocaciones en cadena de la siguiente forma: <br />
+<b>$obj->method()->method2(); </b> <br />
+Es una técnica muy utilizada y se le llama "Interfaces fluidas" (fluent interface), y para 
+aplicarlas deberíamos, a cada método que queremos que se pueda anidar con la ejecución de 
+otro, hacer que retorne la instancia actual con "this". De esta forma podemos anidarlos, ya 
+que la salida de uno es la misma instancia que se va a aplicar en siguiente método. 
+<img src="uml61.jpg" alt=""> <br>
+<b>16. Iteradores </b><br />
+<p>PHP5 permite ahora que las colecciones de una clase puedan ser iteradas a través de la 
+misma clase con solo cumplir con una interface, así, con un simple foreach podremos recorrer 
+los valores de un objeto: </p>
+<img src="uml62.jpg" alt=""> <br>
+<b>17. __autoload()</b><br />
+<p>Es muy común que debamos incluir al principio de nuestra clase toda una serie de 
+require_once de clases que necesitamos para trabajar. PHP5 ahora incorpora una función que 
+permite definir un simple algoritmo de búsqueda de clases que se ejecutará siempre que 
+nuestro fuente intente hacer un "new" de una clase (automáticamente la función recibirá por 
+parámetros el nombre de la clase que intentamos instanciar, el resto lo definimos nosotros). </p>
+<img src="uml63.jpg" alt=""> <br>
+
 </body>
 </html>
