@@ -6,7 +6,20 @@
 	<title></title>  
   <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+    <!-- 14/02 -->
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="codemirror/mode/xml/xml.js"></script>
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+    <script src="codemirror/mode/css/css.js"></script>
+    <script src="codemirror/mode/clike/clike.js"></script>
+    <script src="codemirror/mode/php/php.js"></script>
+    <style type="text/css">.CodeMirror {border: 1px solid black; width: 60%;height:auto}</style>
+    <link rel="stylesheet" href="codemirror/doc/docs.css">
+    <!-- 14/02 -->
     <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -113,6 +126,14 @@ La Sección #3 es para definir los métodos de nuestra clase<br><br>
 
 Persona.php<br> 
 #1<br>
+
+<textarea id="code" name="code">
+<?php  
+class Persona  
+{ 
+  
+}  
+</textarea>
 <script src="https://gist.github.com/4377161.js"></script>  
 #2<br>
 <script src="https://gist.github.com/4377202.js"></script>
@@ -1517,5 +1538,17 @@ nuestro fuente intente hacer un "new" de una clase (automáticamente la función
 parámetros el nombre de la clase que intentamos instanciar, el resto lo definimos nosotros). </p>
 <img src="uml63.jpg" alt=""> <br>
 
+<script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        enterMode: "keep",
+        tabMode: "shift",
+        readOnly: "true"
+      });  
+    </script>
 </body>
 </html>
