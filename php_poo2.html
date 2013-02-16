@@ -1421,15 +1421,14 @@ través de la "sobreescritura" de los mismos (los métodos deben usarse tal cual
 su padre).  </p>
 <img src="uml51.jpg" alt=""> <br>
 <b>7. Operador "final" para la clase </b><br />
-<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
-<span style='color:#800000; background:#ffffe8; font-weight:bold; '>final</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> FinalClass </span>
-<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> BogusClass </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>extends</span><span style='color:#000000; background:#ffffe8; '> FinalClass  </span>
-<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
-<span style='color:#5f5035; background:#ffffe8; '></span>
-</pre>
+<textarea id="code3" name="code">
+final class FinalClass 
+{ 
+} 
+class BogusClass extends FinalClass  
+{ 
+}
+</textarea>
 <p>En este caso el sistema dará un error grave porque se intentó heredar de una clase que está definida como "final". </p>
 <b>8. Método reservado __clone para clonado de objetos</b><br />
 <p>Desde que PHP5 empieza a trabajar por referencia y no por valor (como hacía por defecto PHP4), toda asignación con objetos representa una copia de la referencia a un mismo objeto, 
@@ -1475,7 +1474,6 @@ class Singleton
         return self::$_instance; 
     } 
 }
-</script>
 </textarea>
 <b>11. Métodos estáticos o de clase (static) </b><br />
 <p>De la misma forma que ahora se pueden crear atributos de clase, también se pueden crear métodos de clase o estáticos. En esencia la lógica es la misma, son métodos que se comparten 
@@ -1553,6 +1551,16 @@ parámetros el nombre de la clase que intentamos instanciar, el resto lo definim
         readOnly: "true"
       }); 
       var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        enterMode: "keep",
+        tabMode: "shift",
+        readOnly: "true"
+      });  
+      var editor = CodeMirror.fromTextArea(document.getElementById("code3"), {
         lineNumbers: true,
         matchBrackets: true,
         mode: "application/x-httpd-php",
