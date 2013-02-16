@@ -1406,12 +1406,12 @@ funcionalidad cuando el objeto se destruya (por ejemplo, desconectarnos de una b
 <img src="uml50.jpg" alt=""> <br>
 <b>5. El operador "instance of"  </b><br />
 <p>Se deja de usar el operador de PHP4 is_a() y se agrega uno nuevo más especializado para objetos: "es instancia de": </p>
-<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '></span><span style='color:#000000; background:#ffffe8; '></span>
-<span style='color:#800000; background:#ffffe8; font-weight:bold; '>if</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#797997; background:#ffffe8; '>$obj</span><span style='color:#000000; background:#ffffe8; '> instance of Circle</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>print</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#0000e6; background:#ffffe8; '>'$obj is a Circle'</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
-<span style='color:#5f5035; background:#ffffe8; '></span>
-</pre>
+<textarea id="code4" name="code">
+<?
+if ($obj instance of Circle) { 
+    print '$obj is a Circle'; 
+}
+</textarea>
 Aquí estamos preguntando si la instancia "obj" es de tipo "la clase Círculo".  <br />
 <p>Aunque "tecnicamente exista y pueda usarse ", no se recomienda estar preguntando  a las instancias cual es su clase, ya que rompemos los diseños genéricos que pueden hacer uso del 
 polimorfismo (estrategia base del DOO). </p>
@@ -1422,6 +1422,7 @@ su padre).  </p>
 <img src="uml51.jpg" alt=""> <br>
 <b>7. Operador "final" para la clase </b><br />
 <textarea id="code3" name="code">
+<?
 final class FinalClass 
 { 
 } 
@@ -1561,6 +1562,16 @@ parámetros el nombre de la clase que intentamos instanciar, el resto lo definim
         readOnly: "true"
       });  
       var editor = CodeMirror.fromTextArea(document.getElementById("code3"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        enterMode: "keep",
+        tabMode: "shift",
+        readOnly: "true"
+      }); 
+      var editor = CodeMirror.fromTextArea(document.getElementById("code4"), {
         lineNumbers: true,
         matchBrackets: true,
         mode: "application/x-httpd-php",
