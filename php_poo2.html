@@ -1459,23 +1459,24 @@ es del todo útil más allá de explicar cómo funciona, ya que cada vez que rei
 página, el contador empezará nuevamente de cero (para evitarlo habría que persistir esta 
 información de alguna forma). </p>
 <p>Otro uso común de los miembros estáticos es en el patrón Singleton, el cual está pensado para retornar siempre la misma instancia de un objeto: </p>
-<pre style='color:#000000;background:#ffffff;'><span style='color:#5f5035; background:#ffffe8; '>&lt;?php</span><span style='color:#000000; background:#ffffe8; '></span>
-<span style='color:#800000; background:#ffffe8; font-weight:bold; '>class</span><span style='color:#000000; background:#ffffe8; '> Singleton  </span>
-<span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> NULL</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>private</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#400000; background:#ffffe8; '>__construct</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;</span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>static</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>public</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>function</span><span style='color:#000000; background:#ffffe8; '> getInstance</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '>  </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>if</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> NULL</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800080; background:#ffffe8; '>{</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#808030; background:#ffffe8; '>=</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>new</span><span style='color:#000000; background:#ffffe8; '> Singleton</span><span style='color:#808030; background:#ffffe8; '>(</span><span style='color:#808030; background:#ffffe8; '>)</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>return</span><span style='color:#000000; background:#ffffe8; '> </span><span style='color:#800000; background:#ffffe8; font-weight:bold; '>self</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#800080; background:#ffffe8; '>:</span><span style='color:#797997; background:#ffffe8; '>$_instance</span><span style='color:#800080; background:#ffffe8; '>;</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#000000; background:#ffffe8; '>&#xa0;&#xa0;&#xa0;&#xa0;</span><span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '> </span>
-<span style='color:#800080; background:#ffffe8; '>}</span><span style='color:#000000; background:#ffffe8; '></span>
-<span style='color:#5f5035; background:#ffffe8; '></span>
-</pre>
+<textarea id="code2" name="code">
+<?php
+class Singleton  
+{ 
+    static private $_instance = NULL; 
+ 
+    private function __construct() {} 
+ 
+    static public function getInstance()  
+    { 
+        if (self::$_instance == NULL) { 
+            self::$_instance = new Singleton(); 
+        } 
+        return self::$_instance; 
+    } 
+}
+</script>
+</textarea>
 <b>11. Métodos estáticos o de clase (static) </b><br />
 <p>De la misma forma que ahora se pueden crear atributos de clase, también se pueden crear métodos de clase o estáticos. En esencia la lógica es la misma, son métodos que se comparten 
 entre elementos de la misma clase y no son "de instancia" (no requieren una instancia para 
@@ -1542,6 +1543,16 @@ parámetros el nombre de la clase que intentamos instanciar, el resto lo definim
 
 <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        enterMode: "keep",
+        tabMode: "shift",
+        readOnly: "true"
+      }); 
+      var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
         lineNumbers: true,
         matchBrackets: true,
         mode: "application/x-httpd-php",
